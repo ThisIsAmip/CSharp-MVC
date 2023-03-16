@@ -7,8 +7,4 @@
     <RootNamespace>CSharp_MVC</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Enitties\" />
-  </ItemGroup>
-
 </Project>
