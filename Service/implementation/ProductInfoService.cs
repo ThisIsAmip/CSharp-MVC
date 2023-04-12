@@ -10,39 +10,45 @@ namespace Service.implementation
 {
     public class ProductInfoService : IProductInfoService
     {
-        private ApplicationDbContext _context;
-        public ProductInfoService(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        public Task CreateAsync(ProductInfo productInfo)
-        {
-            throw new NotImplementedException();
-        }
+        //TODO: Add ProductInfo Database then uncommend bellow
+        //private ApplicationDbContext _context;
+        //public ProductInfoService(ApplicationDbContext context)
+        //{
+        //    _context = context;
+        //}
+        //public async Task CreateAsync(ProductInfo productInfo)
+        //{
+        //    _context.ProductInfo.Update(productInfo);
+        //    await _context.SaveChangesAsync();
+        //}
+        //public async Task DeleteAsync(ProductInfo productInfo)
+        //{
+        //    _context.ProductInfo.Remove(productInfo);
+        //    await _context.SaveChangesAsync();
+        //}
+        //public async Task DeleteById(int id)
+        //{
 
-        public Task DeleteAsync(ProductInfo productInfo)
-        {
-            throw new NotImplementedException();
-        }
+        //    var productInfo = GetByProductInfoId(id);
+        //    _context.ProductInfo.Remove(productInfo);
+        //    await _context.SaveChangesAsync();
+        //}
 
-        public Task DeleteById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<ProductInfo> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetByUserId(int productInfo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(ProductInfo productInfo)
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerable<Entity.ProductInfo> GetAll()
+        //{
+        //    foreach (var productInfo in _context.ProductInfo)
+        //    {
+        //        yield return productInfo;
+        //    }
+        //}
+        //public ProductInfo GetByProductInfoId(int productID)
+        //{
+        //    return _context.ProductInfo.Where(x => x.ProductID == productID).FirstOrDefault();
+        //}
+        //public async Task UpdateAsync(ProductInfo productInfo)
+        //{
+        //    _context.ProductInfo.Update(productInfo);
+        //    await _context.SaveChangesAsync();
+        //}
     }
 }
