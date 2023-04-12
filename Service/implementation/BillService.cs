@@ -18,41 +18,46 @@ namespace Service.implementation
         }
         public async Task CreateAsync(Bill bill)
         {
-            _context.Role.Update(bill);
+            _context.Bill.Update(bill);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Bill bill)
         {
-            _context.Role.Remove(bill);
+            _context.Bill.Remove(bill);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteById(int id)
         {
 
-            var bill = GetByRoleId(id);
-            _context.Role.Remove(bill);
+            var bill = GetByBillId(id);
+            _context.Bill.Remove(bill);
             await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Entity.Bill> GetAll()
         {
-            foreach (var bill in _context.Role)
+            foreach (var bill in _context.Bill)
             {
                 yield return bill;
             }
         }
 
-        public Role GetByBilId(int billId)
+        public Bill GetByBillId(int billId)
         {
-            return _context.Role.Where(x => x.BillId == billId).FirstOrDefault();
+            return _context.Bill.Where(x => x.BillID == billId).FirstOrDefault();
         }
 
         public async Task UpdateAsync(Bill bill)
         {
-            _context.Role.Update(bill);
+            _context.Bill.Update(bill);
             await _context.SaveChangesAsync();
+        }
+
+        Bill IBillService.GetByBillId(int billId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
