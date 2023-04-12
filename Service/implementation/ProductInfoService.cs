@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.implementation
 {
-    public class ProductInfoService
+    public class ProductInfoService : IProductInfoService
     {
     }
 }
