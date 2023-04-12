@@ -16,13 +16,13 @@ namespace Service.implementation
         {
             _context = context;
         }
-        public async Task CreateAsSycn(Role role)
+        public async Task CreateAsync(Role role)
         {
             _context.Role.Update(role);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsSycn(Role role)
+        public async Task DeleteAsync(Role role)
         {
            _context.Role.Remove(role);
             await _context.SaveChangesAsync();
@@ -49,7 +49,7 @@ namespace Service.implementation
             return _context.Role.Where(x => x.RoleId == roleId).FirstOrDefault();
         }
 
-        public async Task UpdateAsSycn(Role role)
+        public async Task UpdateAsync(Role role)
         {
             _context.Role.Update(role);
             await _context.SaveChangesAsync();
