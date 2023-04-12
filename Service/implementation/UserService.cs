@@ -20,23 +20,11 @@ namespace Service.implementation
             _context.TaiKhoan.Update(user);
             await _context.SaveChangesAsync();
         }
-
-        public Task CreateAsync(Voucher voucher)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task DeleteAsync(User user)
         {
             _context.TaiKhoan.Remove(user);
             await _context.SaveChangesAsync();
         }
-
-        public Task DeleteAsync(Voucher voucher)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task DeleteById(int id)
         {
 
@@ -62,11 +50,6 @@ namespace Service.implementation
         {
             _context.TaiKhoan.Update(user);
             await _context.SaveChangesAsync();
-        }
-
-        public Task UpdateAsync(Voucher voucher)
-        {
-            throw new NotImplementedException();
         }
     }
 }
