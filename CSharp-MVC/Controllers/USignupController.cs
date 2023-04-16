@@ -2,7 +2,7 @@
 
 namespace CSharp_MVC.Controllers
 {
-    public class SignupController : Controller
+    public class USignupController : Controller
     {
         public IActionResult Index()
         {

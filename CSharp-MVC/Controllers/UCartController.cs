@@ -2,7 +2,7 @@
 
 namespace CSharp_MVC.Controllers
 {
-    public class CartController : Controller
+    public class UCartController : Controller
     {
         public IActionResult Index()
         {

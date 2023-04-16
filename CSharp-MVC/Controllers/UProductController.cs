@@ -2,7 +2,7 @@
 
 namespace CSharp_MVC.Controllers
 {
-    public class ProductController : Controller
+    public class UProductController : Controller
     {
         public IActionResult Index()
         {

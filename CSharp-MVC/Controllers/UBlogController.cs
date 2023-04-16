@@ -2,7 +2,7 @@
 
 namespace CSharp_MVC.Controllers
 {
-    public class BlogController : Controller
+    public class UBlogController : Controller
     {
         public IActionResult Index()
         {

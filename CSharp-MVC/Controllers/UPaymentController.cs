@@ -2,7 +2,7 @@
 
 namespace CSharp_MVC.Controllers
 {
-    public class PaymentController : Controller
+    public class UPaymentController : Controller
     {
         public IActionResult Index()
         {
