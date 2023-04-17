@@ -2,7 +2,656 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core Hello</a>.</p>
-</div>
+<section class="main-products d-flex justify-content-center">
+    <div class="container-fluid">
+        <div class="row justify-content-evenly">
+            <!-- Sản phẩm chính số 1-->
+            <div class="mainA col-6">
+                <!-- Link ảnh sản phẩm chính số 1-->
+                <img src="./img/home/main-products/1.jpg" class="img-fluid" alt="">
+                <div class="info-main1 position-absolute start-1">
+                    <h6>SUPERCHARGED FOR PROS.</h6>
+                    <h1>iPhone X</h1>
+                    <p>From $999.00 or $41.62/mo.<br>for 24 mo. Footnote*</p>
+                    <!-- Button dẫn tới sản phẩm chính số 1-->
+                    <button class="btn">BUY NOW</button>
+                </div>
+            </div>
+            <div class="mainB col-3">
+                <div class="row g-4">
+                    <!-- Sản phẩm chính số 2-->
+                    <div class="mini col-12">
+                        <!-- Link ảnh sản phẩm chính số 2-->
+                        <img src="img/home/main-products/2-iphones.jpg" class="img-fluid" alt="">
+                        <div class="info-main2 position-absolute start-1">
+                            <h6>FREE ENGRAVING</h6>
+                            <h4>iPhones</h4>
+                            <p>High-fidelity playback<br>& ultra-low distortion</p>
+                        </div>
+                    </div>
+                    <!-- Sản phẩm chính số 3-->
+                    <div class="mini col-12">
+                        <!-- Link ảnh sản phẩm chính số 3-->
+                        <img src="img/home/main-products/3-samsung.jpg" class="img-fluid" alt="">
+                        <div class="info-main2 position-absolute start-1">
+                            <h6>BEST SALE</h6>
+                            <h4>Samsung Galaxy</h4>
+                            <p>From $1699.00<br>or $64.62/mo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mainB col-3">
+                <div class="row g-4">
+                    <!-- Sản phẩm chính số 4-->
+                    <div class="mini col-12">
+                        <!-- Link ảnh sản phẩm chính số 4-->
+                        <img src="img/home/main-products/4-xiaomi.jpg" class="img-fluid" alt="">
+                        <div class="info-main2 position-absolute start-1">
+                            <h6>15% OFF</h6>
+                            <h4>Xiaomi</h4>
+                            <p>Shop the latest band styles<br>and colors.</p>
+                        </div>
+                    </div>
+                    <!-- Sản phẩm chính số 5-->
+                    <div class="mini col-12">
+                        <!-- Link ảnh sản phẩm chính số 5-->
+                        <img src="img/home/main-products/5-huawei.jpg" class="img-fluid" alt="">
+                        <div class="info-main2 position-absolute start-1">
+                            <h6>NEW ARRIVAL</h6>
+                            <h4>Huawei</h4>
+                            <p>From $599 or $49/mo.<br>for 12 mo. *</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Thế mạnh cửa hàng HARDCODE-->
+<section class="strengths">
+    <div class="container-fluid bg-light">
+        <div class="row justify-content-around">
+            <div class="col col-2">
+                <div class="row align-items-center">
+                    <div class="icon col-sm-2">
+                        <i class="fas fa-truck fa-2x mb-2"></i>
+                    </div>
+                    <div class="col-sm-10 text-left">
+                        <div class="title"><strong>Free Shipping</strong></div>
+                        <div class="info">On all orders over $50</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-2">
+                <div class="row align-items-center">
+                    <div class="icon col-sm-2">
+                        <i class="fas fa-gift fa-2x mb-2"></i>
+                    </div>
+                    <div class="col-sm-10 text-left">
+                        <div class="title"><strong>Free Gift</strong></div>
+                        <div class="info">With every purchase</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-2">
+                <div class="row align-items-center">
+                    <div class="icon col-sm-2">
+                        <i class="fas fa-credit-card fa-2x mb-2"></i>
+                    </div>
+                    <div class="col-sm-10 text-left">
+                        <div class="title"><strong>Easy Payments</strong></div>
+                        <div class="info">With secure checkout</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-2">
+                <div class="row align-items-center">
+                    <div class="icon col-sm-2">
+                        <i class="fas fa-headphones fa-2x mb-2"></i>
+                    </div>
+                    <div class="col-sm-10 text-left">
+                        <div class="title"><strong>24/7 Support</strong></div>
+                        <div class="info">Via phone or email</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-2">
+                <div class="row align-items-center">
+                    <div class="icon col-sm-2">
+                        <i class="fas fa-undo fa-2x mb-2"></i>
+                    </div>
+                    <div class="col-sm-10 text-left">
+                        <div class="title"><strong>Easy Returns</strong></div>
+                        <div class="info">Within 30 days free</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Thể loại sản phẩm HARDCODE-->
+<section class="categories ">
+    <div class="row">
+        <div class="col-12">
+            <div class="cate owl-carousel owl-theme">
+                <!-- Apple-->
+                <div class="item mb-4">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">Apple</h5>
+                                    <p class="card-text"><small class="text-body-secondary">8 items</small></p>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <img src="img/home/categories/apple.png" class="img card-img " alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Samsung-->
+                <div class="item mb-4">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">Samsung</h5>
+                                    <p class="card-text"><small class="text-body-secondary">8 items</small></p>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <img src="img/home/categories/samsung.png" class="img card-img " alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nokia-->
+                <div class="item mb-4">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nokia</h5>
+                                    <p class="card-text"><small class="text-body-secondary">8 items</small></p>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <img src="img/home/categories/nokia.png" class="img card-img " alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Xiaomi-->
+                <div class="item mb-4">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">Xiaomi</h5>
+                                    <p class="card-text"><small class="text-body-secondary">8 items</small></p>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <img src="img/home/categories/xiaomi.png" class="img card-img " alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Realme-->
+                <div class="item mb-4">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">Realme</h5>
+                                    <p class="card-text"><small class="text-body-secondary">8 items</small></p>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <img src="img/home/categories/realme.png" class="img card-img " alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vivo-->
+                <div class="item mb-4">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">Vivo</h5>
+                                    <p class="card-text"><small class="text-body-secondary">8 items</small></p>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <img src="img/home/categories/vivo.png" class="img card-img " alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Huawei-->
+                <div class="item mb-4">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">Huawei</h5>
+                                    <p class="card-text"><small class="text-body-secondary">8 items</small></p>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <img src="img/home/categories/huawei.png" class="img card-img " alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bộ sưu tập các sản phẩm HARDCODE-->
+<section class="products">
+    <!-- Tiêu đề cho bộ sưu tập-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5" style="padding-bottom: 0.5rem;">
+                <h2>Feature Collections</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Slide các sản phẩm trong bộ sưu tập-->
+    <div class="row">
+        <div class="col-12">
+            <div class="prod owl-carousel owl-theme">
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh sản phẩm số 1-->
+                        <img src="img/home/products/1-ip14promax.jpg" class="card-img-top" alt="...">
+                        <!-- Thông tin sản phẩm số 1-->
+                        <div class="card-body">
+                            <div class="brand">Apple</div> <!-- Hãng-->
+                            <div class="name">iPhone 14 Pro Max</div> <!-- Tên sản phẩm-->
+                            <div class="rating">
+                                <!-- Đánh giá (5 sao)-->
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                            </div>
+                            <div class="price">$100</div> <!-- Giá tiền-->
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh sản phẩm số 2-->
+                        <img src="img/home/products/2-realme9proplus.jpg" class="card-img-top" alt="...">
+                        <!-- Thông tin sản phẩm số 2-->
+                        <div class="card-body">
+                            <div class="brand">Realme</div> <!-- Hãng-->
+                            <div class="name">Realme 9 Pro Plus</div> <!-- Tên sản phẩm-->
+                            <div class="rating">
+                                <!-- Đánh giá (5 sao)-->
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                            </div>
+                            <div class="price">$100</div> <!-- Giá tiền-->
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh sản phẩm số 3-->
+                        <img src="img/home/products/3-samsunggalaxya23.jpg" class="card-img-top" alt="...">
+                        <!-- Thông tin sản phẩm số 3-->
+                        <div class="card-body">
+                            <div class="brand">Samsung</div> <!-- Hãng-->
+                            <div class="name">Samsung Galaxy A23</div> <!-- Tên sản phẩm-->
+                            <div class="rating">
+                                <!-- Đánh giá (5 sao)-->
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                            </div>
+                            <div class="price">$100</div> <!-- Giá tiền-->
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh sản phẩm số 4-->
+                        <img src="img/home/products/4-samsunggalaxys20.jpg" class="card-img-top" alt="...">
+                        <!-- Thông tin sản phẩm số 4-->
+                        <div class="card-body">
+                            <div class="brand">Samsung</div> <!-- Hãng-->
+                            <div class="name">Samsung Galaxy S20</div> <!-- Tên sản phẩm-->
+                            <div class="rating">
+                                <!-- Đánh giá (5 sao)-->
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                            </div>
+                            <div class="price">$100</div> <!-- Giá tiền-->
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh sản phẩm số 5-->
+                        <img src="img/home/products/5-samsunggalaxyzfold4.jpg" class="card-img-top" alt="...">
+                        <!-- Thông tin sản phẩm số 5-->
+                        <div class="card-body">
+                            <div class="brand">Samsung</div> <!-- Hãng-->
+                            <div class="name">Samsung Galaxy Z Fold 4</div> <!-- Tên sản phẩm-->
+                            <div class="rating">
+                                <!-- Đánh giá (5 sao)-->
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                            </div>
+                            <div class="price">$100</div> <!-- Giá tiền-->
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh sản phẩm số 6-->
+                        <img src="img/home/products/6-xiaomiredminote11.jpg" class="card-img-top" alt="...">
+                        <!-- Thông tin sản phẩm số 6-->
+                        <div class="card-body">
+                            <div class="brand">Xiaomi</div> <!-- Hãng-->
+                            <div class="name">Redmi Note 11</div> <!-- Tên sản phẩm-->
+                            <div class="rating">
+                                <!-- Đánh giá (5 sao)-->
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                            </div>
+                            <div class="price">$100</div> <!-- Giá tiền-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sản phẩm mới nổi bật HARDCODE-->
+<section class="new-product">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="new owl-carousel owl-theme">
+                    <!-- Sản phẩm số 1-->
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 1-->
+                            <img src="img/home/subbanner-01.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay" style="color:white">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 399$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sản phẩm số 2-->
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 2-->
+                            <img src="img/home/subbanner-02.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 399$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sản phẩm số 3-->
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 3-->
+                            <img src="img/home/subbanner-03.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 399$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sản phẩm số 4-->
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 4-->
+                            <img src="img/home/subbanner-04.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 399$</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sản phẩm đặc biệt-->
+<section class="special-products">
+    <!-- Tiêu đề-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5" style="padding-bottom: 0.5rem;">
+                <h2>Special Products</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Danh mục các sản phẩm đặc biệt-->
+    <div class="row">
+        <div class="col-12">
+            <div class="sprod owl-carousel owl-theme">
+                <div class="item">
+                    <!-- Sản phẩm hàng 1-->
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <!-- Link ảnh sản phẩm đặc biệt-->
+                                <img src="img/home/special-products/nokia-5710-slider-den-1.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col-6">
+                                <!-- Thông tin sản phẩm-->
+                                <div class="card-body">
+                                    <!-- Thương hiệu-->
+                                    <div class="brand">Havells</div>
+                                    <!-- Tên sản phẩm-->
+                                    <div class="name">Kid's Headphone Bulk 10</div>
+                                    <!-- Đánh giá-->
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                                    </div>
+                                    <!-- Giá tiền-->
+                                    <div class="price">$100</div>
+                                    <!-- Button Thêm vào giỏ hàng-->
+                                    <button class="btn">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sản phẩm hàng 2-->
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <!-- Link ảnh sản phẩm đặc biệt-->
+                                <img src="img/home/special-products/nokia-5710-slider-den-1.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col-6">
+                                <!-- Thông tin sản phẩm-->
+                                <div class="card-body">
+                                    <!-- Thương hiệu-->
+                                    <div class="brand">Havells</div>
+                                    <!-- Tên sản phẩm-->
+                                    <div class="name">Kid's Headphone Bulk 10</div>
+                                    <!-- Đánh giá-->
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                                    </div>
+                                    <!-- Giá tiền-->
+                                    <div class="price">$100</div>
+                                    <!-- Button Thêm vào giỏ hàng-->
+                                    <button class="btn">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Các nhãn hiệu sản phẩm HARDCODE-->
+<section class="brand-list">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="brand owl-carousel owl-theme">
+                    <div class="item">
+                        <img src="img/home/brand-01.webp" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/home/brand-02.webp" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/home/brand-03.webp" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/home/brand-04.webp" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/home/brand-05webp.webp" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/home/brand-07.webp" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/home/brand-08.webp" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/home/brand-09.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blogs -->
+<section class="news">
+    <!-- Tiêu đề-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5" style="padding-bottom: 0.5rem;">
+                <h2>Our Latest News</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="new owl-carousel owl-theme">
+                <!-- Blog số 1-->
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh blog-->
+                        <img src="img/home/blog_1.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <!-- Ngày viết blog-->
+                            <div class="date">11 JUNE, 2022</div>
+                            <!-- Tiêu đề-->
+                            <div class="title">SeCtmISkJkNUaaKMoLD0</div>
+                            <!-- Nội dung blog-->
+                            <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt perspiciatis delectus quos tempore aspernatur alias repudiandae? Officia incidunt consequatur inventore fugit, at sit. Iusto maiores pariatur ea, ducimus neque aut!</div>
+                            <!-- Nút đọc thêm-->
+                            <button class="btn">READ MORE</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog số 2-->
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh blog-->
+                        <img src="img/home/blog_2.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <!-- Ngày viết blog-->
+                            <div class="date">11 JUNE, 2022</div>
+                            <!-- Tiêu đề-->
+                            <div class="title">SeCtmISkJkNUaaKMoLD0</div>
+                            <!-- Nội dung blog-->
+                            <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt perspiciatis delectus quos tempore aspernatur alias repudiandae? Officia incidunt consequatur inventore fugit, at sit. Iusto maiores pariatur ea, ducimus neque aut!</div>
+                            <!-- Nút đọc thêm-->
+                            <button class="btn">READ MORE</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog số 3-->
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh blog-->
+                        <img src="img/home/blog_3.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <!-- Ngày viết blog-->
+                            <div class="date">11 JUNE, 2022</div>
+                            <!-- Tiêu đề-->
+                            <div class="title">SeCtmISkJkNUaaKMoLD0</div>
+                            <!-- Nội dung blog-->
+                            <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt perspiciatis delectus quos tempore aspernatur alias repudiandae? Officia incidunt consequatur inventore fugit, at sit. Iusto maiores pariatur ea, ducimus neque aut!</div>
+                            <!-- Nút đọc thêm-->
+                            <button class="btn">READ MORE</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog số 4-->
+                <div class="item">
+                    <div class="card">
+                        <!-- Link ảnh blog-->
+                        <img src="img/home/blog_4.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <!-- Ngày viết blog-->
+                            <div class="date">11 JUNE, 2022</div>
+                            <!-- Tiêu đề-->
+                            <div class="title">SeCtmISkJkNUaaKMoLD0</div>
+                            <!-- Nội dung blog-->
+                            <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt perspiciatis delectus quos tempore aspernatur alias repudiandae? Officia incidunt consequatur inventore fugit, at sit. Iusto maiores pariatur ea, ducimus neque aut!</div>
+                            <!-- Nút đọc thêm-->
+                            <button class="btn">READ MORE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
