@@ -1,8 +1,17 @@
 * {
   font-family: "arial", arial, monospace;
 }
+body {
+    background-color: #f5f5f7;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    color:#c76d39 ;
+}
 .main-products {
-  background-color: white;
   height: auto;
   width: 100%;
 }
@@ -139,6 +148,7 @@
 }
 .products .name {
   font-weight: bold;
+  color: black;
 }
 .special-products .brand,
 .special-products .name,
