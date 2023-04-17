@@ -87,7 +87,7 @@ button#saved-countries {
   background-color: #a3a7aa !important;
 }
 .image-container img {
-  width: 85px;
+  width: 85px !important;
 }
 
 .pr-quantity.position-absolute {
