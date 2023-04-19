@@ -8,20 +8,38 @@ namespace CSharp_MVC.Controllers
     public class UHomeController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IProductCategoryService _productCategoryService;
 
 
         private readonly ILogger<UHomeController> _logger;
 
-        public UHomeController(ILogger<UHomeController> logger, IProductService productService)
+        public UHomeController(ILogger<UHomeController> logger, IProductService productService, IProductCategoryService productCategoryService)
         {
             _productService = productService;
+            _productCategoryService = productCategoryService;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            Product product = new Product();
-            product.ProductID = 1;
+            var listProduct = _productService.GetAll().Select(entity => new Product {
+                ProductID = entity.ProductID,
+                ProductName = entity.ProductName,
+                Description = entity.Description,
+                Picture = entity.Picture,
+                Price = entity.Price,
+                Quantity = entity.Quantity,
+            }).ToList();
+
+            var listCategory = _productCategoryService.GetAll().Select(entity => new ProductCategory
+            {
+               ProdCateID = entity.ProdCateID,
+               ProdCateName = entity.ProdCateName,
+            }).ToList();
+
+            ViewBag.listProduct = listProduct;
+            ViewBag.listCategory = listCategory;
+
             return View();
         }
 

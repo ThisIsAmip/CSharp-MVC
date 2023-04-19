@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
+    [NotMapped]
     public class ProductImage
     {
 
@@ -15,7 +16,6 @@ namespace Entity
         public string Name { get; set; }
 
         [ForeignKey("Product")]
-
         public int ProductID{ get; set; }
         public Product Product { get; set; }
     }
