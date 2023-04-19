@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class dbPhone : Migration
+    public partial class DbPhone : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,6 +34,7 @@ namespace DataAccess.Migrations
                     EmployeeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nationality = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<float>(type: "real", nullable: false),
@@ -82,7 +83,7 @@ namespace DataAccess.Migrations
                     DateEnded = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PercentSale = table.Column<float>(type: "real", nullable: false),
                     PriceSale = table.Column<float>(type: "real", nullable: false),
-                    UseTimess = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UseTimess = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -166,6 +167,50 @@ namespace DataAccess.Migrations
                         column: x => x.VoucherID,
                         principalTable: "Voucher",
                         principalColumn: "VoucherID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductImage",
+                columns: table => new
+                {
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    ImageLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.ForeignKey(
+                        name: "FK_ProductImage_Product_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Product",
+                        principalColumn: "ProductID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductInfo",
+                columns: table => new
+                {
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    Screen = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FrontCam = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BackCam = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Chip = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ram = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Storage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SIM = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Battery = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductInfo", x => x.ProductID);
+                    table.ForeignKey(
+                        name: "FK_ProductInfo_Product_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Product",
+                        principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -257,6 +302,12 @@ namespace DataAccess.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ProductBill");
+
+            migrationBuilder.DropTable(
+                name: "ProductImage");
+
+            migrationBuilder.DropTable(
+                name: "ProductInfo");
 
             migrationBuilder.DropTable(
                 name: "ProductSale");

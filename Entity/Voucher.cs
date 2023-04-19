@@ -16,7 +16,7 @@ namespace Entity
         public float PercentSale { get; set; }
         public float PriceSale { get; set;}
 
-        public DateTime UseTimess { get; set; }
+        public int UseTimess { get; set; }
 
         public ICollection<Bill> Bill { get; set; }
     }

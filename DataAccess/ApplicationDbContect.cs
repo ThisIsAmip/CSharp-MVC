@@ -32,6 +32,10 @@ namespace DataAccess
         public DbSet<ProductSale> ProductSale { get; set; }
 
         public DbSet<ProductBill> ProductBill { get; set; }
+        public DbSet<ProductInfo> ProductInfo { get; set; }
+
+        public DbSet<ProductImage> ProductImage { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

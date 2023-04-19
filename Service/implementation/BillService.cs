@@ -8,51 +8,36 @@ using System.Threading.Tasks;
 
 namespace Service.implementation
 {
-    public class BillService: IBillService
+    public class BillService : IBillService
     {
-        private ApplicationDbContext _context;
-
-        public BillService(ApplicationDbContext context)
+        public Task CreateAsync(Bill bill)
         {
-            _context = context;
-        }
-        public async Task CreateAsync(Bill bill)
-        {
-            _context.Role.Update(bill);
-            await _context.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task DeleteAsync(Bill bill)
+        public Task DeleteAsync(Bill bill)
         {
-            _context.Role.Remove(bill);
-            await _context.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task DeleteById(int id)
+        public Task DeleteById(int id)
         {
-
-            var bill = GetByRoleId(id);
-            _context.Role.Remove(bill);
-            await _context.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<Entity.Bill> GetAll()
+        public IEnumerable<Bill> GetAll()
         {
-            foreach (var bill in _context.Role)
-            {
-                yield return bill;
-            }
+            throw new NotImplementedException();
         }
 
-        public Role GetByBilId(int billId)
+        public Bill GetByBillId(int billId)
         {
-            return _context.Role.Where(x => x.BillId == billId).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(Bill bill)
+        public Task UpdateAsync(Bill bill)
         {
-            _context.Role.Update(bill);
-            await _context.SaveChangesAsync();
+            throw new NotImplementedException();
         }
     }
 }

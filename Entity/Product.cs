@@ -29,7 +29,9 @@ namespace Entity
 
         public ICollection<ProductBill> ProductBill { get; set; }
 
+        public ICollection<ProductImage> ProductImage { get; set; }
 
+        public ICollection<ProductInfo> ProductInfo { get; set; }
     }
 
 }

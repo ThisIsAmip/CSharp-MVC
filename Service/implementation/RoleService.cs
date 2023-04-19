@@ -16,16 +16,27 @@ namespace Service.implementation
         {
             _context = context;
         }
+
+        public Task CreateAsSycn(Role role)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task CreateAsync(Role role)
         {
             _context.Role.Update(role);
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteAsSycn(Role role)
+        {
+            _context.Role.Remove(role);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteAsync(Role role)
         {
-           _context.Role.Remove(role);
-            await _context.SaveChangesAsync();
+          
         }
 
         public async Task DeleteById(int id)
@@ -44,9 +55,19 @@ namespace Service.implementation
             }
         }
 
+        public Role GetByBillId(int roleId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Role GetByRoleId(int roleId)
         {
             return _context.Role.Where(x => x.RoleId == roleId).FirstOrDefault();
+        }
+
+        public Task UpdateAsSycn(Role role)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task UpdateAsync(Role role)

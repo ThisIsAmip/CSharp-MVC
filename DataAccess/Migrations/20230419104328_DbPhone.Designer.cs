@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230409134755_dbPhone")]
-    partial class dbPhone
+    [Migration("20230419104328_DbPhone")]
+    partial class DbPhone
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,6 +112,10 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -193,6 +197,70 @@ namespace DataAccess.Migrations
                     b.HasKey("ProdCateID");
 
                     b.ToTable("ProductCategory");
+                });
+
+            modelBuilder.Entity("Entity.ProductImage", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("ProductImage");
+                });
+
+            modelBuilder.Entity("Entity.ProductInfo", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BackCam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Battery")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Chip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FrontCam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OS")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ram")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SIM")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Screen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Storage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("ProductInfo");
                 });
 
             modelBuilder.Entity("Entity.ProductSale", b =>
@@ -292,8 +360,8 @@ namespace DataAccess.Migrations
                     b.Property<float>("PriceSale")
                         .HasColumnType("real");
 
-                    b.Property<DateTime>("UseTimess")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("UseTimess")
+                        .HasColumnType("int");
 
                     b.HasKey("VoucherID");
 
@@ -357,6 +425,28 @@ namespace DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Entity.ProductImage", b =>
+                {
+                    b.HasOne("Entity.Product", "Product")
+                        .WithMany("ProductImage")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Entity.ProductInfo", b =>
+                {
+                    b.HasOne("Entity.Product", "Product")
+                        .WithMany("ProductInfo")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Entity.ProductSale", b =>
                 {
                     b.HasOne("Entity.Product", "Product")
@@ -397,6 +487,10 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entity.Product", b =>
                 {
                     b.Navigation("ProductBill");
+
+                    b.Navigation("ProductImage");
+
+                    b.Navigation("ProductInfo");
 
                     b.Navigation("ProductSale");
                 });
