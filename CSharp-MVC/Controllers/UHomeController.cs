@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace CSharp_MVC.Controllers
 {
-    public class HomeController : Controller
+    public class UHomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<UHomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public UHomeController(ILogger<UHomeController> logger)
         {
             _logger = logger;
         }

@@ -17,7 +17,7 @@ namespace Service
         Task DeleteById(int id);
 
         IEnumerable<Role> GetAll();
-        Role GetByBillId(int roleId);
+        Role GetByRoleId(int roleId);
 
     }
 }
