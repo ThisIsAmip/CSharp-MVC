@@ -42,6 +42,12 @@ namespace DataAccess
             modelBuilder.Entity<ProductBill>()
             .HasKey(m => new { m.ProductID, m.BillID });
             base.OnModelCreating(modelBuilder);
+            modelBuilder
+            .Entity<ProductImage>(builder =>
+    {
+                builder.HasNoKey();
+                builder.ToTable("ProductImage");
+    });
         }
     }
 }
