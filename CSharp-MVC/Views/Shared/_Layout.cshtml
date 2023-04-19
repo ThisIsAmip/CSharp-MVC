@@ -1,4 +1,17 @@
-﻿<!DOCTYPE html>
+﻿
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var session = HttpContextAccessor.HttpContext.Session.GetString("customer");
+
+    var customer = new UserVm();
+    if (session != null)
+    {
+        customer = JsonConvert.DeserializeObject<UserVm>(session);
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,6 +46,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="UBlog" asp-action="Index">Blog</a>
                         </li>
+                        @{
+                            if (session != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="UBlog" asp-action="Index">@customer.Account</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>

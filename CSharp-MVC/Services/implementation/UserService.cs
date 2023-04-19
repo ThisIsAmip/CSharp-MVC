@@ -1,5 +1,5 @@
-﻿using DataAccess;
-using Entity;
+﻿using CSharp_MVC.DataAccess;
+using CSharp_MVC.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
