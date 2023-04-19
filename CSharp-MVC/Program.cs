@@ -2,6 +2,8 @@
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Service;
+using Service.implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +17,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IRoleService, RoleService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IVoucherService, VoucherService>();
+builder.Services.AddTransient<IProductInfoService, ProductInfoService>();
+builder.Services.AddTransient<IProductImageService, ProductImageService>();
+builder.Services.AddTransient<IProductCategoryService, ProductCategoryService>();
+builder.Services.AddTransient<IProductBillService, ProductBillService>();
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddTransient<ICustomerService, CustomerService>();
+builder.Services.AddTransient<IBillService, BillService>();
 builder.Services.AddControllersWithViews();
 
 
@@ -34,6 +46,7 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

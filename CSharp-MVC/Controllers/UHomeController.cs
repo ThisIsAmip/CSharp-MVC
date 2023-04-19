@@ -1,15 +1,20 @@
 ﻿using CSharp_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Service;
 using System.Diagnostics;
 
 namespace CSharp_MVC.Controllers
 {
     public class UHomeController : Controller
     {
+        private readonly IProductService _productService;
+
+
         private readonly ILogger<UHomeController> _logger;
 
-        public UHomeController(ILogger<UHomeController> logger)
+        public UHomeController(ILogger<UHomeController> logger, IProductService productService)
         {
+            _productService = productService;
             _logger = logger;
         }
 
