@@ -15,6 +15,8 @@ namespace CSharp_MVC.Controllers
 
         public IActionResult Index()
         {
+            Product product = new Product();
+            product.ProductID = 1;
             return View();
         }
 
