@@ -2,7 +2,6 @@
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 using Service.implementation;
 using Service;
 using CSharp_MVC.DataAccess;
@@ -32,7 +31,6 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
