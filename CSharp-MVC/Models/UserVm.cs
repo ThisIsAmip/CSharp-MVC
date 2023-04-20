@@ -1,8 +1,14 @@
-﻿namespace CSharp_MVC.Models
+﻿using CSharp_MVC.Entity;
+
+namespace CSharp_MVC.Models
 {
     public class UserVm
     {
-        public string Account{ get; set; }
-        public string Password{ get; set; }
+        public int UserID { get; set; }
+        public string Account { get; set; }
+        public string Password { get; set; }
+
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
     }
 }

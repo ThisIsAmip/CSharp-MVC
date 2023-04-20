@@ -38,5 +38,11 @@ namespace CSharp_MVC.Controllers
             HttpContext.Session.SetString("customer", customerInformation);
             return RedirectToAction("Index","UHome");
         }
+        [HttpPost("logout")]
+        public IActionResult Signout()
+        {
+            HttpContext.Session.Remove("customer");
+            return RedirectToAction("Index", "UHome");
+        }
     }
 }

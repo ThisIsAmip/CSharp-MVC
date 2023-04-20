@@ -1,4 +1,4 @@
-const nextIcon =
+﻿const nextIcon =
     '<i class="fas fa-chevron-right fa-2x mb-2" alt:="right" style="width: 1.5rem;"></i>';
 const prevIcon =
     '<i class="fas fa-chevron-left fa-2x mb-2" alt:="left" style="width: 1.5rem;"></i>';
