@@ -15,6 +15,7 @@ namespace CSharp_MVC.Controllers
         }
         public IActionResult Index()
         {
+
             return View();
         }
         public async Task<IActionResult> Index(UserVm user, CustomerVm customer)

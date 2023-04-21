@@ -17,11 +17,21 @@ namespace Service.implementation
         {
             _context = context;
         }
-        //public async Task CreateAsync(User user)
-        //{
-        //    _context.TaiKhoan.Update(user);
-        //    await _context.SaveChangesAsync();
-        //}
+        public async Task<bool> CreateAsync(User user)
+        {
+            var checkUser = _context.TaiKhoan.Where(x => x.Account == user.Account).FirstOrDefault();
+            if (checkUser != null)
+            {
+                return false;
+            }
+            var newUser = new User();
+            newUser.Account = user.Account;
+            newUser.Password = user.Password;
+            newUser.UserID = user.UserID;
+            newUser.RoleId = 1;
+            _context.TaiKhoan.Add(newUser);
+            return await _context.SaveChangesAsync() > 0;
+        }
         //public async Task DeleteAsync(User user)
         //{
         //    _context.TaiKhoan.Remove(user);
