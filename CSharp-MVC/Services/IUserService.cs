@@ -1,4 +1,5 @@
 ﻿using CSharp_MVC.Entity;
+using CSharp_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Service
 
         //IEnumerable<User> GetAll();
         User GetByUserAccount(string Account, string Password);
+        Task<bool> CreateUserAccount(UserVm user, CustomerVm customer);
         //User GetByUserId(int voucherID);
     }
 }

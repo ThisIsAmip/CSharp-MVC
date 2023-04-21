@@ -1,5 +1,6 @@
 ﻿using CSharp_MVC.DataAccess;
 using CSharp_MVC.Entity;
+using CSharp_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,27 @@ namespace Service.implementation
         public User GetByUserAccount(string Account, string Password)
         {
             return _context.TaiKhoan.Where(x => x.Account == Account && x.Password == Password).FirstOrDefault();
+        }
+        public async Task<bool> CreateUserAccount(UserVm user, CustomerVm customer)
+        {
+            var check = _context.TaiKhoan.Where(x => x.Account == user.Account).FirstOrDefault();
+            if (check != null)
+            {
+                return false;
+            }
+
+            var newuser1 = new User();
+            var newuser2 = new Customer();
+            newuser1.Account = user.Account;
+            newuser1.Password = user.Password;
+            _context.TaiKhoan.Add(newuser1);
+
+            newuser2.Account = user.Account;
+            newuser2.FullName = customer.FullName;
+            _context.Customer.Add(newuser2);
+            return await _context.SaveChangesAsync() > 0;
+
+
         }
         //public User GetByUserId(int UserId)
         //{
