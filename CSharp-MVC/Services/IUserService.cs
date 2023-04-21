@@ -19,7 +19,7 @@ namespace Service
 
         //IEnumerable<User> GetAll();
         User GetByUserAccount(string Account, string Password);
-        Task<bool> CreateUserAccount(UserVm user, CustomerVm customer);
+        Task<bool> CreateUserAccount(UserVm user);
         //User GetByUserId(int voucherID);
     }
 }

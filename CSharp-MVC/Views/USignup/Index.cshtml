@@ -1,25 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CSharp_MVC.Models.UserVm
 @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
     <link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
 </head>
-<div class="sign-up-background ">
-    <div class="sign-up-wrapper">
-        <div class="sign-up-info mx-auto col-10 col-md-8 col-lg-6">
-            <label for="first-name" class="form-label">First Name</label>
-            <input id="first-name" class="form-control"></input>
-            <label for="last-name" class="form-label">Last Name</label>
-            <input id="last-name" class="form-control"></input>
-            <label for="email" class="form-label">Email</label>
-            <input id="email" class="form-control"></input>
-            <label for="password" class="form-label">Password</label>
-            <input id="password" class="form-control"></input>
-        </div>
-        <div class="sign-up-btn d-flex mx-auto col-10 col-md-8 col-lg-6 pt-lg-4 mt-2 justify-content-end">
-            <button id="btn-cancel" class="btn btn-outline-danger me-2">Cancel</button>
-            <button id="btn-sign-up" class="btn btn-outline-primary">Sign up</button>
-        </div>
+@if (ViewBag.SuccessMsg != null)
+{
+    <div id="msgAlert" class="alert alert-success" role="alert">
+        @ViewBag.SuccessMsg
     </div>
+}
+<body>
+    <div class="sign-up-background ">
+        <div class="sign-up-wrapper">
+            <div class="sign-up-info mx-auto col-10 col-md-8 col-lg-6">
+                <form  asp-action="Index" asp-controller="USignup">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="justify-content-end">
+                        <label asp-for="FullName" class="form-label">Full Name</label>
+                        <input asp-for="FullName" class="form-control"></input>
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+
+                        <label asp-for="Account" class="form-label">Email</label>
+                        <input asp-for="Account" type="email" class="form-control"></input>
+                        <span asp-validation-for="Account" class="text-danger"></span>
+
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control"></input>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                    </div>
+                    <div class="sign-up-btn d-flex mx-auto col-10 col-md-8 col-lg-6 pt-lg-4 mt-2 me-0 justify-content-end">
+                        <button asp-controller="UHome" asp-action="Index" class="btn btn-outline-danger me-2">Cancel</button>
+                        <button type="submit" class="btn btn-outline-primary">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+@section Scripts{
+    <script>
+        set Timeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000)
+    </script>
+    }

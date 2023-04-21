@@ -56,7 +56,7 @@ namespace Service.implementation
         {
             return _context.TaiKhoan.Where(x => x.Account == Account && x.Password == Password).FirstOrDefault();
         }
-        public async Task<bool> CreateUserAccount(UserVm user, CustomerVm customer)
+        public async Task<bool> CreateUserAccount(UserVm user)
         {
             var check = _context.TaiKhoan.Where(x => x.Account == user.Account).FirstOrDefault();
             if (check != null)
@@ -68,10 +68,13 @@ namespace Service.implementation
             var newuser2 = new Customer();
             newuser1.Account = user.Account;
             newuser1.Password = user.Password;
+            newuser1.RoleId = 1;
+
             _context.TaiKhoan.Add(newuser1);
 
             newuser2.Account = user.Account;
-            newuser2.FullName = customer.FullName;
+            newuser2.FullName = user.FullName;
+            newuser2.Email = user.Account;
             _context.Customer.Add(newuser2);
             return await _context.SaveChangesAsync() > 0;
 
