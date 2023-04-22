@@ -10,13 +10,15 @@ namespace Service
     public interface IUserService
     {
         //thêm, sửa, xóa, get all, ...
-        Task CreateAsync(User user);
-        Task DeleteAsync(User user);
+        Task<bool> CreateAsync(User user);
+        //Task DeleteAsync(User user);
 
-        Task UpdateAsync(User user);
-        Task DeleteById(int id);
+        //Task UpdateAsync(User user);
+        //Task DeleteById(int id);
 
-        IEnumerable<User> GetAll();
-        User GetByUserId(int voucherID);
+        //IEnumerable<User> GetAll();
+        User GetByUserAccount(string Account, string Password);
+        Task<bool> CreateUserAccount(UserVm user);
+        //User GetByUserId(int voucherID);
     }
 }
