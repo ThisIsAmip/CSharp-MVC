@@ -1,6 +1,6 @@
 ﻿namespace CSharp_MVC.Models
 {
-    public class ProductBill
+    public class ProductBillVm
     {
         public int ProductID { get; set; }
         public int BillID { get; set; }

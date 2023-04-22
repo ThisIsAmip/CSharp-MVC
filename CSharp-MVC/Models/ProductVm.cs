@@ -1,6 +1,6 @@
 ﻿namespace CSharp_MVC.Models
 {
-    public class Product
+    public class ProductVm
     {
          public int ProductID { get; set; }
 

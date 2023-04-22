@@ -1,6 +1,6 @@
 ﻿namespace CSharp_MVC.Models
 {
-    public class ProductInfo
+    public class ProductInfoVm
     {
         public string Screen { get; set; }
         public string OS { get; set; }

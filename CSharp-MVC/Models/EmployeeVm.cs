@@ -1,6 +1,6 @@
 ﻿namespace CSharp_MVC.Models
 {
-    public class Employee
+    public class EmployeeVm
     {
         public int EmployeeID { get; set; }
         public string FullName { get; set; }

@@ -22,7 +22,7 @@ namespace CSharp_MVC.Controllers
 
         public IActionResult Index()
         {
-            var listProduct = _productService.GetAll().Select(entity => new Product {
+            var listProduct = _productService.GetAll().Select(entity => new ProductVm {
                 ProductID = entity.ProductID,
                 ProductName = entity.ProductName,
                 Description = entity.Description,
@@ -31,7 +31,7 @@ namespace CSharp_MVC.Controllers
                 Quantity = entity.Quantity,
             }).ToList();
 
-            var listCategory = _productCategoryService.GetAll().Select(entity => new ProductCategory
+            var listCategory = _productCategoryService.GetAll().Select(entity => new ProductCategoryVm
             {
                ProdCateID = entity.ProdCateID,
                ProdCateName = entity.ProdCateName,

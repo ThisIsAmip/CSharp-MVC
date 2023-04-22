@@ -1,6 +1,6 @@
 ﻿namespace CSharp_MVC.Models
 {
-    public class User
+    public class UserVm
     {
         public int UserID { get; set; }
         public string Account { get; set; }

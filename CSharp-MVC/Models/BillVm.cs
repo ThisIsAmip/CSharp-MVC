@@ -1,6 +1,6 @@
 ﻿namespace CSharp_MVC.Models
 {
-    public class Bill
+    public class BillVm
     {
         public int BillID { get; set; }
         public DateTime DateCreated { get; set; }
