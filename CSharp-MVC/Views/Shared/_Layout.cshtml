@@ -1,4 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var session = HttpContextAccessor.HttpContext.Session.GetString("customer");
+
+    var customer = new UserVm();
+    if (session != null)
+    {
+        customer = JsonConvert.DeserializeObject<UserVm>(session);
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -723,9 +736,24 @@
             </div>
         </div>
     </footer>
-    <!-- footer-end -->
 
 
+    <script>
+        $("#btnDangXuat").click(function (e) {
+            $.ajax({
+                url: "@Url.Action("Signout","USignin")",
+                type: "POST",
+                contentType: "application/json",
+                data: {
+
+                },
+                success: function () {
+                    console.log("Đăng xuất thành công !");
+                    window.location = "@Url.Action("Index","UHome")"
+                }
+            })
+        })
+    </script>
 
     <script src="~/Nassets/js/vendor/jquery.js"></script>
     <script src="~/Nassets/js/vendor/waypoints.js"></script>
@@ -750,4 +778,5 @@
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 }
