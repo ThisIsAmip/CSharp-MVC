@@ -3,7 +3,6 @@ using Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,7 +54,7 @@ namespace Service.implementation
         {
             return _context.TaiKhoan.Where(x => x.Account == Account && x.Password == Password).FirstOrDefault();
         }
-        public async Task<bool> CreateUserAccount(User user, Customer customer)
+        public async Task<bool> CreateUserAccount(User user)
         {
             var check = _context.TaiKhoan.Where(x => x.Account == user.Account).FirstOrDefault();
             if (check != null)
@@ -72,7 +71,7 @@ namespace Service.implementation
             _context.TaiKhoan.Add(newuser1);
 
             newuser2.Account = user.Account;
-            newuser2.FullName = customer.FullName;
+            newuser2.FullName = user.FullName;
             newuser2.Email = user.Account;
             _context.Customer.Add(newuser2);
             return await _context.SaveChangesAsync() > 0;

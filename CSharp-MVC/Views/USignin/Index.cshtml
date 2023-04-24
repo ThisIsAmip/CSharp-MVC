@@ -1,11 +1,7 @@
-﻿@using CSharp_MVC.Models;
-
-@model Signin
-@{
+﻿@{
+    ViewData["Title"] = "Login";
     Layout = null;
-    ViewData["Title"] = "Signin";
 }
-
 <head>
     <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 </head>
@@ -15,19 +11,15 @@
         <div class="panel login-panel">
             <h2>Login</h2>
             <div class="login-notify">Login to NienHoep to continue</div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <form class="form-control" asp-controller="USignin" asp-action="Index" method="post">
-                <!-- Tài khoản -->
-                <input type="text" placeholder="Enter Username" asp-for="Account" required>
-                <span asp-validation-for="Account" class="text-danger"></span>
-                <!-- Mật khẩu-->
-                <input type="password" placeholder="Enter Password" asp-for="Password" required>
-                <span asp-validation-for="Password" class="text-danger"></span>
-                <!-- Quên mật khẩu-->
-                <div class="forgetpw-notify">Forget your password? <a href="">Click here!</a></div>
-                <!-- Button đăng nhập-->
-                <button type="submit">Login</button>
-            </form>
+
+            <!-- Tài khoản -->
+            <input type="text" placeholder="Enter Username" name="username" required>
+            <!-- Mật khẩu-->
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <!-- Quên mật khẩu-->
+            <div class="forgetpw-notify">Forget your password? <a href="">Click here!</a></div>
+            <!-- Button đăng nhập-->
+            <button type="submit">Login</button>
         </div>
 
         <!-- Welcome + signup panel -->

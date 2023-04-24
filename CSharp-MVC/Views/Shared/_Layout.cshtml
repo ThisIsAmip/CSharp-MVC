@@ -106,17 +106,8 @@
                                     <a class="icon-link icon-link-2" asp-area="" asp-controller="USignin" asp-action="Index">
                                         <i class="flaticon-user"></i>
                                         <span class="text">
-                                            @if (session != null)
-                                            {
-                                                <span class="sub">Hello</span>
-                                                <p>@customer.Account</p>
-                                            }
-                                            else
-                                            {
-                                                <span class="sub">Login </span>
-                                                <p>My Account</p>
-                                            }
-
+                                            <span class="sub">Login </span>
+                                            My Account
                                         </span>
                                     </a>
                                 </div>
@@ -489,22 +480,17 @@
                                         </li>
                                         <!-- Địa chỉ cửa hàng End -->
                                         <li>
-                                            @if (session != null)
-                                            {
-                                                <a href="" style="cursor: pointer">Hello @customer.Account !<i class="far fa-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a id="btnDangXuat" style="cursor: pointer">Sign out</a></li>
-                                                    <li><a style="cursor: pointer">Details</a></li>
-                                                </ul>
-                                            } else
-                                            {
-                                                <a style="cursor: pointer">Sign in | My Account<i class="far fa-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a asp-controller="USignin" asp-action="Index">Sign in</a></li>
-                                                    <li><a asp-controller="USignup" asp-action="Index">Sign up</a></li>
-                                                </ul>
-                                            }
-
+                                            <a href="about.html">Pages <i class="far fa-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="my-account.html">My Account</a></li>
+                                                <li><a href="product-details.html">Product Details</a></li>
+                                                <li><a href="faq.html">FAQs pages</a></li>
+                                                <li><a href="cart.html">Cart</a></li>
+                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="404.html">404 Error</a></li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </nav>
@@ -786,7 +772,7 @@
     <script src="~/Nassets/js/imagesloaded-pkgd.js"></script>
     <script src="~/Nassets/js/ajax-form.js"></script>
     <script src="~/Nassets/js/main.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
 @section Scripts {

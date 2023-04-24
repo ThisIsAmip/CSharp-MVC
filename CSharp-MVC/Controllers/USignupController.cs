@@ -1,5 +1,4 @@
 ﻿using CSharp_MVC.Models;
-using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -25,27 +24,16 @@ namespace CSharp_MVC.Controllers
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
-            return View();
+            return View();  
         }
         [HttpPost]
-        public async Task<IActionResult> Index(Signup user)
+        public async Task<IActionResult> Index(UserVm user)
         {
             if (!ModelState.IsValid)
             {
                 return View(user);
             }
-            var newCustomer = new Customer()
-            {
-                Account = user.Account,
-                FullName = user.FullName
-            };
-            var newAccount = new User()
-            {
-                Account = user.Account,
-                Password = user.Password
-            };
-            var result = await _userService.CreateUserAccount(newAccount, newCustomer);
-            //TODO: Sửa lại theo cách dài vcl
+            var result = await _userService.CreateUserAccount(user);
             if (result == false)
             {
                 ModelState.AddModelError("", "Account already existed !");
