@@ -480,17 +480,23 @@
                                         </li>
                                         <!-- Địa chỉ cửa hàng End -->
                                         <li>
-                                            <a href="about.html">Pages <i class="far fa-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="my-account.html">My Account</a></li>
-                                                <li><a href="product-details.html">Product Details</a></li>
-                                                <li><a href="faq.html">FAQs pages</a></li>
-                                                <li><a href="cart.html">Cart</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                                <li><a href="contact.html">Contact Us</a></li>
-                                                <li><a href="404.html">404 Error</a></li>
-                                            </ul>
+                                            @if (session != null)
+                                            {
+                                                <a style="cursor:pointer">Hello @customer.Account !<i class="far fa-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a style="cursor : pointer">Details</a></li>
+                                                    <li><a style="cursor : pointer" id="btnDangXuat">Sign out</a></li>
+                                                </ul>
+                                            }
+                                            else
+                                            {
+                                                <a style="cursor:pointer">Have An Account ?<i class="far fa-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a asp-action="Index" asp-controller="USignin">Sign in</a></li>
+                                                    <li><a asp-action="Index" asp-controller="USignup">Sign up</a></li>
+                                                </ul>
+                                            }
+
                                         </li>
                                     </ul>
                                 </nav>
@@ -772,7 +778,7 @@
     <script src="~/Nassets/js/imagesloaded-pkgd.js"></script>
     <script src="~/Nassets/js/ajax-form.js"></script>
     <script src="~/Nassets/js/main.js"></script>
-     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
 @section Scripts {

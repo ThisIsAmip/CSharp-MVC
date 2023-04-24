@@ -1,4 +1,5 @@
 ﻿using CSharp_MVC.Models;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -27,13 +28,26 @@ namespace CSharp_MVC.Controllers
             return View();  
         }
         [HttpPost]
-        public async Task<IActionResult> Index(UserVm user)
+        public async Task<IActionResult> Index(Signup user)
         {
             if (!ModelState.IsValid)
             {
                 return View(user);
             }
-            var result = await _userService.CreateUserAccount(user);
+            var newuser = new User()
+            {
+                Account = user.Account,
+                Password = user.Password
+            };
+            var newcustomer = new Customer()
+            {
+                FullName = user.FullName,
+                Nationality = user.Nationality,
+                Phone = user.Phone,
+                Address= user.Address,
+                Email = user.Email
+            };
+            var result = await _userService.CreateUserAccount(newuser, newcustomer);
             if (result == false)
             {
                 ModelState.AddModelError("", "Account already existed !");

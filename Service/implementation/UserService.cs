@@ -54,26 +54,33 @@ namespace Service.implementation
         {
             return _context.TaiKhoan.Where(x => x.Account == Account && x.Password == Password).FirstOrDefault();
         }
-        public async Task<bool> CreateUserAccount(User user)
+        public async Task<bool> CreateUserAccount(User user, Customer customer)
         {
             var check = _context.TaiKhoan.Where(x => x.Account == user.Account).FirstOrDefault();
             if (check != null)
             {
                 return false;
             }
+            var newuser = new User()
+            {
+                Account = user.Account,
+                Password = user.Password,
+                RoleId = 2
+            };
 
-            var newuser1 = new User();
-            var newuser2 = new Customer();
-            newuser1.Account = user.Account;
-            newuser1.Password = user.Password;
-            newuser1.RoleId = 1;
+            _context.TaiKhoan.Add(newuser);
+            var userId = newuser.UserID;    
 
-            _context.TaiKhoan.Add(newuser1);
-
-            newuser2.Account = user.Account;
-            newuser2.FullName = user.FullName;
-            newuser2.Email = user.Account;
-            _context.Customer.Add(newuser2);
+            var newcustomer = new Customer()
+            {
+                FullName = customer.FullName,
+                Nationality = customer.Nationality,
+                Phone = customer.Phone,
+                Address = customer.Address,
+                Email = user.Account,
+                Account = userId.ToString()
+            };
+            _context.Customer.Add(newcustomer);
             return await _context.SaveChangesAsync() > 0;
 
 
