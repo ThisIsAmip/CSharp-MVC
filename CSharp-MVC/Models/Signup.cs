@@ -15,8 +15,6 @@ namespace CSharp_MVC.Models
         [Required(ErrorMessage = "Field must not be empty !")]
         public string Address { get; set; } //Address
         [Required(ErrorMessage = "Field must not be empty !")]
-        public string Email { get; set; } //Email
-        [Required(ErrorMessage = "Field must not be empty !")]
         public string Nationality { get; set; } //Nationality
         [Required(ErrorMessage = "Field must not be empty !")] 
         public string FullName { get; set; } //Full Name

@@ -26,7 +26,7 @@ namespace Service.implementation
             newUser.Account = user.Account;
             newUser.Password = user.Password;
             newUser.UserID = user.UserID;
-            newUser.RoleId = 1;
+            newUser.RoleId = 2;
             _context.TaiKhoan.Add(newUser);
             return await _context.SaveChangesAsync() > 0;
         }
@@ -69,6 +69,8 @@ namespace Service.implementation
             };
 
             _context.TaiKhoan.Add(newuser);
+
+            await _context.SaveChangesAsync();  
             var userId = newuser.UserID;    
 
             var newcustomer = new Customer()

@@ -45,7 +45,7 @@ namespace CSharp_MVC.Controllers
                 Nationality = user.Nationality,
                 Phone = user.Phone,
                 Address= user.Address,
-                Email = user.Email
+                Email = user.Account
             };
             var result = await _userService.CreateUserAccount(newuser, newcustomer);
             if (result == false)
