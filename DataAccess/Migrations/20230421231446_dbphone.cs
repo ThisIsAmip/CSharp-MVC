@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class DbPhone : Migration
+    public partial class dbphone : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -174,9 +174,9 @@ namespace DataAccess.Migrations
                 name: "ProductImage",
                 columns: table => new
                 {
-                    ProductID = table.Column<int>(type: "int", nullable: false),
                     ImageLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -286,6 +286,11 @@ namespace DataAccess.Migrations
                 name: "IX_ProductBill_BillID",
                 table: "ProductBill",
                 column: "BillID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductImage_ProductID",
+                table: "ProductImage",
+                column: "ProductID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductSale_ProductID",

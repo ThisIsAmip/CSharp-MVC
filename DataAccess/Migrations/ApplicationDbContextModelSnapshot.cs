@@ -199,9 +199,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.ProductImage", b =>
                 {
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImageLink")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -210,9 +207,12 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProductID");
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
 
-                    b.ToTable("ProductImage");
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("ProductImage", (string)null);
                 });
 
             modelBuilder.Entity("Entity.ProductInfo", b =>
@@ -426,7 +426,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entity.ProductImage", b =>
                 {
                     b.HasOne("Entity.Product", "Product")
-                        .WithMany("ProductImage")
+                        .WithMany()
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -485,8 +485,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entity.Product", b =>
                 {
                     b.Navigation("ProductBill");
-
-                    b.Navigation("ProductImage");
 
                     b.Navigation("ProductInfo");
 
