@@ -9,16 +9,14 @@ namespace CSharp_MVC.Controllers
     {
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
-
-
         private readonly ILogger<UHomeController> _logger;
 
-        public UHomeController(ILogger<UHomeController> logger, IProductService productService, IProductCategoryService productCategoryService)
-        {
-            _productService = productService;
-            _productCategoryService = productCategoryService;
-            _logger = logger;
-        }
+            public UHomeController(ILogger<UHomeController> logger, IProductService productService, IProductCategoryService productCategoryService)
+            {
+                _productService = productService;
+                _productCategoryService = productCategoryService;
+                _logger = logger;
+            }
 
         public IActionResult Index()
         {

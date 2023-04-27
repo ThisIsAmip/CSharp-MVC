@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Service.implementation
 {
-    public class ProductService: IProductService
+    public class ProductService : IProductService
     {
         private ApplicationDbContext _context;
         public ProductService(ApplicationDbContext context)
@@ -33,7 +33,7 @@ namespace Service.implementation
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Entity.Product> GetAll()
+        public IEnumerable<Product> GetAll()
         {
             foreach (var product in _context.Product)
             {
@@ -48,6 +48,19 @@ namespace Service.implementation
         {
             _context.Product.Update(product);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Product>> GetProducts(int pageNumber, int pageSize)
+        {
+            var products = _context.Product
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return await Task.FromResult(products);
+        }
+        public int GetTotalCount()
+        {
+            return _context.Product.Count();
         }
     }
 }

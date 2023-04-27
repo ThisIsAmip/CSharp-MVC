@@ -20,6 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IProductSaleService, ProductSaleService>();
 builder.Services.AddTransient<IRoleService, RoleService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IVoucherService, VoucherService>();
