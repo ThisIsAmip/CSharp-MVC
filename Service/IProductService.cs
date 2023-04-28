@@ -17,6 +17,7 @@ namespace Service
         IEnumerable<Product> GetAll();
         Product GetByProductId(int product);
         Task<List<Product>> GetProducts(int pageNumber, int pageSize);
+        Task<List<Product>> GetProductsByCategory(int categoryId, int pageNumber, int pageSize);
         int GetTotalCount();
     }
 }

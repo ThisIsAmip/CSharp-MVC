@@ -2,6 +2,7 @@
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Service;
 using Service.implementation;
 
@@ -61,9 +62,11 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
-app.MapControllerRoute(
+
+app.MapControllerRoute(     
     name: "default",
     pattern: "{controller=UHome}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.Run();

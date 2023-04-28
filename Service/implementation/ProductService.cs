@@ -58,6 +58,14 @@ namespace Service.implementation
                 .ToList();
             return await Task.FromResult(products);
         }
+        public async Task<List<Product>> GetProductsByCategory(int categoryId, int pageNumber, int pageSize)
+        {
+            var products = _context.Product.Where(x => x.ProdCateID == categoryId)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return await Task.FromResult(products);
+        }
         public int GetTotalCount()
         {
             return _context.Product.Count();
