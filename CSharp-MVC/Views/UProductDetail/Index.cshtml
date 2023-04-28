@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "ProductDetail Page";
 }
+
+@model ProductVm
+
 <section class="breadcrumb__area box-plr-75">
     <div class="container">
         <div class="row">
@@ -75,10 +78,10 @@
             <div class="col-xl-6">
                 <!-- Tên sản phẩm -->
                 <div class="product__details-content">
-                    <h6>IPHONE 14 PRO</h6>
+                    <h6>@Model.ProductName</h6>
                     <!-- Giá sản phẩm -->
                     <div class="price mb-10">
-                        <span>$299</span>
+                        <span>@Model.Price</span>
                     </div>
                     <!-- Thông số sản phẩm -->
                     <div class="features-des mb-20 mt-10">
@@ -91,7 +94,7 @@
                     </div>
                     <!-- Tồn kho -->
                     <div class="product-stock mb-20">
-                        <h5>Availability: <span> 94 in stock</span></h5>
+                        <h5>Availability: <span> @Model.Quantity in stock</span></h5>
                     </div>
                     <!-- Thêm bớt sản phẩm trong giỏ hàng -->
                     <div class="cart-option mb-15">
@@ -109,8 +112,7 @@
                             </span>
                             <span class="posted_in">
                                 <span class="title">Categories:</span>
-                                <a href="#">iPhone</a>
-                                <a href="#">Tablets</a>
+                                <a href="#">@Model.ProdCateName</a>
                             </span>
                             <span class="tagged_as">
                                 <span class="title">Tags:</span>

@@ -2,8 +2,10 @@
     ViewData["Title"] = "Home Page";
     var listProduct = ViewBag.listProduct;
     var listCategory = ViewBag.listCategory;
-
 }
+
+@model IEnumerable<ProductVm>
+
 <head>
     <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -27,7 +29,7 @@
             <div class="mainB col-3">
                 <div class="row g-4">
                     <!-- Sản phẩm chính số 2-->
-                    <a href="LINK THỂ LOẠI APPLE"> 
+                    <a href="LINK THỂ LOẠI APPLE">
                         <div class="mini col-12">
                             <!-- Link ảnh sản phẩm chính số 2-->
                             <img src="~/Image/home/main-products/2-iphones.jpg" class="img-fluid" alt="">
@@ -297,138 +299,31 @@
     <div class="row">
         <div class="col-12">
             <div class="prod owl-carousel owl-theme">
-                <a href="LINK SẢN PHẨM SỐ 1">
-                    <div class="item">
-                        <div class="card">
-                            <!-- Link ảnh sản phẩm số 1-->
-                            <img src="~/Image/home/products/1-ip14promax.jpg" class="card-img-top" alt="...">
-                            <!-- Thông tin sản phẩm số 1-->
-                            <div class="card-body">
-                                <div class="brand">Apple</div> <!-- Hãng-->
-                                <div class="name">iPhone 14 Pro Max</div> <!-- Tên sản phẩm-->
-                                <div class="rating">
-                                    <!-- Đánh giá (5 sao)-->
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                @foreach (var obj in Model)
+                {
+                    <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@obj.ProductID">
+                        <div class="item">
+                            <div class="card">
+                                <!-- Link ảnh sản phẩm số 1-->
+                                <img src="~/Image/home/products/1-ip14promax.jpg" class="card-img-top" alt="...">
+                                <!-- Thông tin sản phẩm số 1-->
+                                <div class="card-body">
+                                    <div class="brand">@obj.ProdCateName</div> <!-- Hãng-->
+                                    <div class="name">@obj.ProductName</div> <!-- Tên sản phẩm-->
+                                    <div class="rating">
+                                        <!-- Đánh giá (5 sao)-->
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                        <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                                    </div>
+                                    <div class="price">@obj.Price</div> <!-- Giá tiền-->
                                 </div>
-                                <div class="price">$100</div> <!-- Giá tiền-->
                             </div>
                         </div>
-                    </div>
-                </a>
-                <a href="LINK SẢN PHẨM SỐ 1">
-                    <div class="item">
-                        <div class="card">
-                            <!-- Link ảnh sản phẩm số 2-->
-                            <img src="~/Image/home/products/2-realme9proplus.jpg" class="card-img-top" alt="...">
-                            <!-- Thông tin sản phẩm số 2-->
-                            <div class="card-body">
-                                <div class="brand">Realme</div> <!-- Hãng-->
-                                <div class="name">Realme 9 Pro Plus</div> <!-- Tên sản phẩm-->
-                                <div class="rating">
-                                    <!-- Đánh giá (5 sao)-->
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
-                                </div>
-                                <div class="price">$100</div> <!-- Giá tiền-->
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="LINK SẢN PHẨM SỐ 1">
-                    <div class="item">
-                        <div class="card">
-                            <!-- Link ảnh sản phẩm số 3-->
-                            <img src="~/Image/home/products/3-samsunggalaxya23.jpg" class="card-img-top" alt="...">
-                            <!-- Thông tin sản phẩm số 3-->
-                            <div class="card-body">
-                                <div class="brand">Samsung</div> <!-- Hãng-->
-                                <div class="name">Samsung Galaxy A23</div> <!-- Tên sản phẩm-->
-                                <div class="rating">
-                                    <!-- Đánh giá (5 sao)-->
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
-                                </div>
-                                <div class="price">$100</div> <!-- Giá tiền-->
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="LINK SẢN PHẨM SỐ 1">
-                    <div class="item">
-                        <div class="card">
-                            <!-- Link ảnh sản phẩm số 4-->
-                            <img src="~/Image/home/products/4-samsunggalaxys20.jpg" class="card-img-top" alt="...">
-                            <!-- Thông tin sản phẩm số 4-->
-                            <div class="card-body">
-                                <div class="brand">Samsung</div> <!-- Hãng-->
-                                <div class="name">Samsung Galaxy S20</div> <!-- Tên sản phẩm-->
-                                <div class="rating">
-                                    <!-- Đánh giá (5 sao)-->
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
-                                </div>
-                                <div class="price">$100</div> <!-- Giá tiền-->
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="LINK SẢN PHẨM SỐ 1">
-                    <div class="item">
-                        <div class="card">
-                            <!-- Link ảnh sản phẩm số 5-->
-                            <img src="~/Image/home/products/5-samsunggalaxyzfold4.jpg" class="card-img-top" alt="...">
-                            <!-- Thông tin sản phẩm số 5-->
-                            <div class="card-body">
-                                <div class="brand">Samsung</div> <!-- Hãng-->
-                                <div class="name">Samsung Galaxy Z Fold 4</div> <!-- Tên sản phẩm-->
-                                <div class="rating">
-                                    <!-- Đánh giá (5 sao)-->
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
-                                </div>
-                                <div class="price">$100</div> <!-- Giá tiền-->
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="LINK SẢN PHẨM SỐ 1">
-                    <div class="item">
-                        <div class="card">
-                            <!-- Link ảnh sản phẩm số 6-->
-                            <img src="~/Image/home/products/6-xiaomiredminote11.jpg" class="card-img-top" alt="...">
-                            <!-- Thông tin sản phẩm số 6-->
-                            <div class="card-body">
-                                <div class="brand">Xiaomi</div> <!-- Hãng-->
-                                <div class="name">Redmi Note 11</div> <!-- Tên sản phẩm-->
-                                <div class="rating">
-                                    <!-- Đánh giá (5 sao)-->
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                    <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
-                                </div>
-                                <div class="price">$100</div> <!-- Giá tiền-->
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                }
             </div>
         </div>
     </div>
@@ -512,72 +407,81 @@
             </div>
         </div>
     </div>
+
     <!-- Danh mục các sản phẩm đặc biệt-->
     <div class="row">
         <div class="col-12">
             <div class="sprod owl-carousel owl-theme">
-                <div class="item">
-                    <!-- Sản phẩm hàng 1-->
-                    <div class="card">
-                        <div class="row g-0">
-                            <div class="col-6">
-                                <!-- Link ảnh sản phẩm đặc biệt-->
-                                <img src="~/Image/home/special-products/nokia-5710-slider-den-1.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="col-6">
-                                <!-- Thông tin sản phẩm-->
-                                <div class="card-body">
-                                    <!-- Thương hiệu-->
-                                    <div class="brand">Havells</div>
-                                    <!-- Tên sản phẩm-->
-                                    <div class="name">Kid's Headphone Bulk 10</div>
-                                    <!-- Đánh giá-->
-                                    <div class="rating">
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                @{
+                    var modelList = Model.ToList();
+                }
+
+                @for (int i = 0; i<modelList.Count; i+=2)
+                {
+                    <div class="item">
+                        <!-- Sản phẩm hàng 1-->
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-6">
+                                    <!-- Link ảnh sản phẩm đặc biệt-->
+                                    <img src="~/Image/home/special-products/nokia-5710-slider-den-1.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="col-6">
+                                    <!-- Thông tin sản phẩm-->
+                                    <div class="card-body">
+                                        <!-- Thương hiệu-->
+                                        <div class="brand">@modelList[i].ProdCateName</div>
+                                        <!-- Tên sản phẩm-->
+                                        <div class="name">@modelList[i].ProductName</div>
+                                        <!-- Đánh giá-->
+                                        <div class="rating">
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                                        </div>
+                                        <!-- Giá tiền-->
+                                        <div class="price">@modelList[i].Price</div>
+                                        <!-- Button Thêm vào giỏ hàng-->
+                                        <button class="btn">ADD TO CART</button>
                                     </div>
-                                    <!-- Giá tiền-->
-                                    <div class="price">$100</div>
-                                    <!-- Button Thêm vào giỏ hàng-->
-                                    <button class="btn">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sản phẩm hàng 2-->
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-6">
+                                    <!-- Link ảnh sản phẩm đặc biệt-->
+                                    <img src="~/Image/home/special-products/nokia-5710-slider-den-1.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="col-6">
+                                    <!-- Thông tin sản phẩm-->
+                                    <div class="card-body">
+                                        <!-- Thương hiệu-->
+                                        <div class="brand">@modelList[i+1].ProdCateName</div>
+                                        <!-- Tên sản phẩm-->
+                                        <div class="name">@modelList[i+1].ProductName</div>
+                                        <!-- Đánh giá-->
+                                        <div class="rating">
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #eeff00;"></i>
+                                            <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
+                                        </div>
+                                        <!-- Giá tiền-->
+                                        <div class="price">@modelList[i+1].Price</div>
+                                        <!-- Button Thêm vào giỏ hàng-->
+                                        <button class="btn">ADD TO CART</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Sản phẩm hàng 2-->
-                    <div class="card">
-                        <div class="row g-0">
-                            <div class="col-6">
-                                <!-- Link ảnh sản phẩm đặc biệt-->
-                                <img src="~/Image/home/special-products/nokia-5710-slider-den-1.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="col-6">
-                                <!-- Thông tin sản phẩm-->
-                                <div class="card-body">
-                                    <!-- Thương hiệu-->
-                                    <div class="brand">Havells</div>
-                                    <!-- Tên sản phẩm-->
-                                    <div class="name">Kid's Headphone Bulk 10</div>
-                                    <!-- Đánh giá-->
-                                    <div class="rating">
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #eeff00;"></i>
-                                        <i class="fa-solid fa-star-half" style="color: #eeff00;"></i>
-                                    </div>
-                                    <!-- Giá tiền-->
-                                    <div class="price">$100</div>
-                                    <!-- Button Thêm vào giỏ hàng-->
-                                    <button class="btn">ADD TO CART</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
+               
             </div>
         </div>
     </div>
