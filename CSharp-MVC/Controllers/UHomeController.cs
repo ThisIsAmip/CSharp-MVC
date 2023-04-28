@@ -24,7 +24,11 @@ namespace CSharp_MVC.Controllers
 
         public IActionResult Index()
         {
-            var categories = _productCategoryService.GetAll();
+            var categories = _productCategoryService.GetAll().Select(c => new ProductCategoryVm
+            {
+                ProdCateID = c.ProdCateID,
+                ProdCateName = c.ProdCateName
+            }).ToList();
             var products = _productService.GetAll().Select(p => new ProductVm
             {
                 ProductID = p.ProductID,
@@ -34,7 +38,7 @@ namespace CSharp_MVC.Controllers
                 Quantity = p.Quantity,
                 Description = p.Description,
                 ProdCateID = p.ProdCateID
-            });
+            }).ToList();
             var viewModel = products.Join(
                 categories,
                 p => p.ProdCateID,
@@ -49,8 +53,13 @@ namespace CSharp_MVC.Controllers
                     Description = p.Description,
                     ProdCateID = p.ProdCateID,
                     ProdCateName = c.ProdCateName
-                });
-            return View(products);
+                }).ToList();
+            var combinedViewModel = new CombinedProductaCategoryVm
+            {
+                Products = viewModel,
+                Categories = categories
+            };
+            return View(combinedViewModel);
         }
 
         public IActionResult Details()
