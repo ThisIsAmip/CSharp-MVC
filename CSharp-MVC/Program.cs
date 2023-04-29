@@ -63,10 +63,18 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
 
-app.MapControllerRoute(     
-    name: "default",
-    pattern: "{controller=UHome}/{action=Index}/{id?}");
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "category",
+        pattern: "products/category/{categoryId}",
+        defaults: new { controller = "UProducts", action = "Index", pageNumber = 1, pageSize = 12 });
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=UHome}/{action=Index}/{id?}");
+});
 app.MapRazorPages();
 
 app.Run();
