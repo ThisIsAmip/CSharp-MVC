@@ -40,6 +40,11 @@ namespace Service.implementation
                 yield return productSale;
             }
         }
+        public async Task<List<ProductSale>> GetAllProductSale()
+        {
+            var procate = _context.ProductSale.ToList();
+            return await Task.FromResult(procate);
+        }
         public ProductSale GetByProductSaleId(int ProductSaleID)
         {
             return _context.ProductSale.Where(x => x.ProdSaleID == ProductSaleID).FirstOrDefault();
