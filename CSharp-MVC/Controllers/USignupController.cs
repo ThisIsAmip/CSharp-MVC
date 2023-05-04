@@ -2,6 +2,7 @@
 using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Service;
+using BCrypt.Net;
 
 namespace CSharp_MVC.Controllers
 {
@@ -34,10 +35,12 @@ namespace CSharp_MVC.Controllers
             {
                 return View(user);
             }
+            string password = user.Password;
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
             var newuser = new User()
             {
                 Account = user.Account,
-                Password = user.Password
+                Password = hashedPassword
             };
             var newcustomer = new Customer()
             {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Service;
 using Service.implementation;
+using System.Runtime.ConstrainedExecution;
 
 namespace CSharp_MVC.Controllers
 {
@@ -30,6 +31,12 @@ namespace CSharp_MVC.Controllers
             string Password = request.Password;
             var user = _userService.GetByUserAccount(Account, Password);
             if (user == null)
+            {
+                ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu");
+                return View();
+            }
+            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(Password, user.Password);
+            if (!isPasswordCorrect)
             {
                 ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu");
                 return View();
