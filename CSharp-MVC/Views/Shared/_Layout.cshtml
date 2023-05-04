@@ -11,7 +11,7 @@
     }
 }
 
-@model CombinedProductaCategoryVm;
+@*@model CombinedProductaCategoryVm;*@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +75,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
                             <div class="header__infoo">
-                                <a asp-area="" asp-controller="UHome" asp-action="Index">2020 NIEN HOEP</a>
+                                <a asp-area="" asp-controller="UHome" asp-action="Index">NIENHOEP</a>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-4 d-none d-lg-block">
@@ -241,10 +241,13 @@
                                             <li>
                                                 <a href="product.html">Product Type <i class="far fa-angle-down"></i></a>
                                                 <ul class="submenu">
-                                                    @foreach(var c in Model.Categories) {
-                                                        <li><a href="product.html">@c.ProdCateName</a></li>
-                                                    }
-                                                    
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 1 })">Iphone</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 2 })">Samsung</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 3 })">Xiaomi</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 4 })">Oppo</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 5 })">Realme</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 6 })">Nokia</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 7 })">Vivo</a></li>
                                                 </ul>
                                             </li>
                                             <li>
@@ -277,7 +280,7 @@
                                             <a href="index.html">Home <i class="far fa-angle-down"></i></a>
                                             <ul class="megamenu-1">
                                                 <li>
-                                                    <a href="index.html">Shop Pages</a>
+                                                    <a asp-controller="UProducts" asp-action="Index">Shop Pages</a>
                                                     <ul class="mega-item">
                                                         <li><a href="index.html">About Us</a></li>
                                                         <li><a href="">Oder</a></li>
@@ -330,23 +333,23 @@
                                             <div class="mega-menu">
                                                 <div class="container container-mega">
                                                     <ul>
-                                                        @foreach(var c in Model.Categories)
+                                                        @*@foreach(var c in Model.Categories)
                                                         {
-                                                            <li>
-                                                                <ul>
-                                                                    <li class="title"><a href="shop.html">@c.ProdCateName</a></li>
-                                                                    @foreach(var p in Model.Products)
-                                                                    {
-                                                                        if(p.ProdCateID.Equals(c.ProdCateID))
-                                                                        {
-                                                                            <li>
-                                                                                <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">@p.ProductName</a>
-                                                                            </li>
-                                                                        }
-                                                                    }
-                                                                </ul>
-                                                            </li>
+                                                        <li>
+                                                        <ul>
+                                                        <li class="title"><a href="shop.html">@c.ProdCateName</a></li>
+                                                        @foreach(var p in Model.Products)
+                                                        {
+                                                        if(p.ProdCateID.Equals(c.ProdCateID))
+                                                        {
+                                                        <li>
+                                                        <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">@p.ProductName</a>
+                                                        </li>
                                                         }
+                                                        }
+                                                        </ul>
+                                                        </li>
+                                                        }*@
                                                     </ul>
                                                 </div>
                                                 <div class="offer mt-40">
@@ -409,7 +412,7 @@
             <div class="offcanvas__content">
                 <div class="offcanvas__logo mb-40">
                     <a href="index.html">
-                        2020 NIEN HOEP
+                        NIENHOEP
                     </a>
                 </div>
                 <div class="offcanvas__search mb-25">

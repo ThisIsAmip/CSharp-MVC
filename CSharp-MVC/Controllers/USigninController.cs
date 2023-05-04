@@ -20,7 +20,7 @@ namespace CSharp_MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index([FromForm] UserRequest request)
+        public async Task<IActionResult> Index([FromForm] Signin request)
         {
             if (!ModelState.IsValid)
             {

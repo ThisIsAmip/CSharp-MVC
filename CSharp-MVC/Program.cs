@@ -1,6 +1,7 @@
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Service;
 using Service.implementation;
 
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IProductSaleService, ProductSaleService>();
 builder.Services.AddTransient<IRoleService, RoleService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IVoucherService, VoucherService>();
@@ -59,9 +61,19 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Uhome}/{action=Index}/{id?}");
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "category",
+        pattern: "products/category/{categoryId}",
+        defaults: new { controller = "UProducts", action = "Index", pageNumber = 1, pageSize = 12 });
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=UHome}/{action=Index}/{id?}");
+});
 app.MapRazorPages();
 
 app.Run();

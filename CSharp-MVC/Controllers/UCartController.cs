@@ -25,23 +25,23 @@ namespace CSharp_MVC.Controllers
             return View();
         }
 
-        public ActionResult AddToCart(int productId, int customerId)
-        {
-            var cartItem = new ShoppingCartItem { ProductId = productId, CustomerId = customerId };
-            _db.ShoppingCartItems.Add(cartItem);
-            _db.SaveChanges();
-            return RedirectToAction("Index", "Home");
-        }
+        //public ActionResult AddToCart(int productId, int customerId)
+        //{
+        //    var cartItem = new ShoppingCartItem { ProductId = productId, CustomerId = customerId };
+        //    _db.ShoppingCartItems.Add(cartItem);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("Index", "Home");
+        //}
 
-        public ActionResult RemoveFromCart(int productId, int customerId)
-        {
-            var cartItem = _db.ShoppingCartItems.SingleOrDefault(c => c.ProductId == productId && c.CustomerId == customerId);
-            if (cartItem != null)
-            {
-                _db.ShoppingCartItems.Remove(cartItem);
-                _db.SaveChanges();
-            }
-            return RedirectToAction("Cart", "Home");
-        }
+        //public ActionResult RemoveFromCart(int productId, int customerId)
+        //{
+        //    var cartItem = _db.ShoppingCartItems.SingleOrDefault(c => c.ProductId == productId && c.CustomerId == customerId);
+        //    if (cartItem != null)
+        //    {
+        //        _db.ShoppingCartItems.Remove(cartItem);
+        //        _db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Cart", "Home");
+        //}
     }
 }
