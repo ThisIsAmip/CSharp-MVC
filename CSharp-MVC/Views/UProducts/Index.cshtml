@@ -536,7 +536,7 @@
 
     <!-- JS here -->
     <script src="~/ProductAsset/js/vendor/waypoints.js" asp-append-version="true"></script>
-@*    <script src="~/ProductAsset/js/meanmenu.js" asp-append-version="true"></script>*@
+    @*    <script src="~/ProductAsset/js/meanmenu.js" asp-append-version="true"></script>*@
     <script src="~/ProductAsset/js/swiper-bundle.js" asp-append-version="true"></script>
     <script src="~/ProductAsset/js/tweenmax.js" asp-append-version="true"></script>
     <script src="~/ProductAsset/js/owl-carousel.js" asp-append-version="true"></script>
@@ -550,7 +550,133 @@
     <script src="~/ProductAsset/js/wow.js" asp-append-version="true"></script>
     <script src="~/ProductAsset/js/isotope-pkgd.js" asp-append-version="true"></script>
     <script src="~/ProductAsset/js/imagesloaded-pkgd.js" asp-append-version="true"></script>
-@*    <script src="~/ProductAsset/js/ajax-form.js" asp-append-version="true"></script>*@
+    @*    <script src="~/ProductAsset/js/ajax-form.js" asp-append-version="true"></script>*@
     <script src="~/ProductAsset/js/main.js" asp-append-version="true"></script>
+    <script>
+        // Attach event listener to checkboxes
+        $('.single-widget-category input[type="checkbox"]').on('click', function () {
+            // Get category ID from checkbox ID
+            var categoryId = $(this).attr('id').replace('cat-item-', '');
+
+            // Send AJAX request to server
+            $.ajax({
+                url: '/get-products-by-category',
+                method: 'POST',
+                data: { categoryId: categoryId },
+                success: function (response) {
+                    // Update products on the page with received data
+                    updateProducts(response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX Error:', textStatus, errorThrown);
+                }
+            });
+        });
+
+        function updateProducts(products) {
+            // Clear existing products on the page
+            $('.products-container').empty();
+
+            // Loop through received products and add them to the page
+            $.each(products, function (index, product) {
+                var productHtml = @foreach (var products in Model.Products)
+                                        {
+                                            float price = products.Price;
+                                            float discount = 0;
+                                            var productSale = Model.ProductSale.FirstOrDefault(p => p.ProductID == products.ProductID);
+                                            if (productSale != null)
+                                            {
+                                                discount = (productSale.PercentSale / 100) * products.Price;
+                                                price = products.Price - discount;
+                                            }
+                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                                <div class="product__item product__item-d">
+                                                    <div class="product__thumb fix">
+                                                        <div class="product-image w-img">
+                                                            <a href="product-details.html">
+                                                                <img src="~/image/home/products/@products.Picture"
+                                                                 alt="product" asp-append-version="true" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-action">
+                                                            <a href="#"
+                                                           class="icon-box icon-box-1"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#productModalId">
+                                                                <i class="fal fa-eye"></i>
+                                                                <i class="fal fa-eye"></i>
+                                                            </a>
+                                                            <a href="#" class="icon-box icon-box-1">
+                                                                <i class="fal fa-heart"></i>
+                                                                <i class="fal fa-heart"></i>
+                                                            </a>
+                                                            <a href="#" class="icon-box icon-box-1">
+                                                                <i class="fal fa-layer-group"></i>
+                                                                <i class="fal fa-layer-group"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__content-3">
+                                                        <h6>
+                                                            <a href="product-details.html">@products.ProductName</a>
+                                                        </h6>
+                                                        <div class="rating mb-5">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="#"><i class="fal fa-star"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fal fa-star"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fal fa-star"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fal fa-star"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fal fa-star"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                            <span>(01 review)</span>
+                                                        </div>
+                                                        @if (price != products.Price)
+                                                        {
+                                                            <div class="price mb-10 text-decoration-line-through">
+                                                                <span style="color:gray">@products.Price VND</span>
+                                                            </div>
+                                                            <div class="price mb-10">
+                                                                <span>@price VND</span>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="price mb-10">
+                                                                <span>@products.Price VND</span>
+                                                            </div>
+                                                            <div class="price mb-10">
+                                                                <span class="p-1"></span>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    <div class="product__add-cart-s text-center">
+                                                        <button type="button"
+                                                            class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                                                            Add to Cart
+                                                        </button>
+                                                        <button type="button"
+                                                            class="wc-checkout d-flex align-items-center justify-content-center w-100"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#productModalId">
+                                                            View Details
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            };
+                $('.products-container').append(productHtml);
+            });
+        }
+    </script>
 </body>
 
