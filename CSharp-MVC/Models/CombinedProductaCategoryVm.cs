@@ -1,6 +1,4 @@
-﻿using Entity;
-
-namespace CSharp_MVC.Models
+﻿namespace CSharp_MVC.Models
 {
     public class CombinedProductaCategoryVm
     {
