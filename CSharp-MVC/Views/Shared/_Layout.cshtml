@@ -11,6 +11,8 @@
     }
 }
 
+@*@model CombinedProductaCategoryVm;*@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +75,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
                             <div class="header__infoo">
-                                <a asp-area="" asp-controller="UHome" asp-action="Index">2020 NIEN HOEP</a>
+                                <a asp-area="" asp-controller="UHome" asp-action="Index">NIENHOEP</a>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-4 d-none d-lg-block">
@@ -237,72 +239,15 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="product.html">Categories<i class="far fa-angle-down"></i></a>
-                                                <ul class="mega-menu">
-                                                    <li>
-                                                        <a href="product.html">Iphone</a>
-                                                        <ul class="mega-item">
-                                                            <li><a href="product-details.html">Iphone 14 Pro Max</a></li>
-                                                            <li><a href="product-details.html">Iphone 14 Pro</a></li>
-                                                            <li><a href="product-details.html">Iphone 11</a></li>
-                                                            <li><a href="product-details.html">Iphone 14 Plus</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product.html">SamSung</a>
-                                                        <ul class="mega-item">
-                                                            <li><a href="product-details.html">Samsung Galaxy S23 5G</a></li>
-                                                            <li><a href="product-details.html">Samsung Galaxy S21 FE 5G</a></li>
-                                                            <li><a href="product-details.html">Samsung Galaxy A23</a></li>
-                                                            <li><a href="product-details.html">Samsung Galaxy Z Fold4</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product.html">Xiaomi</a>
-                                                        <ul class="mega-item">
-                                                            <li><a href="product-details.html">Xiaomi Redmi Note 11</a></li>
-                                                            <li><a href="product-details.html">Xiaomi Redmi 10 (2022)</a></li>
-                                                            <li><a href="product-details.html">Xiaomi 11 Lite 5G NE</a></li>
-                                                            <li><a href="product-details.html">Xiaomi 13 series</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product.html">Nokia</a>
-                                                        <ul class="mega-item">
-                                                            <li><a href="product-details.html">Nokia G11 Plus 64GB</a></li>
-                                                            <li><a href="product-details.html">Nokia 5710</a></li>
-                                                            <li><a href="product-details.html">Nokia C21 Plus</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="product.html">Vivo</a>
-                                                        <ul class="mega-item">
-                                                            <li><a href="product-details.html">Vivo V25 series</a></li>
-                                                            <li><a href="product-details.html">Vivo Y02s 32GB</a></li>
-                                                            <li><a href="product-details.html">Vivo Y21 series</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-image hover-effect" style="background-image: url(#);">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop.html">
-                                                                    <h4>Top Phones <br> Bestseller Products</h4>
-                                                                    <h5>8GB</h5>
-                                                                    <h6>Sale Up To <span>60% Off</span></h6>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
                                                 <a href="product.html">Product Type <i class="far fa-angle-down"></i></a>
                                                 <ul class="submenu">
-                                                    <li><a href="product.html">Iphone</a></li>
-                                                    <li><a href="product.html">Samsung</a></li>
-                                                    <li><a href="product.html">Xiaomi</a></li>
-                                                    <li><a href="product.html">Nokia</a></li>
-                                                    <li><a href="product.html">Vivo</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 1 })">Iphone</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 2 })">Samsung</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 3 })">Xiaomi</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 4 })">Oppo</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 5 })">Realme</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 6 })">Nokia</a></li>
+                                                    <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 7 })">Vivo</a></li>
                                                 </ul>
                                             </li>
                                             <li>
@@ -335,7 +280,7 @@
                                             <a href="index.html">Home <i class="far fa-angle-down"></i></a>
                                             <ul class="megamenu-1">
                                                 <li>
-                                                    <a href="index.html">Shop Pages</a>
+                                                    <a asp-controller="UProducts" asp-action="Index">Shop Pages</a>
                                                     <ul class="mega-item">
                                                         <li><a href="index.html">About Us</a></li>
                                                         <li><a href="">Oder</a></li>
@@ -388,79 +333,23 @@
                                             <div class="mega-menu">
                                                 <div class="container container-mega">
                                                     <ul>
+                                                        @*@foreach(var c in Model.Categories)
+                                                        {
                                                         <li>
-                                                            <!-- Iphone -->
-                                                            <ul>
-                                                                <li class="title"><a href="shop.html">Iphone</a></li>
-                                                                <li><a href="#">Iphone 14 Pro Max</a></li>
-                                                                <li><a href="#">Iphone 14 Pro</a></li>
-                                                                <li><a href="#">Iphone 11</a></li>
-                                                                <li><a href="#">Iphone 12</a></li>
-                                                                <li><a href="#">Iphone 13</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                            </ul>
-                                                        </li>
+                                                        <ul>
+                                                        <li class="title"><a href="shop.html">@c.ProdCateName</a></li>
+                                                        @foreach(var p in Model.Products)
+                                                        {
+                                                        if(p.ProdCateID.Equals(c.ProdCateID))
+                                                        {
                                                         <li>
-                                                            <!-- Sam Sung -->
-                                                            <ul>
-                                                                <li class="title"><a href="shop.html">Samsung</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 5G</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 Ultra 5G</a></li>
-                                                                <li><a href="#">Iphone 11</a></li>
-                                                                <li><a href="#">Iphone 12</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                            </ul>
+                                                        <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">@p.ProductName</a>
                                                         </li>
-                                                        <li>
-                                                            <!-- Xiaomi -->
-                                                            <ul>
-                                                                <li class="title"><a href="shop.html">Xiaomi</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 5G</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 Ultra 5G</a></li>
-                                                                <li><a href="#">Iphone 11</a></li>
-                                                                <li><a href="#">Iphone 12</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                            </ul>
+                                                        }
+                                                        }
+                                                        </ul>
                                                         </li>
-                                                        <li>
-                                                            <!-- Nokia -->
-                                                            <ul>
-                                                                <li class="title"><a href="shop.html">Nokia</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 5G</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 Ultra 5G</a></li>
-                                                                <li><a href="#">Iphone 11</a></li>
-                                                                <li><a href="#">Iphone 12</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <!-- Realme -->
-                                                            <ul>
-                                                                <li class="title"><a href="shop.html">Realme</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 5G</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 Ultra 5G</a></li>
-                                                                <li><a href="#">Iphone 11</a></li>
-                                                                <li><a href="#">Iphone 12</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <!-- Vivo -->
-                                                            <ul>
-                                                                <li class="title"><a href="shop.html">Vivo</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 5G</a></li>
-                                                                <li><a href="#">Samsung Galaxy S23 Ultra 5G</a></li>
-                                                                <li><a href="#">Iphone 11</a></li>
-                                                                <li><a href="#">Iphone 12</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                                <li><a href="#">Iphone 14 Plus</a></li>
-                                                            </ul>
-                                                        </li>
-
+                                                        }*@
                                                     </ul>
                                                 </div>
                                                 <div class="offer mt-40">
@@ -523,7 +412,7 @@
             <div class="offcanvas__content">
                 <div class="offcanvas__logo mb-40">
                     <a href="index.html">
-                        2020 NIEN HOEP
+                        NIENHOEP
                     </a>
                 </div>
                 <div class="offcanvas__search mb-25">

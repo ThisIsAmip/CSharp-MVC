@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Entity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,13 +59,17 @@ namespace Service.implementation
             return "success";
            
         }
-
-        public IEnumerable<Entity.ProductCategory> GetAll()
+        public IEnumerable<ProductCategory> GetAll()
         {
-            foreach (var productCategory in _context.ProductCategory)
+            foreach (var procate in _context.ProductCategory)
             {
-                yield return productCategory;
+                yield return procate;
             }
+        }
+        public async Task<List<ProductCategory>> GetAllProduct()
+        {
+            var procate = _context.ProductCategory.ToList();
+            return await Task.FromResult(procate);
         }
         public ProductCategory GetByProductCategoryId(int productCategoryID)
         {

@@ -1,8 +1,8 @@
-
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.FileProviders;
 using Service;
 using Service.implementation;
 
@@ -35,6 +35,18 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IBillService, BillService>();
 builder.Services.AddScoped<IProductSaleService, ProductSaleService>();
 builder.Services.AddScoped<IUnityService, UnityService>();
+builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IProductSaleService, ProductSaleService>();
+builder.Services.AddTransient<IRoleService, RoleService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IVoucherService, VoucherService>();
+builder.Services.AddTransient<IProductInfoService, ProductInfoService>();
+builder.Services.AddTransient<IProductImageService, ProductImageService>();
+builder.Services.AddTransient<IProductCategoryService, ProductCategoryService>();
+builder.Services.AddTransient<IProductBillService, ProductBillService>();
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddTransient<ICustomerService, CustomerService>();
+builder.Services.AddTransient<IBillService, BillService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession(options =>
@@ -68,6 +80,19 @@ app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=AManager}/{action=Index}/{id?}");
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "category",
+        pattern: "products/category/{categoryId}",
+        defaults: new { controller = "UProducts", action = "Index", pageNumber = 1, pageSize = 12 });
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=UHome}/{action=Index}/{id?}");
+});
 app.MapRazorPages();
 
 app.Run();

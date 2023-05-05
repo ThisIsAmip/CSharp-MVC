@@ -17,6 +17,7 @@ namespace Service
         Task<string> DeleteById(int id);
 
         IEnumerable<ProductSale> GetAll();
+        Task<List<ProductSale>> GetAllProductSale();
         ProductSale GetByProductSaleId(int productSale);
 
         IEnumerable<ProductSale> search(string name);

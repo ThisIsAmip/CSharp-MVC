@@ -1,4 +1,6 @@
 ﻿using CSharp_MVC.Models;
+using DataAccess;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 using System.Diagnostics;
@@ -7,17 +9,17 @@ namespace CSharp_MVC.Controllers
 {
     public class UHomeController : Controller
     {
+        private readonly ILogger<UHomeController> _logger;
+        private readonly ApplicationDbContext _db;
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
 
-
-        private readonly ILogger<UHomeController> _logger;
-
-        public UHomeController(ILogger<UHomeController> logger, IProductService productService, IProductCategoryService productCategoryService)
+        public UHomeController(ILogger<UHomeController> logger, ApplicationDbContext db, IProductService productService, IProductCategoryService productCategoryService)
         {
+            _logger = logger;
+            _db = db;
             _productService = productService;
             _productCategoryService = productCategoryService;
-            _logger = logger;
         }
 
         public IActionResult Index()
@@ -27,23 +29,33 @@ namespace CSharp_MVC.Controllers
                 ProductName = entity.ProductName,
                 Description = entity.Description,
                 Picture = entity.Picture,
-                Price = (float)entity.Price,
-                Quantity =(int) entity.Quantity,
+                Price = entity.Price,
+                Quantity = entity.Quantity,
             }).ToList();
-
-            var listCategory = _productCategoryService.GetAll().Select(entity => new ProductCategoryVm
+            var viewModel = products.Join(
+                categories,
+                p => p.ProdCateID,
+                c => c.ProdCateID,
+                (p, c) => new ProductVm
+                {
+                    ProductID = p.ProductID,
+                    ProductName = p.ProductName,
+                    Price = p.Price,
+                    Picture = p.Picture,
+                    Quantity = p.Quantity,
+                    Description = p.Description,
+                    ProdCateID = p.ProdCateID,
+                    ProdCateName = c.ProdCateName
+                }).ToList();
+            var combinedViewModel = new CombinedProductaCategoryVm
             {
-               ProdCateID = entity.ProdCateID,
-               ProdCateName = entity.ProdCateName,
-            }).ToList();
-
-            ViewBag.listProduct = listProduct;
-            ViewBag.listCategory = listCategory;
-
-            return View();
+                Products = viewModel,
+                Categories = categories
+            };
+            return View(combinedViewModel);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Details()
         {
             return View();
         }

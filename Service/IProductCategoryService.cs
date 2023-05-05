@@ -17,6 +17,7 @@ namespace Service
         Task<string> DeleteById(int id);
 
         IEnumerable<ProductCategory> GetAll();
+        Task<List<ProductCategory>> GetAllProduct();
         ProductCategory GetByProductCategoryId(int productCategory);
         ProductCategory GetByProductCategoryName(string name);
         IEnumerable<ProductCategory> search(string name);

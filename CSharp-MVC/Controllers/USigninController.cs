@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Service;
 using Service.implementation;
+using System.Runtime.ConstrainedExecution;
 
 namespace CSharp_MVC.Controllers
 {
@@ -23,7 +24,7 @@ namespace CSharp_MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index([FromForm] UserRequest request)
+        public async Task<IActionResult> Index([FromForm] Signin request)
         {
             if (!ModelState.IsValid)
             {
@@ -37,7 +38,6 @@ namespace CSharp_MVC.Controllers
                 ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu");
                 return View();
             }
-            
             var customerInformation = JsonConvert.SerializeObject(user);
             HttpContext.Session.SetString("customer", customerInformation);
             var role = _roleSerivce.GetByRoleId(user.RoleId);

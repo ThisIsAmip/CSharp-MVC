@@ -63,7 +63,12 @@ namespace Service.implementation
 
         public User GetByUserAccount(string Account, string Password)
         {
-            return _context.TaiKhoan.Where(x => x.Account == Account && x.Password == Password).FirstOrDefault();
+            var user = _context.TaiKhoan.Where(x => x.Account == Account).FirstOrDefault();
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
         }
         public async Task<bool> CreateUserAccount(User user, Customer customer)
         {
