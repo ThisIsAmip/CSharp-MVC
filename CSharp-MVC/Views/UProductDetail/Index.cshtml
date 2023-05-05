@@ -29,29 +29,47 @@
                 <div class="product__details-nav d-sm-flex align-items-start">
                     <!-- Link hình ảnh sản phẩm Start -->
                     <ul class="nav nav-tabs flex-sm-column justify-content-between" id="productThumbTab" role="tablist">
-                        @foreach(var obj in Model.Imgs)
-                        {
-                            String[] imgsplit = @obj.ImageLink.Split('.');
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="@imgsplit[0]" data-bs-toggle="tab" data-bs-target="#thumbOne" type="button" role="tab" aria-controls="thumbOne" aria-selected="true">
-                                    <img src="~/Image/@Model.ProductID/@obj.ImageLink" alt="">
-                                </button>
-                            </li>
-                        }
+                        <li class="nav-item" role="presentation">
+                            <!-- Ảnh 1 -->
+                            <button class="nav-link active" id="sp11-tab" data-bs-toggle="tab" data-bs-target="#sp11" type="button" role="tab" aria-controls="sp11" aria-selected="true">
+                                <img src="~/Image/1/sp11.jpg" alt="">
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <!-- Ảnh 2 -->
+                            <button class="nav-link" id="sp12-tab" data-bs-toggle="tab" data-bs-target="#sp12" type="button" role="tab" aria-controls="sp12" aria-selected="false">
+                                <img src="~/Image/1/sp12.jpg" alt="">
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <!-- Ảnh 3 -->
+                            <button class="nav-link" id="sp13-tab" data-bs-toggle="tab" data-bs-target="#sp13" type="button" role="tab" aria-controls="sp13" aria-selected="false">
+                                <img src="~/Image/1/sp13.jpg" alt="">
+                            </button>
+                        </li>
                     </ul>
                     <!-- Link hình ảnh sản phẩm End -->
                     <div class="product__details-thumb">
                         <!-- Hình ảnh sản phẩm chính(Ảnh lớn) Start -->
                         <div class="tab-content" id="productThumbContent">
-                            @foreach (var obj in Model.Imgs)
-                            {
-                                String[] imgsplit = @obj.ImageLink.Split('.');
-                                <div class="tab-pane fade show active" id="@imgsplit[0]" role="tabpanel" aria-labelledby="thumbOne-tab">
-                                    <div class="product__details-nav-thumb w-img">
-                                        <img src="~/Image/@Model.ProductID/@obj.ImageLink" alt="">
-                                    </div>
+                            <div class="tab-pane fade show active" id="thumbOne" role="tabpanel" aria-labelledby="thumbOne-tab">
+                                <!-- Ảnh 1 -->
+                                <div class="product__details-nav-thumb w-img">
+                                    <img src="~/Image/1/iphone-14-pro-bac-1-2.png" alt="">
                                 </div>
-                            }
+                            </div>
+                            <div class="tab-pane fade" id="thumbTwo" role="tabpanel" aria-labelledby="thumbTwo-tab">
+                                <!-- Ảnh 2 -->
+                                <div class="product__details-nav-thumb w-img">
+                                    <img src="~/Image/1/iphone-14-pro-bac-1-2zzzzzz.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="thumbThree" role="tabpanel" aria-labelledby="thumbThree-tab">
+                                <!-- Ảnh 3 -->
+                                <div class="product__details-nav-thumb w-img">
+                                    <img src="~/Image/1/iphone-14-pro-den-1-1.jpg" alt="">
+                                </div>
+                            </div>
                         </div>
                         <!-- Hình ảnh sản phẩm chính(Ảnh lớn) End -->
                     </div>

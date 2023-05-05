@@ -75,8 +75,8 @@
                                     @foreach (var category in procate)
                                     {
                                         <div class="single-widget-category">
-                                            <input type="checkbox" id="cat-item-@category.ProdCateID" name="cat-item" />
-                                            <label for="cat-item-@category.ProdCateID">@category.ProdCateName</label>
+                                            @*<input type="checkbox" id="cat-item-@category.ProdCateID" name="cat-item" />*@
+                                            <label><a href="@Url.Action("Index", "UProducts", new { categoryId = category.ProdCateID })">@category.ProdCateName</a></label>
                                         </div>
                                     }
                                 </form>
@@ -391,7 +391,6 @@
                                  role="tabpanel"
                                  aria-labelledby="FourCol-tab">
                                 <div class="tp-wrapper">
-                                    <div class="row g-0">
                                         <!--Product starts here-->
                                         @foreach (var products in Model.Products)
                                         {
@@ -531,7 +530,6 @@
                             </div>
                         </div>
                     </div>
-
     </main>
 
     <!-- JS here -->
