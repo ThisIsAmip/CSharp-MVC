@@ -10,13 +10,15 @@ namespace Service
     public interface IEmployeeService
     {
         //thêm, sửa, xóa, get all, ...
-        Task CreateAsync(Employee employee);
-        Task DeleteAsync(Employee employee);
+        Task<string> CreateAsync(Employee employee);
+        Task<string> DeleteAsync(Employee employee);
 
-        Task UpdateAsync(Employee employee);
-        Task DeleteById(int id);
+        Task<string> UpdateAsync(Employee employee);
+        Task<string> DeleteById(int id);
 
         IEnumerable<Employee> GetAll();
         Employee GetByEmployeeId(int employeeID);
+        public Employee GetByEmployeeEmail(string email);
+        IEnumerable<Employee> search(string name);
     }
 }

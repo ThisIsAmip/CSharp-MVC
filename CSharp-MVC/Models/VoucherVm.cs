@@ -9,5 +9,6 @@
         public float PriceSale { get; set; }
 
         public int UseTimess { get; set; }
+
     }
 }

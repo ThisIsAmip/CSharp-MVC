@@ -10,13 +10,16 @@ namespace Service
     public interface IProductSaleService
     {
         //thêm, sửa, xóa, get all, ...
-        Task CreateAsync(ProductSale productSale);
-        Task DeleteAsync(ProductSale productSale);
+        Task<string> CreateAsync(ProductSale productSale);
+        Task<string> DeleteAsync(ProductSale productSale);
 
-        Task UpdateAsync(ProductSale productSale);
-        Task DeleteById(int id);
+        Task<string> UpdateAsync(ProductSale productSale);
+        Task<string> DeleteById(int id);
 
         IEnumerable<ProductSale> GetAll();
         ProductSale GetByProductSaleId(int productSale);
+
+        IEnumerable<ProductSale> search(string name);
+
     }
 }

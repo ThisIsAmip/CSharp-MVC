@@ -108,6 +108,8 @@ window.onload = function () {
     chart.render();
 }
 
+
+
 function explodePie(e) {
     if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
         e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
@@ -148,3 +150,15 @@ $('.out').click(function () {
     const add = document.querySelector('.form-add');
     add.style.display = 'none';
 })
+function readUrl(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.update-image')
+                .attr('src', e.target.result)
+                .width(150)
+                .height(150);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}

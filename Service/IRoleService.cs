@@ -10,14 +10,16 @@ namespace Service
     public interface IRoleService
     {
         //thêm, sửa, xóa, lấy all, ...
-        Task CreateAsync(Role role);
-        Task DeleteAsync(Role role);
+        Task<string> CreateAsync(Role role);
+        Task <string> DeleteAsSycn(Role role);
 
         Task UpdateAsync(Role role);
         Task DeleteById(int id);
 
         IEnumerable<Role> GetAll();
         Role GetByRoleId(int roleId);
+        Role GetByRoleName(string name);
+        IEnumerable<Role> search(string name);
 
     }
 }

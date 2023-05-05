@@ -27,8 +27,6 @@ namespace Service.implementation
         }
         public async Task DeleteById(int productID, int billID)
         {
-            var productbillId = GetByProductBillId(productID, billID);
-            _context.ProductBill.Remove((ProductBill)productbillId);
             await _context.SaveChangesAsync();
         }
         public IEnumerable<Entity.ProductBill> GetAll()
@@ -39,9 +37,15 @@ namespace Service.implementation
             }
         }
 
-        public ProductBill GetByProductBillId(int productID, int billID)
+
+        public IEnumerable<ProductBill> GetByProductBillId(int billID)
         {
-            return _context.ProductBill.Where(x => x.ProductID == productID & x.BillID == billID).FirstOrDefault();
+            return _context.ProductBill.Where(x=> x.BillID == billID);
+        }
+
+        public IEnumerable<ProductBill> GetByProductBillId(int productID, int billID)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task UpdateAsync(ProductBill item)
@@ -49,5 +53,6 @@ namespace Service.implementation
             _context.ProductBill.Update(item);
             await _context.SaveChangesAsync();
         }
+
     }
 }

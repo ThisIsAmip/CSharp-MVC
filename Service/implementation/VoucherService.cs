@@ -2,6 +2,7 @@
 using Entity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,24 +16,51 @@ namespace Service.implementation
         {
             _context = context;
         }
-        public async Task CreateAsync(Voucher voucher)
+        public async Task <string> CreateAsync(Voucher voucher)
         {
-            _context.Voucher.Update(voucher);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Voucher.Update(voucher);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_create";
+            }
+            return "success";
+           
         }
 
-        public async Task DeleteAsync(Voucher voucher)
+        public async Task<string> DeleteAsync(Voucher voucher)
         {
-            _context.Voucher.Remove(voucher);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Voucher.Remove(voucher);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
+           
         }
 
-        public async Task DeleteById(int id)
+        public async Task<string> DeleteById(int id)
         {
 
-            var voucher = GetByVoucherId(id);
-            _context.Voucher.Remove(voucher);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var voucher = GetByVoucherId(id);
+                _context.Voucher.Remove(voucher);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
+           
         }
 
         public IEnumerable<Entity.Voucher> GetAll()
@@ -48,10 +76,39 @@ namespace Service.implementation
             return _context.Voucher.Where(x => x.VoucherID == voucherID).FirstOrDefault();
         }
 
-        public async Task UpdateAsync(Voucher voucher)
+        public IEnumerable<Voucher> search(string name)
         {
-            _context.Voucher.Update(voucher);
-            await _context.SaveChangesAsync();
+            List<Voucher> result = new List<Voucher>();
+            var list = GetAll();
+                foreach (Voucher value in list)
+                {
+                    string p = value.VoucherID.ToString().ToLower();
+                    string pnew = name.ToLower();
+                    if (p.Length >= pnew.Length)
+                        if (p.Substring(0, pnew.Length) == pnew)
+                        {
+                            result.Add(value);
+                        }
+                }
+
+
+            return result;
+
+        }
+
+        public async Task<string> UpdateAsync(Voucher voucher)
+        {
+            try
+            {
+                _context.Voucher.Update(voucher);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_update";
+            }
+            return "success";
+           
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Service
         Task DeleteById(int productID, int billID);
 
         IEnumerable<ProductBill> GetAll();
-        ProductBill GetByProductBillId(int productID, int billID);
+        public IEnumerable<ProductBill> GetByProductBillId(int productID, int billID);
+        IEnumerable<ProductBill> GetByProductBillId(int id);
     }
 }

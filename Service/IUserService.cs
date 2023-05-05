@@ -11,14 +11,18 @@ namespace Service
     {
         //thêm, sửa, xóa, get all, ...
         Task<bool> CreateAsync(User user);
-        //Task DeleteAsync(User user);
+        Task<string> CreateAsyncEmployee(User user);
+        Task DeleteAsync(User user);
 
-        //Task UpdateAsync(User user);
-        //Task DeleteById(int id);
+        Task <string> UpdateAsync(User user);
+        Task<string> DeleteById(int id);
 
-        //IEnumerable<User> GetAll();
+        IEnumerable<User> GetAll();
         User GetByUserAccount(string Account, string Password);
         Task<bool> CreateUserAccount(User user, Customer customer);
-        //User GetByUserId(int voucherID);
+
+        User GetByUserId(int idUser);
+        public User GetByUserAccount(string user);
+        IEnumerable<User> search(string name);
     }
 }

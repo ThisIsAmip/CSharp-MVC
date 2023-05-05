@@ -53,7 +53,9 @@ p {
     width: 140px;
     line-height: 90px;
 }
-
+.row-black td, .row-black th, .form-group input {
+    color: #000 !important;
+}
 .menu-author {
     display: flex;
 }
@@ -409,6 +411,10 @@ td {
     top: 50%;
     transform: translateY(-50%);
 }
+.form-alert {
+    background-color: #fff; 
+    color: #000;
+}
 
     .form-group span, .form-group select, button, div {
         color: #000;
@@ -437,7 +443,12 @@ td {
     height: 100%;
     position: fixed;
 }
-
+.page-title{
+    color: aqua;
+}
+.dataTables_info{
+    color : #ccc;
+}
 .out {
     position: absolute;
     font-size: 16px;

@@ -17,7 +17,7 @@ namespace Service
         IEnumerable<Bill> GetAll();
         Bill GetByBillId(int billId);
 
-
+        IEnumerable<Bill> search(string name);
     }
     
 }

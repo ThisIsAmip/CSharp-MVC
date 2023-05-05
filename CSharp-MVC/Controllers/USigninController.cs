@@ -1,6 +1,7 @@
 ﻿using CSharp_MVC.Models;
 using CSharp_MVC.Request;
 using Entity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Service;
@@ -11,9 +12,11 @@ namespace CSharp_MVC.Controllers
     public class USigninController : Controller
     {
         private readonly IUserService _userService;
-        public USigninController(IUserService userService)
+        private readonly IRoleService _roleSerivce;
+        public USigninController(IUserService userService, IRoleService roleSerivce)
         {
             _userService = userService;
+            _roleSerivce = roleSerivce;
         }
         public IActionResult Index()
         {
@@ -34,8 +37,14 @@ namespace CSharp_MVC.Controllers
                 ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu");
                 return View();
             }
+            
             var customerInformation = JsonConvert.SerializeObject(user);
             HttpContext.Session.SetString("customer", customerInformation);
+            var role = _roleSerivce.GetByRoleId(user.RoleId);
+            if (role.RoleName == "admin")
+            {
+                return RedirectToAction("Index", "AManager");
+            }
             return RedirectToAction("Index","UHome");
         }
         [HttpPost("logout")]

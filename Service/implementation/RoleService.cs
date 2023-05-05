@@ -17,27 +17,36 @@ namespace Service.implementation
             _context = context;
         }
 
-        public Task CreateAsSycn(Role role)
+        public async Task <string> CreateAsync(Role role)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Role.Update(role);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_create";
+            }
+            return "success";
+           
         }
 
-        public async Task CreateAsync(Role role)
+        public async Task <string> DeleteAsSycn(Role role)
         {
-            _context.Role.Update(role);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Role.Remove(role);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex) 
+            {
+                return "error_delete";
+            }
+            return "success";
+            
         }
 
-        public async Task DeleteAsSycn(Role role)
-        {
-            _context.Role.Remove(role);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(Role role)
-        {
-          
-        }
 
         public async Task DeleteById(int id)
         {
@@ -65,15 +74,43 @@ namespace Service.implementation
             return _context.Role.Where(x => x.RoleId == roleId).FirstOrDefault();
         }
 
-        public Task UpdateAsSycn(Role role)
+        public Role GetByRoleName(string name)
         {
-            throw new NotImplementedException();
+            return _context.Role.Where(x => x.RoleName == name).FirstOrDefault();
+        }
+
+        public IEnumerable<Role> search(string name)
+        {
+            List<Role> result = new List<Role>();
+            var list = GetAll();
+            while (result.Count == 0)
+            {
+                foreach (Role value in list)
+                {
+                    string p = value.RoleName.ToString().ToLower();
+                    string pnew = name.ToLower();
+                    if (p.Length >= pnew.Length)
+                        if (p.Substring(0, pnew.Length) == pnew)
+                        {
+                            result.Add(value);
+                        }
+                }
+                if (name.Length > 1)
+                    name = name.Substring(0, name.Length - 1);
+                else
+                    break;
+            }
+
+            return result;
+
         }
 
         public async Task UpdateAsync(Role role)
         {
+
             _context.Role.Update(role);
             await _context.SaveChangesAsync();
         }
+
     }
 }

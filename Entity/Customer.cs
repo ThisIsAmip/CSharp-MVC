@@ -10,6 +10,7 @@ namespace Entity
     public class Customer
     {
         [Key]
+    
         public int CustomerID { get; set; }
         public string? FullName { get; set; }
 

@@ -13,10 +13,11 @@ namespace Service
         Task CreateAsync(Customer customer);
         Task DeleteAsync(Customer customer);
 
-        Task UpdateAsync(Customer customer);
-        Task DeleteById(int id);
+        Task<string> UpdateAsync(Customer customer);
+        Task<string> DeleteById(int id);
 
         IEnumerable<Customer> GetAll();
         Customer GetByCustomerId(int CustomerID);
+        IEnumerable<Customer> search(string name);
     }
 }

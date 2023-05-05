@@ -27,8 +27,8 @@ namespace CSharp_MVC.Controllers
                 ProductName = entity.ProductName,
                 Description = entity.Description,
                 Picture = entity.Picture,
-                Price = entity.Price,
-                Quantity = entity.Quantity,
+                Price = (float)entity.Price,
+                Quantity =(int) entity.Quantity,
             }).ToList();
 
             var listCategory = _productCategoryService.GetAll().Select(entity => new ProductCategoryVm

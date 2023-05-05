@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +11,55 @@ namespace Service.implementation
 {
     public class ProductService: IProductService
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         public ProductService(ApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task CreateAsync(Product product)
+        public async Task<string> CreateAsync(Product product)
         {
-            _context.Product.Update(product);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Product.AddAsync(product);
+                await _context.SaveChangesAsync(true);
+            }
+            catch (Exception ex)
+            {
+                return "error_create";
+            }
+            return "success";
+          
+            
         }
-        public async Task DeleteAsync(Product product)
+        public async Task<string> DeleteAsync(Product product)
         {
-            _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Product.Remove(product);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
+           
         }
-        public async Task DeleteById(int id)
+        public async Task<string> DeleteById(int id)
         {
+            try
+            {
+                var product = GetByProductId(id);
+                _context.Product.Remove(product);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
 
-            var product = GetByProductId(id);
-            _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
+            
         }
 
         public IEnumerable<Entity.Product> GetAll()
@@ -44,10 +73,58 @@ namespace Service.implementation
         {
             return _context.Product.Where(x => x.ProductID == productID).FirstOrDefault();
         }
-        public async Task UpdateAsync(Product product)
+        public async Task<string> UpdateAsync(Product product)
         {
-            _context.Product.Update(product);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Product.Update(product);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_update";
+            }
+            return "success";
+
+            
+        }
+
+        public int GetCount()
+        {
+
+            var list = GetAll();
+            return list.Count();
+        }
+
+        public Product GetByProductName(string name)
+        {
+            return _context.Product.Where(x => x.ProductName == name).FirstOrDefault();
+        }
+
+        public IEnumerable<Product> searchProduct(string name)
+        {
+            List<Product> list = new List<Product>();
+            var products = GetAll();
+            while (list.Count == 0)
+            {
+                foreach(Product product in products)
+                {
+                    string p = product.ProductName.ToLower();
+                    string pnew = name.ToLower();
+                    if(p.Length >=pnew.Length)
+                    if (p.Substring(0,pnew.Length) == pnew)
+                    {
+                        list.Add(product);
+                    }
+                }
+                if (name.Length > 1)
+                    name = name.Substring(0, name.Length - 1);
+                else
+                    break;
+            }
+            Console.WriteLine(list.Count);
+            return list;
+            
         }
     }
 }

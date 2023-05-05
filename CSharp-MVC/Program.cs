@@ -2,6 +2,7 @@
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Service;
 using Service.implementation;
 
@@ -16,20 +17,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<IRoleService, RoleService>();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IVoucherService, VoucherService>();
-builder.Services.AddTransient<IProductInfoService, ProductInfoService>();
-builder.Services.AddTransient<IProductImageService, ProductImageService>();
-builder.Services.AddTransient<IProductCategoryService, ProductCategoryService>();
-builder.Services.AddTransient<IProductBillService, ProductBillService>();
-builder.Services.AddTransient<IEmployeeService, EmployeeService>();
-builder.Services.AddTransient<ICustomerService, CustomerService>();
-builder.Services.AddTransient<IBillService, BillService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IVoucherService, VoucherService>();
+builder.Services.AddScoped<IProductInfoService, ProductInfoService>();
+builder.Services.AddScoped<IProductImageService, ProductImageService>();
+builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();
+builder.Services.AddScoped<IProductBillService, ProductBillService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IBillService, BillService>();
+builder.Services.AddScoped<IProductSaleService, ProductSaleService>();
+builder.Services.AddScoped<IUnityService, UnityService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession(options =>
@@ -62,7 +67,7 @@ app.UseAuthorization();
 app.UseSession();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=UManager}/{action=Index}/{id?}");
+    pattern: "{controller=AManager}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

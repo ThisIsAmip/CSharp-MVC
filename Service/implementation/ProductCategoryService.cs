@@ -15,22 +15,48 @@ namespace Service.implementation
         {
             _context = context;
         }
-        public async Task CreateAsync(ProductCategory productCategory)
+        public async Task<string> CreateAsync(ProductCategory productCategory)
         {
-            _context.ProductCategory.Update(productCategory);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.ProductCategory.Update(productCategory);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_create";
+            }
+            return "success";
+            
         }
-        public async Task DeleteAsync(ProductCategory productCategory)
+        public async Task<string> DeleteAsync(ProductCategory productCategory)
         {
-            _context.ProductCategory.Remove(productCategory);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.ProductCategory.Remove(productCategory);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
+          
         }
-        public async Task DeleteById(int id)
+        public async Task<string> DeleteById(int id)
         {
-
-            var productCategory = GetByProductCategoryId(id);
-            _context.ProductCategory.Remove(productCategory);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var productCategory = GetByProductCategoryId(id);
+                _context.ProductCategory.Remove(productCategory);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
+           
         }
 
         public IEnumerable<Entity.ProductCategory> GetAll()
@@ -44,10 +70,51 @@ namespace Service.implementation
         {
             return _context.ProductCategory.Where(x => x.ProdCateID == productCategoryID).FirstOrDefault();
         }
-        public async Task UpdateAsync(ProductCategory productCategory)
+
+        public ProductCategory GetByProductCategoryName(string name)
         {
-            _context.ProductCategory.Update(productCategory);
-            await _context.SaveChangesAsync();
+            return _context.ProductCategory.Where(x => x.ProdCateName == name).FirstOrDefault();
+        }
+
+        public IEnumerable<ProductCategory> search(string name)
+        {
+            List<ProductCategory> result = new List<ProductCategory>();
+            var list = GetAll();
+            while (result.Count == 0)
+            {
+                foreach (ProductCategory value in list)
+                {
+                    string p = value.ProdCateName.ToString().ToLower();
+                    string pnew = name.ToLower();
+                    if (p.Length >= pnew.Length)
+                        if (p.Substring(0, pnew.Length) == pnew)
+                        {
+                            result.Add(value);
+                        }
+                }
+                if (name.Length > 1)
+                    name = name.Substring(0, name.Length - 1);
+                else
+                    break;
+            }
+
+            return result;
+
+        }
+
+        public async Task<string> UpdateAsync(ProductCategory productCategory)
+        {
+            try
+            {
+                _context.ProductCategory.Update(productCategory);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_update";
+            }
+            return "success";
+            
         }
     }
 }

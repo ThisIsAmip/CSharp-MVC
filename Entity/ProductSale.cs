@@ -11,6 +11,7 @@ namespace Entity
     public class ProductSale
     {
         [Key]
+       
         public int ProdSaleID { get; set; }
         public DateTime DateStarted { get; set; }
 

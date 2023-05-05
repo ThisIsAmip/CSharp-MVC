@@ -11,8 +11,9 @@ namespace Entity
     public class Bill
     {
         [Key]
+     
 
-         public int BillID { get; set; }
+        public int BillID { get; set; }
 
         public DateTime DateCreated { get; set; }
 

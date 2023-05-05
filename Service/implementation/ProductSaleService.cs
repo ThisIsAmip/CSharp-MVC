@@ -15,22 +15,49 @@ namespace Service.implementation
         {
             _context = context;
         }
-        public async Task CreateAsync(ProductSale productSale)
+        public async Task<string> CreateAsync(ProductSale productSale)
         {
-            _context.ProductSale.Update(productSale);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.ProductSale.Update(productSale);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_create";
+            }
+            return "success";
+           
         }
-        public async Task DeleteAsync(ProductSale productSale)
+        public async Task<string> DeleteAsync(ProductSale productSale)
         {
-            _context.ProductSale.Remove(productSale);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.ProductSale.Remove(productSale);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
+           
         }
-        public async Task DeleteById(int id)
+        public async Task<string> DeleteById(int id)
         {
+            try
+            {
+                var productSale = GetByProductSaleId(id);
+                _context.ProductSale.Remove(productSale);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_delete";
+            }
+            return "success";
 
-            var productSale = GetByProductSaleId(id);
-            _context.ProductSale.Remove(productSale);
-            await _context.SaveChangesAsync();
+           
         }
 
         public IEnumerable<Entity.ProductSale> GetAll()
@@ -44,10 +71,40 @@ namespace Service.implementation
         {
             return _context.ProductSale.Where(x => x.ProdSaleID == ProductSaleID).FirstOrDefault();
         }
-        public async Task UpdateAsync(ProductSale ProductSale)
+
+        public IEnumerable<ProductSale> search(string name)
         {
-            _context.ProductSale.Update(ProductSale);
-            await _context.SaveChangesAsync();
+            List<ProductSale> result = new List<ProductSale>();
+            var list = GetAll();
+            foreach (ProductSale value in list)
+            {
+                string p = value.ProdSaleID.ToString().ToLower();
+                string pnew = name.ToLower();
+                if (p.Length >= pnew.Length)
+                    if (p.Substring(0, pnew.Length) == pnew)
+                    {
+                        result.Add(value);
+                    }
+            }
+
+
+            return result;
+
+        }
+
+        public async Task<string> UpdateAsync(ProductSale ProductSale)
+        {
+            try
+            {
+                _context.ProductSale.Update(ProductSale);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_update";
+            }
+            return "success";
+           
         }
     }
 }

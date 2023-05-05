@@ -27,12 +27,20 @@ namespace Service.implementation
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteById(int id)
+        public async Task<string> DeleteById(int id)
         {
-
-            var customer = GetByCustomerId(id);
-            _context.Customer.Remove(customer);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var customer = GetByCustomerId(id);
+                _context.Customer.Remove(customer);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_update";
+            }
+            return "success";
+           
         }
 
         public IEnumerable<Entity.Customer> GetAll()
@@ -48,10 +56,45 @@ namespace Service.implementation
             return _context.Customer.Where(x => x.CustomerID == customerID).FirstOrDefault();
         }
 
-        public async Task UpdateAsync(Customer role)
+        public IEnumerable<Customer> search(string name)
         {
-            _context.Customer.Update(role);
-            await _context.SaveChangesAsync();
+            List<Customer> result = new List<Customer>();
+            var list = GetAll();
+            while (result.Count == 0)
+            {
+                foreach (Customer value in list)
+                {
+                    string p = value.FullName.ToString().ToLower();
+                    string pnew = name.ToLower();
+                    if (p.Length >= pnew.Length)
+                        if (p.Substring(0, pnew.Length) == pnew)
+                        {
+                            result.Add(value);
+                        }
+                }
+                if (name.Length > 1)
+                    name = name.Substring(0, name.Length - 1);
+                else
+                    break;
+            }
+
+            return result;
+
+        }
+
+        public async Task<string> UpdateAsync(Customer customer)
+        {
+            try
+            {
+                _context.Customer.Update(customer);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return "error_update";
+            }
+            return "success";
+            
         }
     }
 }
