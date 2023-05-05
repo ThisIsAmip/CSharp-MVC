@@ -17,5 +17,8 @@ namespace Service
         public IEnumerable<Entity.Product> GetAll();
 
         IEnumerable<Product> searchProduct(string name);
+        Task<List<Product>> GetProducts(int pageNumber, int pageSize);
+        Task<List<Product>> GetProductsByCategory(int categoryId, int pageNumber, int pageSize);
+        int GetTotalCount();
     }
 }
