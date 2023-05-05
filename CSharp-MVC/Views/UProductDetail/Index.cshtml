@@ -30,46 +30,59 @@
                     <!-- Link hình ảnh sản phẩm Start -->
                     <ul class="nav nav-tabs flex-sm-column justify-content-between" id="productThumbTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <!-- Ảnh 1 -->
-                            <button class="nav-link active" id="sp11-tab" data-bs-toggle="tab" data-bs-target="#sp11" type="button" role="tab" aria-controls="sp11" aria-selected="true">
-                                <img src="~/Image/1/sp11.jpg" alt="">
+                            @{
+                                String[] splitPicture = @Model.Picture.Split('.');
+                            }
+                            <button class="nav-link active" id="@splitPicture[0]-tab" data-bs-toggle="tab" data-bs-target="#@splitPicture[0]" type="button" role="tab" aria-controls="@splitPicture[0]" aria-selected="true">
+                                <img src="~/Image/home/products/@Model.Picture" alt="">
                             </button>
                         </li>
+
+                        @foreach(var obj in Model.Imgs)
+                        {
+                            <li class="nav-item" role="presentation">
+                                @{
+                                    splitPicture = obj.ImageLink.Split('.');
+                                }
+                                <button class="nav-link" id="@splitPicture[0]-tab" data-bs-toggle="tab" data-bs-target="#@splitPicture[0]" type="button" role="tab" aria-controls="@splitPicture[0]" aria-selected="false">
+                                    <img src="~/Image/@Model.ProductID/@obj.ImageLink" alt="">
+                                </button>
+                            </li>
+                        }
+@*                        
                         <li class="nav-item" role="presentation">
-                            <!-- Ảnh 2 -->
-                            <button class="nav-link" id="sp12-tab" data-bs-toggle="tab" data-bs-target="#sp12" type="button" role="tab" aria-controls="sp12" aria-selected="false">
-                                <img src="~/Image/1/sp12.jpg" alt="">
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <!-- Ảnh 3 -->
                             <button class="nav-link" id="sp13-tab" data-bs-toggle="tab" data-bs-target="#sp13" type="button" role="tab" aria-controls="sp13" aria-selected="false">
                                 <img src="~/Image/1/sp13.jpg" alt="">
                             </button>
-                        </li>
+                        </li>*@
                     </ul>
                     <!-- Link hình ảnh sản phẩm End -->
                     <div class="product__details-thumb">
                         <!-- Hình ảnh sản phẩm chính(Ảnh lớn) Start -->
                         <div class="tab-content" id="productThumbContent">
-                            <div class="tab-pane fade show active" id="thumbOne" role="tabpanel" aria-labelledby="thumbOne-tab">
-                                <!-- Ảnh 1 -->
+                            @{
+                                splitPicture = @Model.Picture.Split('.');
+                            }
+                            <div class="tab-pane fade show active" id="@splitPicture[0]" role="tabpanel" aria-labelledby="@splitPicture[0]-tab">
                                 <div class="product__details-nav-thumb w-img">
-                                    <img src="~/Image/1/iphone-14-pro-bac-1-2.png" alt="">
+                                    <img src="~/Image/home/products/@Model.Picture" alt="">
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="thumbTwo" role="tabpanel" aria-labelledby="thumbTwo-tab">
-                                <!-- Ảnh 2 -->
-                                <div class="product__details-nav-thumb w-img">
-                                    <img src="~/Image/1/iphone-14-pro-bac-1-2zzzzzz.jpg" alt="">
+                            @foreach(var obj in Model.Imgs)
+                            {
+                                splitPicture = obj.ImageLink.Split('.');
+                                <div class="tab-pane fade" id="@splitPicture[0]" role="tabpanel" aria-labelledby="@splitPicture[0]-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="~/Image/@Model.ProductID/@obj.ImageLink" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="thumbThree" role="tabpanel" aria-labelledby="thumbThree-tab">
+                            }
+@*                            <div class="tab-pane fade" id="sp13" role="tabpanel" aria-labelledby="sp13-tab">
                                 <!-- Ảnh 3 -->
                                 <div class="product__details-nav-thumb w-img">
-                                    <img src="~/Image/1/iphone-14-pro-den-1-1.jpg" alt="">
+                                    <img src="~/Image/1/sp13.jpg" alt="">
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                         <!-- Hình ảnh sản phẩm chính(Ảnh lớn) End -->
                     </div>
@@ -81,7 +94,7 @@
                     <h6>@Model.ProductName</h6>
                     <!-- Giá sản phẩm -->
                     <div class="price mb-10">
-                        <span>@Model.Price</span>
+                        <span>@Model.Price VND</span>
                     </div>
                     <!-- Thông số sản phẩm -->
                     <div class="features-des mb-20 mt-10">
@@ -112,7 +125,7 @@
                             </span>
                             <span class="posted_in">
                                 <span class="title">Categories:</span>
-                                <a href="#">@Model.ProdCateName</a>
+                                <a href="@Url.Action("Index", "UProducts", new { categoryId = Model.ProdCateID })">@Model.ProdCateName</a>
                             </span>
                             <span class="tagged_as">
                                 <span class="title">Tags:</span>
