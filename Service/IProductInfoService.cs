@@ -12,12 +12,14 @@ namespace Service
     {
         Task CreateAsync(Entity.ProductInfo productInfo);
        Task DeleteAsync(Entity.ProductInfo productInfo);
+        //Task CreateAsync(Entity.ProductInfo productInfo);
+        //Task DeleteAsync(Entity.ProductInfo productInfo);
 
         Task UpdateAsync(Entity.ProductInfo productInfo);
         Task DeleteById(int id);
 
-        IEnumerable<Entity.ProductInfo> GetAll();
-        public Entity.ProductInfo GetByProductInfoId(int productId);
+        //IEnumerable<Entity.ProductInfo> GetAll();
+        //User GetByUserId(int productInfo);
     }
    
 }

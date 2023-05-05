@@ -46,11 +46,26 @@ namespace Service.implementation
             return _context.ProductInfo.Where(x => x.ProductID == productID).FirstOrDefault();
         }
 
+        //    var productInfo = GetByProductInfoId(id);
+        //    _context.ProductInfo.Remove(productInfo);
+        //    await _context.SaveChangesAsync();
+        //}
 
-        public async Task UpdateAsync(ProductInfo productInfo)
-        {
-            _context.ProductInfo.Update(productInfo);
-            await _context.SaveChangesAsync();
-        }
+        //public IEnumerable<Entity.ProductInfo> GetAll()
+        //{
+        //    foreach (var productInfo in _context.ProductInfo)
+        //    {
+        //        yield return productInfo;
+        //    }
+        //}
+        //public ProductInfo GetByProductInfoId(int productID)
+        //{
+        //    return _context.ProductInfo.Where(x => x.ProductID == productID).FirstOrDefault();
+        //}
+        //public async Task UpdateAsync(ProductInfo productInfo)
+        //{
+        //    _context.ProductInfo.Update(productInfo);
+        //    await _context.SaveChangesAsync();
+        //}
     }
 }

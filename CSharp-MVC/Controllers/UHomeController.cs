@@ -47,7 +47,7 @@ namespace CSharp_MVC.Controllers
                     ProdCateID = p.ProdCateID,
                     ProdCateName = c.ProdCateName
                 }).ToList();
-            var combinedViewModel = new CombinedProductaCategoryVm
+            var combinedViewModel = new UHomeVm
             {
                 Products = viewModel,
                 Categories = categories

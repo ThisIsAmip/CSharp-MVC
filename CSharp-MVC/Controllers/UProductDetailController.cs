@@ -14,20 +14,23 @@ namespace CSharp_MVC.Controllers
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
         private readonly IProductImageService _productImageService;
+        private readonly IProductInfoService _productInfoService;
 
-        public UProductDetailController(ILogger<UProductDetailController> logger, ApplicationDbContext db, IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService)
+        public UProductDetailController(ILogger<UProductDetailController> logger, ApplicationDbContext db, IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService, IProductInfoService productInfoService)
         {
             _logger = logger;
             _db = db;
             _productService = productService;
             _productCategoryService = productCategoryService;
             _productImageService = productImageService;
+            _productInfoService = productInfoService;
         }
 
         public IActionResult Index(int id)
         {
             var product = _productService.GetByProductId(id);
             var category = _productCategoryService.GetByProductCategoryId(product.ProdCateID);
+            var productinfo = _productInfoService.GetByProductInfoId(id);
             var images = _productImageService.GetAllByID(id).Select(i => new ProductImageVm
             {
                 ProductID = i.ProductID,
@@ -44,6 +47,15 @@ namespace CSharp_MVC.Controllers
             productDetailVm.ProdCateID = category.ProdCateID;
             productDetailVm.ProdCateName = category.ProdCateName;
             productDetailVm.Imgs = images.ToList();
+            productDetailVm.Screen = productinfo.Screen;
+            productDetailVm.OS = productinfo.OS;
+            productDetailVm.FrontCam = productinfo.FrontCam;
+            productDetailVm.BackCam = productinfo.BackCam;
+            productDetailVm.Chip = productinfo.Chip;
+            productDetailVm.Ram = productinfo.Ram;
+            productDetailVm.Storage = productinfo.Storage;
+            productDetailVm.SIM = productinfo.SIM;
+            productDetailVm.Battery = productinfo.Battery;
             return View(productDetailVm);
         }
 
