@@ -19,7 +19,8 @@ namespace Service
         Task DeleteById(int id);
 
         //IEnumerable<Entity.ProductInfo> GetAll();
-        //User GetByUserId(int productInfo);
+        public Entity.ProductInfo GetByProductInfoId(int productInfo);
+
     }
    
 }

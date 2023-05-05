@@ -145,7 +145,8 @@ namespace CSharp_MVC.Controllers
             string message = "";
 
             var em =_employeeService.GetByEmployeeId(id);
-            if (em == null)
+            
+            if (em != null)
             {
                 var user = _userService.GetByUserId(int.Parse(em.Account));
 

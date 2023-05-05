@@ -46,6 +46,13 @@ namespace Service.implementation
             return _context.ProductInfo.Where(x => x.ProductID == productID).FirstOrDefault();
         }
 
+        public async Task UpdateAsync(ProductInfo productInfo)
+        {
+            
+            _context.ProductInfo.Update(productInfo);
+            await _context.SaveChangesAsync();
+        }
+
         //    var productInfo = GetByProductInfoId(id);
         //    _context.ProductInfo.Remove(productInfo);
         //    await _context.SaveChangesAsync();

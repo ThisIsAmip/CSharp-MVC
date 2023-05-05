@@ -148,7 +148,7 @@ namespace CSharp_MVC.Controllers
             };
                 var productInf = new ProductInfo
                 {
-                    ProductID = request.ProductID,
+                    
                     BackCam = request.BackCam,
                     Battery = request.Battery,
                     Chip = request.Chip,

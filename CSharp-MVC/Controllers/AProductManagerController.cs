@@ -138,7 +138,6 @@ namespace CSharp_MVC.Controllers
             {
                 var product = new Product
                 {
-                    ProductID = request.ProductID,
                     ProductName = request.ProductName,
                     Description = cate,
                     Picture = request.Picture,
