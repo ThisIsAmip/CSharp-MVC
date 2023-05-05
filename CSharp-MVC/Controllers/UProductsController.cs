@@ -88,5 +88,29 @@ namespace CSharp_MVC.Controllers
             };
             return View(paginationViewModel);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> AddToCart(int id)
+        //{
+        //    // Get the product with the specified id
+        //    var product = await _productService.GetProductById(id);
+
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    // Create a JSON response with the product information
+        //    var response = new
+        //    {
+        //        name = product.Name,
+        //        price = product.Price
+        //    };
+
+        //    // Return the JSON response
+        //    return Json(response);
+        //}
+
+
     }
 }
