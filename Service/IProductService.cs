@@ -7,7 +7,6 @@ namespace Service
         //thêm, sửa, xóa, get all, ...
         Task<string> CreateAsync(Product product);
         Task<string> DeleteAsync(Product product);
-        Task UpdateAsync(Product product);
 
         Task<string> UpdateAsync(Product product);
         Task<string> DeleteById(int id);
@@ -15,6 +14,7 @@ namespace Service
         Product GetByProductId(int product);
         Product GetByProductName(string name);
         int GetCount();
+        public IEnumerable<Entity.Product> GetAll();
 
         IEnumerable<Product> searchProduct(string name);
     }

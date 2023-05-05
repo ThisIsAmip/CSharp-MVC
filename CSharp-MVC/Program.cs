@@ -35,18 +35,6 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IBillService, BillService>();
 builder.Services.AddScoped<IProductSaleService, ProductSaleService>();
 builder.Services.AddScoped<IUnityService, UnityService>();
-builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<IProductSaleService, ProductSaleService>();
-builder.Services.AddTransient<IRoleService, RoleService>();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IVoucherService, VoucherService>();
-builder.Services.AddTransient<IProductInfoService, ProductInfoService>();
-builder.Services.AddTransient<IProductImageService, ProductImageService>();
-builder.Services.AddTransient<IProductCategoryService, ProductCategoryService>();
-builder.Services.AddTransient<IProductBillService, ProductBillService>();
-builder.Services.AddTransient<IEmployeeService, EmployeeService>();
-builder.Services.AddTransient<ICustomerService, CustomerService>();
-builder.Services.AddTransient<IBillService, BillService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession(options =>
@@ -91,7 +79,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=UHome}/{action=Index}/{id?}");
+        pattern: "{controller=UManager}/{action=Index}/{id?}");
 });
 app.MapRazorPages();
 

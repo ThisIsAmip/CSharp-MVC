@@ -78,7 +78,7 @@ namespace CSharp_MVC.Controllers
             };
             
             string result = await _productCategoryService.CreateAsync(p);
-            string message = "Sửa loại" + _unityService.getMessage(result);
+            string message = "Thêm loại" + _unityService.getMessage(result);
             return RedirectToAction("Index", "AMProductCategory", new { @id = 0, @result = result, @message = message });
         }
 

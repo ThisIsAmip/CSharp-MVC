@@ -59,7 +59,9 @@
                                                 <option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6">
                                                     <div id="add-row_filter" class="dataTables_filter">
                                                         <label>Search:
-                                                            <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="add-row">
+                                                             <form method="post" asp-controller="AManager" asp-action="Search">
+                                                            <input type="search" name="search"   class="form-control form-control-sm" placeholder="" aria-controls="add-row">
+                                                            </form>
                             </label>
                         </div>
                         </div>
