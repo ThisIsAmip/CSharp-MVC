@@ -10,15 +10,13 @@ namespace Service
 {
     public interface IProductInfoService
     {
-        //TODO: Add ProductInfo Database then uncommend bellow
-        //thêm, sửa, xóa, get all, ...
-        //Task CreateAsync(Entity.ProductInfo productInfo);
-        //Task DeleteAsync(Entity.ProductInfo productInfo);
+        Task CreateAsync(Entity.ProductInfo productInfo);
+        Task DeleteAsync(Entity.ProductInfo productInfo);
 
-        //Task UpdateAsync(Entity.ProductInfo productInfo);
-        //Task DeleteById(int id);
+        Task UpdateAsync(Entity.ProductInfo productInfo);
+        Task DeleteById(int id);
 
-        //IEnumerable<Entity.ProductInfo> GetAll();
-        //User GetByUserId(int productInfo);
+        IEnumerable<Entity.ProductInfo> GetAll();
+        Entity.ProductInfo GetByProductInfoId(int productID);
     }
 }
