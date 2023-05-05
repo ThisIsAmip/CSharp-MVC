@@ -35,6 +35,7 @@ namespace DataAccess
         public DbSet<ProductInfo> ProductInfo { get; set; }
 
         public DbSet<ProductImage> ProductImage { get; set; }
+        public DbSet<Cart> Cart { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
