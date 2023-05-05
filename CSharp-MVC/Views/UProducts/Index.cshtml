@@ -374,7 +374,7 @@
                                                         }
                                                     </div>
                                                     <div class="product__add-cart-s text-center">
-                                                        <button type="button"
+                                                        <button type="button" onclick="addToCart(@products.ProductID)"
                                                             class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
                                                             Add to Cart
                                                         </button>
@@ -452,5 +452,23 @@
     <script src="~/ProductAsset/js/isotope-pkgd.js" asp-append-version="true"></script>
     <script src="~/ProductAsset/js/imagesloaded-pkgd.js" asp-append-version="true"></script>
     <script src="~/ProductAsset/js/main.js" asp-append-version="true"></script>
+
+
+    <script>
+        function addToCart(productId) {
+            // Get the product from the server using AJAX
+            $.ajax({
+                url: "/Product/AddToCart/" + productId,
+                type: "GET",
+                success: function (response) {
+                    // Show a message to the user with the product information
+                    alert("Product added to cart:\nName: " + response.name + "\nPrice: " + response.price);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX Error:', textStatus, errorThrown);
+                }
+            });
+        }
+    </script>
 </body>
 
