@@ -11,7 +11,7 @@
     }
 }
 
-@*@model CombinedProductaCategoryVm;*@
+@model UHomeVm;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,12 +128,25 @@
                                 </div>
                                 <div class="block-cart action">
                                     <!-- Giỏ hàng Start -->
+                                    @{
+                                        float subtotal = 0;
+                                    }
+                                    @foreach(var c in Model.Cart)
+                                    {
+                                        foreach(var p in Model.Products)
+                                        {
+                                            if(p.ProductID == c.ProductID)
+                                            {
+                                                subtotal += p.Price;
+                                            }
+                                        }
+                                    }
                                     <a class="icon-link icon-link-2" asp-area="" asp-controller="UCart" asp-action="Index">
                                         <i class="flaticon-shopping-bag"></i>
-                                        <span class="count count-2">1</span>
+                                        <span class="count count-2">@Model.Cart.Count()</span>
                                         <span class="text">
                                             <span class="sub">Your Cart:</span>
-                                            $00.00
+                                            $@subtotal
                                         </span>
                                     </a>
                                     <div class="cart">
@@ -142,33 +155,43 @@
                                                 <li>
                                                     <div class="cart__title">
                                                         <h4>Your Cart</h4>
-                                                        <span>(1 Item in Cart)</span>
+                                                        <span>(@Model.Cart.Count() Item in Cart)</span>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="cart__item d-flex justify-content-between align-items-center">
-                                                        <div class="cart__inner d-flex">
-                                                            <div class="cart__thumb">
-                                                                <a asp-area="" asp-controller="UProductDetail" asp-action="Index">
-                                                                    <img src="~/Image/1/iphone-14-pro-bac-1-2.png" alt="">
-                                                                </a>
-                                                            </div>
-                                                            <div class="cart__details">
-                                                                <h6><a asp-area="" asp-controller="UProductDetail" asp-action="Index"> Iphone 14 Pro  </a></h6>
-                                                                <div class="cart__price">
-                                                                    <span>$299</span>
-                                                                </div>
+                                                
+                                                @foreach(var c in Model.Cart)
+                                                {
+                                                    <li>
+                                                        <div class="cart__item d-flex justify-content-between align-items-center">
+                                                            @foreach(var p in Model.Products)
+                                                            {
+                                                                if(p.ProductID == c.ProductID)
+                                                                {
+                                                                    <div class="cart__inner d-flex">
+                                                                        <div class="cart__thumb">
+                                                                            <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">
+                                                                                <img src="~/Image/home/products/@p.Picture" alt="...">
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="cart__details">
+                                                                            <h6><a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">@p.ProductName</a></h6>
+                                                                            <div class="cart__price">
+                                                                                <span>@p.Price</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            <div class="cart__del">
+                                                                <a href="@Url.Action("Delete", "UHome", new { cartId = @c.CartID })"><i class="fal fa-times"></i></a>
                                                             </div>
                                                         </div>
-                                                        <div class="cart__del">
-                                                            <a href="#"><i class="fal fa-times"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                    </li>
+                                                }
                                                 <li>
                                                     <div class="cart__sub d-flex justify-content-between align-items-center">
                                                         <h6>Subtotal</h6>
-                                                        <span class="cart__sub-total">$255.00</span>
+                                                        <span class="cart__sub-total">$@subtotal</span>
                                                     </div>
                                                 </li>
                                                 <li>
@@ -327,37 +350,6 @@
                                         </li>
                                         <!-- Trang chủ End -->
                                         <li><a href="about.html">About Us</a></li>
-                                        <!-- Danh mục Sản Phẩm Start -->
-                                        <li class="has-mega">
-                                            <a href="shop.html">Shop <i class="far fa-angle-down"></i></a>
-                                            <div class="mega-menu">
-                                                <div class="container container-mega">
-                                                    <ul>
-                                                        @*@foreach(var c in Model.Categories)
-                                                        {
-                                                        <li>
-                                                        <ul>
-                                                        <li class="title"><a href="shop.html">@c.ProdCateName</a></li>
-                                                        @foreach(var p in Model.Products)
-                                                        {
-                                                        if(p.ProdCateID.Equals(c.ProdCateID))
-                                                        {
-                                                        <li>
-                                                        <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">@p.ProductName</a>
-                                                        </li>
-                                                        }
-                                                        }
-                                                        </ul>
-                                                        </li>
-                                                        }*@
-                                                    </ul>
-                                                </div>
-                                                <div class="offer mt-40">
-                                                    <p><b>30% OFF</b> the shipping of your first order with the code: <b>SALE30</b></p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- Danh mục sản phẩm End -->
                                         <!-- Địa chỉ cửa hàng Start -->
                                         <li>
                                             <a href="blog.html">Store Address<i class="far fa-angle-down"></i></a>

@@ -35,6 +35,7 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IBillService, BillService>();
 builder.Services.AddScoped<IProductSaleService, ProductSaleService>();
 builder.Services.AddScoped<IUnityService, UnityService>();
+builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession(options =>
@@ -67,7 +68,7 @@ app.UseAuthorization();
 app.UseSession();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=AManager}/{action=Index}/{id?}");
+    pattern: "{controller=Uhome}/{action=Index}/{id?}");
 
 
 app.UseEndpoints(endpoints =>

@@ -11,7 +11,7 @@ namespace Service
     public interface IProductInfoService
     {
         Task CreateAsync(Entity.ProductInfo productInfo);
-       Task DeleteAsync(Entity.ProductInfo productInfo);
+        Task DeleteAsync(Entity.ProductInfo productInfo);
         //Task CreateAsync(Entity.ProductInfo productInfo);
         //Task DeleteAsync(Entity.ProductInfo productInfo);
 

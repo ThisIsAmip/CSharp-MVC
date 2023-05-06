@@ -4,5 +4,6 @@
     {
         public IEnumerable<ProductVm> Products { get; set; }
         public IEnumerable<ProductCategoryVm> Categories { get; set; }
+        public IEnumerable<CartVm> Cart { get; set; }
     }
 }

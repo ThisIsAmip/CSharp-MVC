@@ -11,13 +11,10 @@ namespace Service
     {
         Task CreateAsync(ProductImage productImage);
         Task DeleteAsync(ProductImage productImage);
-
         Task UpdateAsync(ProductImage productImage);
         Task DeleteById(int id);
-
         IEnumerable<ProductImage> GetAll();
         ProductImage GetByProductImageId(int productImage);
-
         IEnumerable<ProductImage> GetAllByID(int id);
     }
 }
