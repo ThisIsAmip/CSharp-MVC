@@ -197,6 +197,8 @@
                             <!-- Create Order Button -->
                             @{
                                 float subtotal = 0;
+                                int[] proids = new int[255];
+                                int count = 0;
                             }
                             @foreach (var c in Model.Cart)
                             {
@@ -208,11 +210,13 @@
                                         {
                                             float total = p.Price * c.Quantity;
                                             subtotal += @total;
+                                            proids[count] = c.ProductID;
+                                            count += 1;
                                         }
                                     }
                                 }
                             }
-                            <a href="@Url.Action("CreateOrder", "UPayment", new { money = @subtotal, cusid = @cusid, userid = @customer.UserID})">
+                            <a href="@Url.Action("CreateOrder", "UPayment", new { money = @subtotal, cusid = @cusid, userid = @customer.UserID, proid = @proids})">
                                 <button class="confirm-btn btn btn-outline-danger p-lg-3 p-sm-2 w-sm-100">
                                     Create Order
                                 </button>

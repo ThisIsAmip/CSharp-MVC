@@ -51,7 +51,7 @@
                                                     <!-- Hình Ảnh Sản phẩm -->
                                                     <td class="product-thumbnail">
                                                         <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">
-                                                            <img src="~/Image/home/@p.ProductID/@p.Picture" alt="">
+                                                            <img src="~/Image/home/products/@p.Picture" alt="">
                                                         </a>
                                                     </td>
                                                     <!-- Tên Sản phẩm -->
@@ -117,7 +117,7 @@
                                     <!-- Tổng thanh toán -->
                                     <li>Total <span>$25</span></li>
                                 </ul>
-                                <a class="tp-btn-h1" href="">Proceed to checkout</a>
+                                <a class="tp-btn-h1" asp-controller="UPayment" asp-action="Index">Proceed to checkout</a>
                             </div>
                         </div>
                     </div>

@@ -60,7 +60,7 @@ namespace CSharp_MVC.Controllers
             return View(uPaymentVm);
         }
 
-        public IActionResult CreateOrder(float money, int cusid, int userid)
+        public IActionResult CreateOrder(float money, int cusid, int userid, int[] proids)
         {
             var bill = new Entity.Bill();
             bill.DateCreated = DateTime.Now;
@@ -68,7 +68,7 @@ namespace CSharp_MVC.Controllers
             bill.EmployeeID = 4;
             bill.CustomerID = cusid;
             bill.VoucherID = 1;
-            _paymentService.CreateAsync(bill);
+            _paymentService.CreateAsync(bill, proids);
             _paymentService.ClearCart(userid);
             return RedirectToAction("Index");
         }

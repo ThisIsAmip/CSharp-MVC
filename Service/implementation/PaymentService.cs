@@ -17,10 +17,19 @@ namespace Service.implementation
         {
             _context = context;
         }
-        public async Task CreateAsync(Bill bill)
+        public async Task CreateAsync(Bill bill, int[] proids)
         {
             _context.Bill.AddAsync(bill);
             await _context.SaveChangesAsync();
+            var billid = bill.BillID;
+            for(int i=0;i<proids.Count();i++)
+            {
+                var productBill = new ProductBill();
+                productBill.BillID = billid;
+                productBill.ProductID = proids[i];
+                productBill.Quantity = 1;
+                AddProductBill(productBill);
+            }
         }
 
         public async Task AddProductBill(ProductBill pbill)
