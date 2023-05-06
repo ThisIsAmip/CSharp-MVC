@@ -8,5 +8,7 @@ namespace CSharp_MVC.Models
         public Pagination Pagination { get; set; }
         public IEnumerable<ProductCategory> ProductCategory { get; set; }
         public IEnumerable<ProductSale> ProductSale { get; set; }
+        public IEnumerable<CartVm> Cart { get; set; }
+        public IEnumerable<ProductVm> ProductsforCart { get; set; }
     }
 }

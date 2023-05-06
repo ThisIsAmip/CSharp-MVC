@@ -1,6 +1,24 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
     ViewData["Title"] = "Cart Page";
+    var listProduct = ViewBag.listProduct;
+    var listCategory = ViewBag.listCategory;
+    Layout = "~/Views/Shared/UCartLayout.cshtml";
 }
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session.GetString("customer");
+    var customer = new UserVm();
+    if (session != null)
+    {
+        customer = JsonConvert.DeserializeObject<UserVm>(session);
+    }
+}
+
+@model UCartVm;
 
 <!-- cart-area-start -->
 <section class="cart-area pt-120 pb-120">
@@ -21,22 +39,48 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <!-- Hình Ảnh Sản phẩm -->
-                                    <td class="product-thumbnail"><a href="shop-details.html"><img  src="~/image/1/iphone-14-pro-bac-1-2.png" alt=""></a></td>
-                                    <!-- Tên Sản phẩm -->
-                                    <td class="product-name"><a href="shop-details.html">Iphone </a></td>
-                                    <!-- Số lượng sản phẩm -->
-                                    <td class="product-price"><span class="amount">$13</span></td>
-                                    <td class="product-quantity">
-                                        <div class="cart-plus-minus"><input type="text" value="1"><div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
-                                    </td>
-                                    <!-- Giá sản phẩm -->
-                                    <td class="product-subtotal"><span class="amount">$13</span></td>
-                                    <!-- Xóa sản phẩm khỏi giỏ hàng -->
-                                    <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                </tr>
-
+                                @foreach (var c in Model.Cart)
+                                {
+                                    if (c.UserID == customer.UserID)
+                                    {
+                                        foreach (var p in Model.Products)
+                                        {
+                                            if (p.ProductID == c.ProductID)
+                                            {
+                                                <tr>
+                                                    <!-- Hình Ảnh Sản phẩm -->
+                                                    <td class="product-thumbnail">
+                                                        <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">
+                                                            <img src="~/Image/home/@p.ProductID/@p.Picture" alt="">
+                                                        </a>
+                                                    </td>
+                                                    <!-- Tên Sản phẩm -->
+                                                    <td class="product-name">
+                                                        <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@p.ProductID">
+                                                            @p.ProductName
+                                                        </a>
+                                                    </td>
+                                                    <!-- Số lượng sản phẩm -->
+                                                    <td class="product-price">
+                                                        <span class="amount">
+                                                            @p.Price
+                                                        </span>
+                                                    </td>
+                                                    <td class="product-quantity">
+                                                        <div class="cart-plus-minus"><input type="text" value="@c.Quantity"><div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
+                                                    </td>
+                                                    <!-- Giá sản phẩm -->
+                                                    @{
+                                                        float total = @p.Price * @c.Quantity;
+                                                    }
+                                                    <td class="product-subtotal"><span class="amount">@total</span></td>
+                                                    <!-- Xóa sản phẩm khỏi giỏ hàng -->
+                                                    <td class="product-remove"><a href="@Url.Action("Delete", "UHome", new { cartId = @c.CartID })"><i class="fa fa-times"></i></a></td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -73,7 +117,7 @@
                                     <!-- Tổng thanh toán -->
                                     <li>Total <span>$25</span></li>
                                 </ul>
-                                <a class="tp-btn-h1" href="checkout.html">Proceed to checkout</a>
+                                <a class="tp-btn-h1" href="">Proceed to checkout</a>
                             </div>
                         </div>
                     </div>

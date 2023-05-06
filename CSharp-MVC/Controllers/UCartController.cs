@@ -1,4 +1,6 @@
-﻿using DataAccess;
+﻿using CSharp_MVC.Models;
+using DataAccess;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Service;
@@ -10,38 +12,56 @@ namespace CSharp_MVC.Controllers
         private readonly ILogger<UCartController> _logger;
         private readonly ApplicationDbContext _db;
         private readonly IProductService _productService;
-        private readonly ICustomerService _customerService;
+        private readonly ICartService _cartService;
 
-        public UCartController(ILogger<UCartController> logger, ApplicationDbContext db, IProductService productService, ICustomerService customerService)
+        public UCartController(ILogger<UCartController> logger, ApplicationDbContext db, IProductService productService, ICartService cartService)
         {
             _logger = logger;
             _db = db;
             _productService = productService;
-            _customerService = customerService;
+            _cartService = cartService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var products = _productService.GetAll().Select(entity => new ProductVm
+            {
+                ProductID = entity.ProductID,
+                ProductName = entity.ProductName,
+                Description = entity.Description,
+                Picture = entity.Picture,
+                Price = entity.Price,
+                Quantity = entity.Quantity,
+                ProdCateID = entity.ProdCateID,
+                ProdCateName = "null"
+            }).ToList();
+
+            var cart = _cartService.GetAll().Select(entity => new CartVm
+            {
+                CartID = entity.CartID,
+                Quantity = entity.Quantity,
+                UserID = entity.UserID,
+                ProductID = entity.ProductID
+            }).ToList();
+
+            var uCartVm = new UCartVm();
+            uCartVm.Products = products;
+            uCartVm.Cart = cart;
+
+            return View(uCartVm);
         }
 
-        //public ActionResult AddToCart(int productId, int customerId)
-        //{
-        //    var cartItem = new ShoppingCartItem { ProductId = productId, CustomerId = customerId };
-        //    _db.ShoppingCartItems.Add(cartItem);
-        //    _db.SaveChanges();
-        //    return RedirectToAction("Index", "Home");
-        //}
+        public IActionResult Delete(int cartid)
+        {
+            _cartService.DeleteById(cartid);
+            return RedirectToAction("Index");
+        }
 
-        //public ActionResult RemoveFromCart(int productId, int customerId)
-        //{
-        //    var cartItem = _db.ShoppingCartItems.SingleOrDefault(c => c.ProductId == productId && c.CustomerId == customerId);
-        //    if (cartItem != null)
-        //    {
-        //        _db.ShoppingCartItems.Remove(cartItem);
-        //        _db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Cart", "Home");
-        //}
+        public IActionResult UpdatetoCart(int usid, int proid)
+        {
+            _cartService.AddToCart(usid, proid);
+            return RedirectToAction("Index");
+        }
+
     }
 }

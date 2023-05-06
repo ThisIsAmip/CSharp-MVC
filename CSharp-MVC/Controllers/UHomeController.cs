@@ -62,11 +62,11 @@ namespace CSharp_MVC.Controllers
                 }
             ).ToList();
 
-            var cart = _cartService.GetAllByCusID(1).Select(entity => new CartVm
+            var cart = _cartService.GetAll().Select(entity => new CartVm
             {
                 CartID = entity.CartID,
                 Quantity = entity.Quantity,
-                CustomerID = entity.CustomerID,
+                UserID = entity.UserID,
                 ProductID = entity.ProductID
             }).ToList();
 
@@ -75,18 +75,6 @@ namespace CSharp_MVC.Controllers
             uHomeVm.Products = productVm;
             uHomeVm.Categories = categories;
             uHomeVm.Cart = cart;
-
-            //if (id != null)
-            //{
-            //    var cart = _cartService.GetAllByCusID(id).Select(entity => new CartVm
-            //    {
-            //        CustomerID = entity.CustomerID,
-            //        ProductID = entity.ProductID,
-            //        Quantity = entity.Quantity
-            //    }).ToList();
-
-            //    uHomeVm.Cart = cart;
-            //}
 
             return View(uHomeVm);
         }
@@ -97,10 +85,9 @@ namespace CSharp_MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult AddtoCart(int cusid, int proid)
+        public IActionResult AddtoCart(int usid, int proid)
         {
-            cusid = 1;
-            _cartService.AddToCart(cusid, proid);
+            _cartService.AddToCart(usid, proid);
             return RedirectToAction("Index");
         }
 

@@ -1,4 +1,25 @@
-﻿@model StoreVm
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Products Page";
+    var listProduct = ViewBag.listProduct;
+    var listCategory = ViewBag.listCategory;
+    Layout = "~/Views/Shared/UProductsLayout.cshtml";
+}
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session.GetString("customer");
+    var customer = new UserVm();
+    if (session != null)
+    {
+        customer = JsonConvert.DeserializeObject<UserVm>(session);
+    }
+}
+
+@model StoreVm
+
 @{
     var topseller = Model.Products.OrderBy(p => p.Price).Take(5);
     var procate = Model.ProductCategory;
@@ -272,13 +293,13 @@
                                         }
                                         <li class="product__sm-item d-flex align-items-center">
                                             <div class="product__sm-thumb mr-20">
-                                                <a href="product-details.html">
+                                                <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@products.ProductID">
                                                     <img src="~/image/home/products/@products.Picture" alt="" asp-append-version="true" />
                                                 </a>
                                             </div>
                                             <div class="product__sm-content">
                                                 <h5 class="product__sm-title">
-                                                    <a href="product-details.html">@products.ProductName</a>
+                                                    <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@products.ProductID">@products.ProductName</a>
                                                 </h5>
                                                 @if (price != products.Price)
                                                 {
@@ -406,7 +427,7 @@
                                                 <div class="product__item product__item-d">
                                                     <div class="product__thumb fix">
                                                         <div class="product-image w-img">
-                                                            <a href="product-details.html">
+                                                            <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@products.ProductID">
                                                                 <img src="~/image/home/products/@products.Picture"
                                                                  alt="product" asp-append-version="true" />
                                                             </a>
@@ -473,16 +494,14 @@
                                                         }
                                                     </div>
                                                     <div class="product__add-cart-s text-center">
-                                                        <button type="button" onclick="addToCart(@products.ProductID)"
-                                                            class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
-                                                            Add to Cart
-                                                        </button>
-                                                        <button type="button"
-                                                            class="wc-checkout d-flex align-items-center justify-content-center w-100"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#productModalId">
-                                                            View Details
-                                                        </button>
+                                                        <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="@products.ProductID">
+                                                            <button type="button"
+                                                                class="wc-checkout d-flex align-items-center justify-content-center w-100"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#productModalId">
+                                                                View Details
+                                                            </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

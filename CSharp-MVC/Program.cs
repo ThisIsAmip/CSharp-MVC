@@ -36,6 +36,7 @@ builder.Services.AddScoped<IBillService, BillService>();
 builder.Services.AddScoped<IProductSaleService, ProductSaleService>();
 builder.Services.AddScoped<IUnityService, UnityService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession(options =>

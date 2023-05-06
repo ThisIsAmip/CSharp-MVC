@@ -1,6 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Payment";
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Payment Page";
+    var listProduct = ViewBag.listProduct;
+    var listCategory = ViewBag.listCategory;
+    Layout = "~/Views/Shared/UPaymentLayout.cshtml";
 }
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session.GetString("customer");
+    var customer = new UserVm();
+    if (session != null)
+    {
+        customer = JsonConvert.DeserializeObject<UserVm>(session);
+    }
+}
+
+@model UPaymentVm;
+
+@{
+    int cusid = 0;
+    foreach (var u in Model.User)
+    {
+        if (u.Account == customer.UserID)
+        {
+            cusid = u.CustomerID;
+        }
+    }
+}
+
 <link href="~/css/payment.css" rel="stylesheet" />
 <div class="page-wrapper container">
     <div class="payment-wrapper container row gx-2 justify-content-between d-md-flex">
@@ -165,9 +195,29 @@
                         </div>
                         <div class="confirm-holder pb-3 col-md-6 d-flex justify-content-end col-sm-6">
                             <!-- Create Order Button -->
-                            <button class="confirm-btn btn btn-outline-danger p-lg-3 p-sm-2 w-sm-100">
-                                Create Order
-                            </button>
+                            @{
+                                float subtotal = 0;
+                            }
+                            @foreach (var c in Model.Cart)
+                            {
+                                if (c.UserID == customer.UserID)
+                                {
+                                    foreach (var p in Model.Products)
+                                    {
+                                        if (c.ProductID == p.ProductID)
+                                        {
+                                            float total = p.Price * c.Quantity;
+                                            subtotal += @total;
+                                        }
+                                    }
+                                }
+                            }
+                            <a href="@Url.Action("CreateOrder", "UPayment", new { money = @subtotal, cusid = @cusid, userid = @customer.UserID})">
+                                <button class="confirm-btn btn btn-outline-danger p-lg-3 p-sm-2 w-sm-100">
+                                    Create Order
+                                </button>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -178,57 +228,45 @@
                 <!-- Product's holder, this is where a product in cart will be rendered to-->
                 <div class="product-list pb-lg-4 pb-md-3">
                     <h3 class="pb-5">Order Summary</h3>
-                    <!-- Display in cart product -->
-                    <!-- Make something to render the product-container -->
-                    <div class="product-container position-relative d-flex pb-4">
-                        <div class="pr-view d-flex pe-4">
-                            <!-- Product's image -->
-                            <div class="image-container border rounded-4">
-                                <img src="~/Image/1/iphone-14-pro-bac-1-2.png" alt="" />
-                            </div>
-                            <!-- Product's quantity -->
-                            <div class="pr-quantity position-absolute z-1 rounded-circle">
-                                <span id="pro-quatity"
-                                      class="quantity-number p-1 text-white">1</span>
-                            </div>
-                        </div>
-                        <div class="pr-infomation pe-3">
-                            <!-- Product's description -->
-                            <div class="pro-description">
-                                iPhone 14 128GB with a very long long description to
-                                describe the phone's spec
-                            </div>
-                            <!-- Product's color -->
-                            <div class="pro-color">Bạc</div>
-                        </div>
-                        <!-- Product's price -->
-                        <div class="pr-totalprice">
-                            <p>69.00$</p>
-                        </div>
-                    </div>
-                    <!-- Product's info same as the above-->
-                    <div class="product-container position-relative d-flex pb-4">
-                        <div class="pr-view d-flex pe-4">
-                            <div class="image-container border rounded-4">
-                                <img src="~/Image/1/iphone-14-pro-bac-1-2.png" alt="" />
-                            </div>
-                            <div class="pr-quantity position-absolute z-1 rounded-circle">
-                                <span id="pro-quatity"
-                                      class="quantity-number p-1 text-white">1</span>
-                            </div>
-                        </div>
-                        <div class="pr-infomation pe-3">
-                            <div class="pro-description">
-                                iPhone 14 128GB with a very long long description to
-                                describe the phone's spec
-                            </div>
-                            <div class="pro-color">Bạc</div>
-                        </div>
-                        <div class="pr-totalprice">
-                            <p>69.00$</p>
-                        </div>
-                    </div>
-                    <!-- ----------------------------------------------- -->
+                    @foreach (var c in Model.Cart)
+                    {
+                        if (c.UserID == customer.UserID)
+                        {
+                            foreach (var p in Model.Products)
+                            {
+                                if (c.ProductID == p.ProductID)
+                                {
+                                    <div class="product-container position-relative d-flex pb-4">
+                                        <div class="pr-view d-flex pe-4">
+                                            <!-- Product's image -->
+                                            <div class="image-container border rounded-4">
+                                                <img src="~/Image/home/products/@p.Picture" alt="" />
+                                            </div>
+                                            <!-- Product's quantity -->
+                                            <div class="pr-quantity position-absolute z-1 rounded-circle">
+                                                <span id="pro-quatity" class="quantity-number p-1 text-white">@c.Quantity</span>
+                                            </div>
+                                        </div>
+                                        <div class="pr-infomation pe-3">
+                                            <!-- Product's description -->
+                                            <div class="pro-description">
+                                                @p.Description
+                                            </div>
+                                            <!-- Product's color -->
+                                            <div class="pro-color">Bạc</div>
+                                        </div>
+                                        <!-- Product's price -->
+                                        <div class="pr-totalprice">
+                                            @{
+                                                float total = p.Price * c.Quantity;
+                                            }
+                                            <p>@total$</p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
                 </div>
                 <div class="product-border border-bottom"></div>
                 <!-- Input customer's city -->
@@ -238,7 +276,7 @@
                             <p>Sub Total</p>
                         </div>
                         <div class="sub-money">
-                            <p>100$</p>
+                            <p>@subtotal$</p>
                         </div>
                     </div>
                     <div class="shipping d-flex justify-content-between pb-3">
@@ -260,7 +298,10 @@
                         </div>
                         <div class="total-price d-flex justify-content-between">
                             <div class="currency pe-3 d-flex"><p>NHD</p></div>
-                            <div class="sum d-flex"><p>105.00$</p></div>
+                            @{
+                                subtotal += 5.0f;
+                            }
+                            <div class="sum d-flex"><p>@subtotal$</p></div>
                         </div>
                     </div>
                 </div>

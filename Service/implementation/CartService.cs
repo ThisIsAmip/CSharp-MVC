@@ -39,9 +39,9 @@ namespace Service.implementation
                 yield return cart;
             }
         }
-        public IEnumerable<Cart> GetAllByCusID(int cusid)
+        public IEnumerable<Cart> GetAllByUsID(int usid)
         {
-            return _context.Cart.Where(pi => pi.CustomerID == cusid).AsEnumerable();
+            return _context.Cart.Where(pi => pi.UserID == usid).AsEnumerable();
         }
         public Cart GetByCartID(int cartid)
         {
@@ -59,14 +59,14 @@ namespace Service.implementation
             {
             }
         }
-        public async Task AddToCart(int cusid, int proid)
+        public async Task AddToCart(int usid, int proid)
         {
-            var cartItem = _context.Cart.FirstOrDefault(c => c.CustomerID == cusid && c.ProductID == proid);
+            var cartItem = _context.Cart.FirstOrDefault(c => c.UserID == usid && c.ProductID == proid);
             if (cartItem == null)
             {
                 var newCartItem = new Cart()
                 {
-                    CustomerID = cusid,
+                    UserID = usid,
                     ProductID = proid,
                     Quantity = 1
                 };

@@ -28,5 +28,7 @@
         public string Storage { get; set; }
         public string SIM { get; set; }
         public string Battery { get; set; }
+        public IEnumerable<CartVm> Cart { get; set; }
+        public IEnumerable<ProductVm> Products { get; set; }
     }
 }

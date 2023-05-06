@@ -324,11 +324,22 @@
                                             <!-- Giá tiền-->
                                             <div class="price">@modelList[i].Price</div>
                                             <!-- Button Thêm vào giỏ hàng-->
-                                            <a href="@Url.Action("AddtoCart", "UHome", new { cusid = 1, proid = @modelList[i].ProductID})">
-                                                <button class="btn">
-                                                    ADD TO CART
-                                                </button>
-                                            </a>
+                                            @if(session != null)
+                                            {
+                                                <a href="@Url.Action("AddtoCart", "UHome", new { usid = customer.UserID, proid = @modelList[i].ProductID})">
+                                                    <button class="btn">
+                                                        ADD TO CART
+                                                    </button>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="USignin" asp-action="Index">
+                                                    <button class="btn">
+                                                        ADD TO CART
+                                                    </button>
+                                                </a>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +376,7 @@
                                             <!-- Giá tiền-->
                                             <div class="price">@modelList[i+1].Price</div>
                                             <!-- Button Thêm vào giỏ hàng-->
-                                            <a href="@Url.Action("AddtoCart", "UHome", new { cusid = 1, proid = @modelList[i+1].ProductID})">
+                                            <a href="@Url.Action("AddtoCart", "UHome", new { usid = 1, proid = @modelList[i+1].ProductID})">
                                                 <button class="btn">
                                                     ADD TO CART
                                                 </button>
