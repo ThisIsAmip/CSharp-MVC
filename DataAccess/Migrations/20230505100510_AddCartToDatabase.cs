@@ -15,17 +15,17 @@ namespace DataAccess.Migrations
                     CartID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cart", x => x.CartID);
                     table.ForeignKey(
-                        name: "FK_Cart_Customer_CustomerID",
-                        column: x => x.CustomerID,
-                        principalTable: "Customer",
-                        principalColumn: "CustomerID",
+                        name: "FK_Cart_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "TaiKhoan",
+                        principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Cart_Product_ProductID",
@@ -39,7 +39,7 @@ namespace DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Cart_CustomerID",
                 table: "Cart",
-                column: "CustomerID");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cart_ProductID",
