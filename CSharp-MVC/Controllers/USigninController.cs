@@ -38,6 +38,12 @@ namespace CSharp_MVC.Controllers
                 ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu");
                 return View();
             }
+            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(Password, user.Password);
+            if (!isPasswordCorrect)
+            {
+                ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu");
+                return View();
+            }
             var customerInformation = JsonConvert.SerializeObject(user);
             HttpContext.Session.SetString("customer", customerInformation);
             var role = _roleSerivce.GetByRoleId(user.RoleId);
