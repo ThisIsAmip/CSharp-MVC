@@ -15,8 +15,9 @@ namespace CSharp_MVC.Controllers
         private readonly IProductCategoryService _productCategoryService;
         private readonly IProductImageService _productImageService;
         private readonly IProductInfoService _productInfoService;
+        private readonly ICartService _cartService;
 
-        public UProductDetailController(ILogger<UProductDetailController> logger, ApplicationDbContext db, IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService, IProductInfoService productInfoService)
+        public UProductDetailController(ILogger<UProductDetailController> logger, ApplicationDbContext db, IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService, IProductInfoService productInfoService, ICartService cartService)
         {
             _logger = logger;
             _db = db;
@@ -24,6 +25,7 @@ namespace CSharp_MVC.Controllers
             _productCategoryService = productCategoryService;
             _productImageService = productImageService;
             _productInfoService = productInfoService;
+            _cartService = cartService;
         }
 
         public IActionResult Index(int id)
@@ -37,6 +39,27 @@ namespace CSharp_MVC.Controllers
                 Name = i.Name,
                 ImageLink = i.ImageLink
             });
+
+            var cart = _cartService.GetAllByCusID(1).Select(entity => new CartVm
+            {
+                CartID = entity.CartID,
+                Quantity = entity.Quantity,
+                UserID = entity.UserID,
+                ProductID = entity.ProductID
+            }).ToList();
+
+            var products = _productService.GetAll().Select(entity => new ProductVm
+            {
+                ProductID = entity.ProductID,
+                ProductName = entity.ProductName,
+                Description = entity.Description,
+                Picture = entity.Picture,
+                Price = entity.Price,
+                Quantity = entity.Quantity,
+                ProdCateID = entity.ProdCateID,
+                ProdCateName = "null"
+            }).ToList();
+
             ProductDetailVm productDetailVm = new ProductDetailVm();
             productDetailVm.ProductID = product.ProductID;
             productDetailVm.ProductName = product.ProductName;
@@ -56,6 +79,8 @@ namespace CSharp_MVC.Controllers
             productDetailVm.Storage = productinfo.Storage;
             productDetailVm.SIM = productinfo.SIM;
             productDetailVm.Battery = productinfo.Battery;
+            productDetailVm.Cart = cart;
+            productDetailVm.Products = products;
             return View(productDetailVm);
         }
 

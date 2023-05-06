@@ -66,27 +66,14 @@ namespace CSharp_MVC.Controllers
             {
                 CartID = entity.CartID,
                 Quantity = entity.Quantity,
-                CustomerID = entity.CustomerID,
+                UserID = entity.UserID,
                 ProductID = entity.ProductID
             }).ToList();
-
 
             var uHomeVm = new UHomeVm();
             uHomeVm.Products = productVm;
             uHomeVm.Categories = categories;
             uHomeVm.Cart = cart;
-
-            //if (id != null)
-            //{
-            //    var cart = _cartService.GetAllByCusID(id).Select(entity => new CartVm
-            //    {
-            //        CustomerID = entity.CustomerID,
-            //        ProductID = entity.ProductID,
-            //        Quantity = entity.Quantity
-            //    }).ToList();
-
-            //    uHomeVm.Cart = cart;
-            //}
 
             return View(uHomeVm);
         }
@@ -99,7 +86,6 @@ namespace CSharp_MVC.Controllers
 
         public IActionResult AddtoCart(int cusid, int proid)
         {
-            cusid = 1;
             _cartService.AddToCart(cusid, proid);
             return RedirectToAction("Index");
         }

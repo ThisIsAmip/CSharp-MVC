@@ -59,19 +59,19 @@ namespace Service.implementation
             {
             }
         }
-        public async Task AddToCart(int cusid, int proid)
+        public async Task AddToCart(int usid, int proid)
         {
-            var cartItem = _context.Cart.FirstOrDefault(c => c.CustomerID == cusid && c.ProductID == proid);
+            var cartItem = _context.Cart.FirstOrDefault(c => c.UserID == usid && c.ProductID == proid);
             if (cartItem == null)
             {
                 var newCartItem = new Cart()
                 {
-                    CustomerID = cusid,
+                    UserID = usid,
                     ProductID = proid,
                     Quantity = 1
                 };
                 _context.Cart.AddAsync(newCartItem);
-                await _context.SaveChangesAsync(true);
+                await _context.SaveChangesAsync();
             }
         }
     }

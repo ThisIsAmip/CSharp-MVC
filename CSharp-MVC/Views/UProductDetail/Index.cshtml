@@ -1,5 +1,21 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
     ViewData["Title"] = "ProductDetail Page";
+    var listProduct = ViewBag.listProduct;
+    var listCategory = ViewBag.listCategory;
+    Layout = "~/Views/Shared/UProductDetailLayout.cshtml";
+}
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session.GetString("customer");
+    var customer = new UserVm();
+    if (session != null)
+    {
+        customer = JsonConvert.DeserializeObject<UserVm>(session);
+    }
 }
 
 @model ProductDetailVm
@@ -108,7 +124,19 @@
                         <div class="product-quantity mr-20">
                             <div class="cart-plus-minus p-relative"><input type="text" value="1"><div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
                         </div>
-                        <a href="cart.html" class="cart-btn">Add to Cart</a>
+                        @if (session != null)
+                        {
+                            <a href="@Url.Action("AddtoCart", "UHome", new { cusid = @customer.UserID, proid = @Model.ProductID})" class="cart-btn">Add to Cart</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="USignin" asp-action="Index">
+                                <button class="btn">
+                                    ADD TO CART
+                                </button>
+                            </a>
+                        }
+                        
                     </div>
                     <!-- Mã hiệu sản phẩm -->
                     <div class="product-tag-area mt-15">

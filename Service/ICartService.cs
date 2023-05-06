@@ -12,6 +12,6 @@ namespace Service
         IEnumerable<Cart> GetAllByCusID(int cusid);
         public Cart GetByCartID(int cartid);
         Task DeleteById(int cartid);
-        Task AddToCart(int cusid, int proid);
+        Task AddToCart(int usid, int proid);
     }
 }
