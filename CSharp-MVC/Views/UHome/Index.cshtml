@@ -376,7 +376,7 @@
                                             <!-- Giá tiền-->
                                             <div class="price">@modelList[i+1].Price</div>
                                             <!-- Button Thêm vào giỏ hàng-->
-                                            <a href="@Url.Action("AddtoCart", "UHome", new { usid = 1, proid = @modelList[i+1].ProductID})">
+                                            <a href="@Url.Action("AddtoCart", "UHome", new { usid = customer.UserID, proid = @modelList[i+1].ProductID})">
                                                 <button class="btn">
                                                     ADD TO CART
                                                 </button>

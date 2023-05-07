@@ -13,12 +13,8 @@ namespace Entity
     {
         [ForeignKey("Product")]
         public int ProductID { get; set; }
-        public Product Product { get; set; }
-
         [ForeignKey("Bill")]
         public int BillID { get; set; }
-        public Bill Bill { get; set; }
-
         public int Quantity { get; set; }
     }
 }

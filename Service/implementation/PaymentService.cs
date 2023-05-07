@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,29 +14,39 @@ namespace Service.implementation
     public class PaymentService : IPaymentService
     {
         private ApplicationDbContext _context;
-        public PaymentService(ApplicationDbContext context)
+        private ApplicationDbContext _newcontext;
+        public PaymentService(ApplicationDbContext context, ApplicationDbContext newcontext)
         {
             _context = context;
+            _newcontext = newcontext;
         }
-        public async Task CreateAsync(Bill bill, int[] proids)
+        public async Task CreateAsync(Bill bill, int length, int[] IDs)
         {
-            _context.Bill.AddAsync(bill);
+            await _context.Bill.AddAsync(bill);
             await _context.SaveChangesAsync();
             var billid = bill.BillID;
-            for(int i=0;i<proids.Count();i++)
+            for(int i=0;i<length;i++)
             {
                 var productBill = new ProductBill();
+                productBill.ProductID = IDs[i];
                 productBill.BillID = billid;
-                productBill.ProductID = proids[i];
                 productBill.Quantity = 1;
-                AddProductBill(productBill);
+                await AddProductBill(productBill);
             }
+            
         }
 
         public async Task AddProductBill(ProductBill pbill)
         {
-            _context.ProductBill.AddAsync(pbill);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _newcontext.ProductBill.AddAsync(pbill);
+                await _newcontext.SaveChangesAsync();
+            } catch(Exception ex)
+            {
+                
+            }
+            
         }
 
         public async Task ClearCart(int userid)

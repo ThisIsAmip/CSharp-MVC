@@ -19,7 +19,7 @@ namespace Service.implementation
         }
         public async Task CreateAsync(Cart cart)
         {
-            _context.Cart.AddAsync(cart);
+            await _context.Cart.AddAsync(cart);
             await _context.SaveChangesAsync();
         }
         public async Task DeleteAsync(Cart cart)
@@ -70,7 +70,7 @@ namespace Service.implementation
                     ProductID = proid,
                     Quantity = 1
                 };
-                _context.Cart.AddAsync(newCartItem);
+                await _context.Cart.AddAsync(newCartItem);
                 await _context.SaveChangesAsync(true);
             }
         }
