@@ -25,7 +25,7 @@ namespace Service.implementation
             await _context.Bill.AddAsync(bill);
             await _context.SaveChangesAsync();
             var billid = bill.BillID;
-            for(int i=0;i<length;i++)
+               for(int i = 0; i < length; i++)
             {
                 var productBill = new ProductBill();
                 productBill.ProductID = IDs[i];
@@ -42,10 +42,12 @@ namespace Service.implementation
             {
                 await _newcontext.ProductBill.AddAsync(pbill);
                 await _newcontext.SaveChangesAsync();
+                Console.WriteLine("thành công ");
             } catch(Exception ex)
             {
-                
+                Console.WriteLine("Thất bại");
             }
+
             
         }
 

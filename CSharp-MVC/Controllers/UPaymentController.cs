@@ -60,7 +60,7 @@ namespace CSharp_MVC.Controllers
             return View(uPaymentVm);
         }
 
-        public IActionResult CreateOrder(float money, int cusid, int userid)
+        public async Task<IActionResult> CreateOrder(float money, int cusid, int userid)
         {
             var bill = new Entity.Bill();
             bill.DateCreated = DateTime.Now;
@@ -83,9 +83,9 @@ namespace CSharp_MVC.Controllers
             int length = selectioncart.Count;
             int[] IDs = selectioncart.Select(c => c.ProductID).ToArray();
 
-            _paymentService.CreateAsync(bill, length, IDs);
+           await _paymentService.CreateAsync(bill, length, IDs);
 
-            _paymentService.ClearCart(userid);
+            await  _paymentService.ClearCart(userid);
             return RedirectToAction("Index");
         }
     }
