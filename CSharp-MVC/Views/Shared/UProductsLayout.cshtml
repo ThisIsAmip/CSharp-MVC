@@ -57,10 +57,10 @@
                             <div class="header-inner-end text-md-end">
                                 <div class="ovic-menu-wrapper ovic-menu-wrapper-2">
                                     <ul>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="contact.html">Order Tracking</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
-                                        <li><a href="faq.html">FAQs</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Order Tracking</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">FAQs</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                 <!-- Account End -->
                                 <div class="block-wishlist action">
                                     <!-- Sản phẩm yêu thích Start -->
-                                    <a class="icon-link icon-link-2" href="wishlist.html">
+                                    <a class="icon-link icon-link-2" href="#">
                                         <i class="flaticon-heart"></i>
                                         <span class="count count-2">0</span>
                                         <span class="text">
@@ -137,7 +137,7 @@
                                             if(c.UserID == customer.UserID)
                                             {
                                                 count += 1;
-                                                foreach(var p in Model.Products)
+                                                foreach(var p in Model.ProductsforCart)
                                                 {
                                                     if(p.ProductID == c.ProductID)
                                                     {
@@ -171,7 +171,7 @@
                                                         {
                                                             <li>
                                                                 <div class="cart__item d-flex justify-content-between align-items-center">
-                                                                    @foreach(var p in Model.Products)
+                                                                    @foreach (var p in Model.ProductsforCart)
                                                                     {
                                                                         if(p.ProductID == c.ProductID)
                                                                         {
@@ -190,7 +190,7 @@
                                                                             </div>
                                                                         }
                                                                     }
-                                                                    <div class="cart__del">
+                                                                    <div class="cart__del"> 
                                                                         <a href="@Url.Action("Delete", "UHome", new { cartId = @c.CartID })"><i class="fal fa-times"></i></a>
                                                                     </div>
                                                                 </div>
@@ -244,48 +244,48 @@
                                     <nav id="mobile-menu" class="mobile-menu" style="display: block;">
                                         <ul>
                                             <li>
-                                                <a href="product.html">Home Pages<i class="far fa-angle-down"></i></a>
+                                                <a asp-controller="UHome" asp-action="Index">Home Pages<i class="far fa-angle-down"></i></a>
                                                 <ul class="mega-menu">
                                                     <li>
-                                                        <a href="product.html">Shop Pages</a>
+                                                        <a asp-controller="UProducts" asp-action="Index">Shop Pages</a>
                                                         <ul class="mega-item">
-                                                            <li><a href="product-details.html">About Us</a></li>
-                                                            <li><a href="product-details.html">Oder</a></li>
-                                                            <li><a href="product-details.html">Contact Us</a></li>
-                                                            <li><a href="product-details.html">Policy</a></li>
+                                                            <li><a href="#">About Us</a></li>
+                                                            <li><a href="#">Oder</a></li>
+                                                            <li><a href="#">Contact Us</a></li>
+                                                            <li><a href="#">Policy</a></li>
                                                         </ul>
                                                     </li>
                                                     <li>
-                                                        <a href="product.html">Product Pages</a>
+                                                        <a asp-controller="UProducts" asp-action="Index">Product Pages</a>
                                                         <ul class="mega-item">
-                                                            <li><a href="product-details.html">Product Details</a></li>
-                                                            <li><a href="product-details.html">New Products</a></li>
-                                                            <li><a href="product-details.html">Discount Products</a></li>
-                                                            <li><a href="product-details.html">Varriable Product</a></li>
+                                                            <li><a asp-action="Index" asp-controller="UProductDetail" asp-route-id="1">Product Details</a></li>
+                                                            <li><a asp-action="Index" asp-controller="UProductDetail" asp-route-id="50">New Product</a></li>
+                                                            <li><a asp-action="Index" asp-controller="UProductDetail" asp-route-id="25">Discount Product</a></li>
+                                                            <li><a href="#">Varriable Product</a></li>
 
                                                         </ul>
                                                     </li>
                                                     <li>
-                                                        <a href="product.html">Other Pages</a>
+                                                        <a href="#">Other Pages</a>
                                                         <ul class="mega-item">
-                                                            <li><a href="product-details.html">wishlist</a></li>
-                                                            <li><a href="product-details.html">Shopping Cart</a></li>
-                                                            <li><a href="product-details.html">Checkout</a></li>
-                                                            <li><a href="product-details.html">Login</a></li>
-                                                            <li><a href="product-details.html">Register</a></li>
+                                                            <li><a href="#">wishlist</a></li>
+                                                            <li><a asp-action="Index" asp-controller="UCart">Shopping Cart</a></li>
+                                                            <li><a asp-action="Index" asp-controller="UPayment">Checkout</a></li>
+                                                            <li><a asp-action="Index" asp-controller="USignin">Login</a></li>
+                                                            <li><a asp-action="Index" asp-controller="USignup">Register</a></li>
                                                         </ul>
                                                     </li>
                                                     <li>
-                                                        <a href="product.html">Blog</a>
+                                                        <a asp-action="Index" asp-controller="UBlog">Blog</a>
                                                         <ul class="mega-item">
-                                                            <li><a href="product-details.html">Blog Details</a></li>
-                                                            <li><a href="product-details.html">Blog</a></li>
+                                                            <li><a asp-action="Index" asp-controller="UBlog">Blog Details</a></li>
+                                                            <li><a asp-action="Index" asp-controller="UBlog">Blog</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="product.html">Product Type <i class="far fa-angle-down"></i></a>
+                                                <a href="#">Product Type <i class="far fa-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 1 })">Iphone</a></li>
                                                     <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 2 })">Samsung</a></li>
@@ -297,15 +297,15 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="product.html">
+                                                <a href="#">
                                                     Top 10 Offers
                                                     <span class="cat-label green">new!</span>
                                                 </a>
                                             </li>
-                                            <li><a href="product.html">Account</a></li>
-                                            <li><a href="product.html">Blog</a></li>
-                                            <li><a href="product.html">Your Cart</a></li>
-                                            <li><a href="product.html">My Wishlist</a></li>
+                                            <li><a href="#">Account</a></li>
+                                            <li><a asp-action="Index" asp-controller="UBlog">Blog</a></li>
+                                            <li><a href="#">Your Cart</a></li>
+                                            <li><a href="#">My Wishlist</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -323,63 +323,63 @@
                                     <ul>
                                         <!-- Trang chủ Start -->
                                         <li>
-                                            <a href="index.html">Home <i class="far fa-angle-down"></i></a>
+                                            <a asp-controller="UHome" asp-action="Index">Home <i class="far fa-angle-down"></i></a>
                                             <ul class="megamenu-1">
                                                 <li>
                                                     <a asp-controller="UProducts" asp-action="Index">Shop Pages</a>
                                                     <ul class="mega-item">
-                                                        <li><a href="index.html">About Us</a></li>
-                                                        <li><a href="">Oder</a></li>
-                                                        <li><a href="">Contact Us</a></li>
-                                                        <li><a href="product-details.html">Policy</a></li>
+                                                        <li><a href="#">About Us</a></li>
+                                                        <li><a href="#">Oder</a></li>
+                                                        <li><a href="#">Contact Us</a></li>
+                                                        <li><a href="#">Policy</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="shop.html">Product Pages</a>
+                                                    <a asp-controller="UProducts" asp-action="Index">Product Pages</a>
                                                     <ul class="mega-item">
-                                                        <li><a href="product-details.html">Product Details</a></li>
-                                                        <li><a href="product-details.html">Top 10 offers</a></li>
-                                                        <li><a href="product-details.html">New Product</a></li>
-                                                        <li><a href="product-details.html">Discount Product</a></li>
+                                                        <li><a asp-action="Index" asp-controller="UProductDetail" asp-route-id="1">Product Details</a></li>
+                                                        <li><a href="#">Top 10 offers</a></li>
+                                                        <li><a asp-action="Index" asp-controller="UProductDetail" asp-route-id="50">New Product</a></li>
+                                                        <li><a asp-action="Index" asp-controller="UProductDetail" asp-route-id="25">Discount Product</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="shop.html">Other Pages</a>
+                                                    <a href="#">Other Pages</a>
                                                     <ul class="mega-item">
-                                                        <li><a href="product-details.html">wishlist</a></li>
-                                                        <li><a href="product-details.html">Shopping Cart</a></li>
-                                                        <li><a href="product-details.html">Checkout</a></li>
-                                                        <li><a href="product-details.html">Login</a></li>
-                                                        <li><a href="product-details.html">Register</a></li>
+                                                        <li><a href="#">wishlist</a></li>
+                                                        <li><a asp-action="Index" asp-controller="UCart">Shopping Cart</a></li>
+                                                        <li><a asp-action="Index" asp-controller="UPayment">Checkout</a></li>
+                                                        <li><a asp-action="Index" asp-controller="USignin">Login</a></li>
+                                                        <li><a asp-action="Index" asp-controller="USignup">Register</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="shop.html">Product Type</a>
+                                                    <a asp-controller="UProducts" asp-action="Index">Product Type</a>
                                                     <ul class="mega-item">
-                                                        <li><a href="product-details.html">Iphone</a></li>
-                                                        <li><a href="product-details.html">Samsung</a></li>
-                                                        <li><a href="product-details.html">Xiaomi</a></li>
-                                                        <li><a href="product-details.html">Vivo</a></li>
+                                                        <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 1 })">Iphone</a></li>
+                                                        <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 2 })">Samsung</a></li>
+                                                        <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 3 })">Xiaomi</a></li>
+                                                        <li><a href="@Url.Action("Index", "UProducts", new { categoryId = 7 })">Vivo</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="shop.html">Blog</a>
+                                                    <a asp-action="Index" asp-controller="UBlog">Blog</a>
                                                     <ul class="mega-item">
-                                                        <li><a href="product-details.html">Blog</a></li>
-                                                        <li><a href="product-details.html">Blog Details</a></li>
+                                                        <li><a asp-action="Index" asp-controller="UBlog">Blog</a></li>
+                                                        <li><a asp-action="Index" asp-controller="UBlog">Blog Details</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
                                         <!-- Trang chủ End -->
-                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="#">About Us</a></li>
                                         <!-- Địa chỉ cửa hàng Start -->
                                         <li>
-                                            <a href="blog.html">Store Address<i class="far fa-angle-down"></i></a>
+                                            <a href="#">Store Address<i class="far fa-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="">Hà Nội</a></li>
-                                                <li><a href="">Hồ Chí Minh</a></li>
-                                                <li><a href="">Đà nẵng</a></li>
+                                                <li><a href="#">Hà Nội</a></li>
+                                                <li><a href="#">Hồ Chí Minh</a></li>
+                                                <li><a href="#">Đà nẵng</a></li>
                                             </ul>
                                         </li>
                                         <!-- Địa chỉ cửa hàng End -->
@@ -426,7 +426,7 @@
             </div>
             <div class="offcanvas__content">
                 <div class="offcanvas__logo mb-40">
-                    <a href="index.html">
+                    <a asp-action="Index" asp-controller="UHome">
                         NIENHOEP
                     </a>
                 </div>
@@ -552,12 +552,12 @@
                                 <div class="footer__widget-content">
                                     <div class="footer__link footer__link-2">
                                         <ul>
-                                            <li><a href="contact.html">Product Support</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="cart.html">Shopping Cart</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="faq.html">Terms &amp; Conditions &amp;</a></li>
-                                            <li><a href="faq.html">Redeem Voucher</a></li>
+                                            <li><a asp-action="Index" asp-controller="UProducts">Product Support</a></li>
+                                            <li><a asp-action="Index" asp-controller="UPayment">Checkout</a></li>
+                                            <li><a asp-action="Index" asp-controller="UCart">Shopping Cart</a></li>
+                                            <li><a href="#">Wishlist</a></li>
+                                            <li><a href="#">Terms &amp; Conditions &amp;</a></li>
+                                            <li><a href="#">Redeem Voucher</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -571,12 +571,12 @@
                                 <div class="footer__widget-content">
                                     <div class="footer__link footer__link-2">
                                         <ul>
-                                            <li><a href="faq.html">New Customers</a></li>
-                                            <li><a href="faq.html">How to use Account</a></li>
-                                            <li><a href="faq.html">Placing an Order</a></li>
-                                            <li><a href="faq.html">Payment Methods</a></li>
-                                            <li><a href="faq.html">Delivery &amp; Dispatch</a></li>
-                                            <li><a href="faq.html">Problems with Order</a></li>
+                                            <li><a asp-action="Index" asp-controller="USignup">New Customers</a></li>
+                                            <li><a href="#">How to use Account</a></li>
+                                            <li><a href="#">Placing an Order</a></li>
+                                            <li><a href="#">Payment Methods</a></li>
+                                            <li><a href="#">Delivery &amp; Dispatch</a></li>
+                                            <li><a href="#">Problems with Order</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -590,11 +590,11 @@
                                 <div class="footer__widget-content">
                                     <div class="footer__link footer__link-2">
                                         <ul>
-                                            <li><a href="faq.html">Help Center</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="faq.html">Report Abuse</a></li>
-                                            <li><a href="faq.html">Submit a Dispute</a></li>
-                                            <li><a href="faq.html">Policies &amp; Rules</a></li>
+                                            <li><a href="#">Help Center</a></li>
+                                            <li><a href="#">Contact Us</a></li>
+                                            <li><a href="#">Report Abuse</a></li>
+                                            <li><a href="#">Submit a Dispute</a></li>
+                                            <li><a href="#">Policies &amp; Rules</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -627,13 +627,13 @@
                             <div class="col-xl-12">
                                 <div class="footer__links footer__links-d text-center mb-25">
                                     <p>
-                                        <a href="about.html">About Us</a>
-                                        <a href="contact.html">Delivery & Return</a>
-                                        <a href="faq.html">Privacy Policy</a>
-                                        <a href="faq.html">Help</a>
-                                        <a href="contact.html">Order Tracking</a>
-                                        <a href="contact.html">Contact Us</a>
-                                        <a href="faq.html">FAQs </a>
+                                        <a href="#">About Us</a>
+                                        <a href="#">Delivery & Return</a>
+                                        <a href="#">Privacy Policy</a>
+                                        <a href="#">Help</a>
+                                        <a href="#">Order Tracking</a>
+                                        <a href="#">Contact Us</a>
+                                        <a href="#">FAQs </a>
                                     </p>
                                 </div>
                                 <div class="payment-image text-center mb-25">

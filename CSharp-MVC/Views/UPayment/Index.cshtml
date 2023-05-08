@@ -190,8 +190,9 @@
                         <div class="home-button d-flex align-content-center pt-3">
                             <box-icon name="chevron-left" class="pt-2"></box-icon>
                             <!-- Back to Home page -->
-                            <a href=""
-                               class="link-secondary link-offset-2 link-unde rline-opacity-25 link-underl ine-opacity-100-hover pt-2">Need more ? Return to store</a>
+                            <a asp-controller="UHome" asp-action="Index"
+                               class="link-secondary link-offset-2 link-unde rline-opacity-25 link-underl ine-opacity-100-hover pt-2">Need more ? Return to store
+                           </a>
                         </div>
                         <div class="confirm-holder pb-3 col-md-6 d-flex justify-content-end col-sm-6">
                             <!-- Create Order Button -->
@@ -216,11 +217,22 @@
                                     }
                                 }
                             }
-                            <a href="@Url.Action("CreateOrder", "UPayment", new { money = @subtotal, cusid = @cusid, userid = @customer.UserID, proid = @proids})">
-                                <button class="confirm-btn btn btn-outline-danger p-lg-3 p-sm-2 w-sm-100">
-                                    Create Order
-                                </button>
-                            </a>
+                            @if(count == 0)
+                            {
+                                <a asp-controller="UProducts" asp-action="Index">
+                                    <button class="confirm-btn btn btn-outline-danger p-lg-3 p-sm-2 w-sm-100">
+                                        Create Order
+                                    </button>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("CreateOrder", "UPayment", new { money = @subtotal, cusid = @cusid, userid = @customer.UserID, proid = @proids})">
+                                    <button class="confirm-btn btn btn-outline-danger p-lg-3 p-sm-2 w-sm-100">
+                                        Create Order
+                                    </button>
+                                </a>
+                            }
 
                         </div>
                     </div>

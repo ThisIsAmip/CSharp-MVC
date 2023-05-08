@@ -34,16 +34,18 @@
                 <img src="~/Image/home/main-products/1.jpg" class="img-fluid" alt="">
                 <div class="info-main1 position-absolute start-1">
                     <h6>SUPERCHARGED FOR PROS.</h6>
-                    <h1>iPhone X</h1>
+                    <h1>iPhone 11</h1>
                     <p>From $999.00 or $41.62/mo.<br>for 24 mo. Footnote*</p>
                     <!-- Button dẫn tới sản phẩm chính số 1 (IPHONE X) -->
-                    <button class="btn">BUY NOW</button>
+                    <a asp-action="Index" asp-controller="UProductDetail" asp-route-id="3">
+                        <button class="btn">BUY NOW</button>
+                    </a>
                 </div>
             </div>
             <div class="mainB col-3">
                 <div class="row g-4">
                     <!-- Sản phẩm chính số 2-->
-                    <a href="LINK THỂ LOẠI APPLE">
+                    <a href="@Url.Action("Index", "UProducts", new { categoryId = 1 })">
                         <div class="mini col-12">
                             <!-- Link ảnh sản phẩm chính số 2-->
                             <img src="~/Image/home/main-products/2-iphones.jpg" class="img-fluid" alt="">
@@ -55,7 +57,7 @@
                         </div>
                     </a>
                     <!-- Sản phẩm chính số 3-->
-                    <a href="LINK THỂ LOẠI SÁMSUNG">
+                    <a href="@Url.Action("Index", "UProducts", new { categoryId = 2 })">
                         <div class="mini col-12">
                             <!-- Link ảnh sản phẩm chính số 3-->
                             <img src="~/Image/home/main-products/3-samsung.jpg" class="img-fluid" alt="">
@@ -71,7 +73,7 @@
             <div class="mainB col-3">
                 <div class="row g-4">
                     <!-- Sản phẩm chính số 4-->
-                    <a href="LINK THỂ LOẠI XIAOMI">
+                    <a href="@Url.Action("Index", "UProducts", new { categoryId = 3 })">
                         <div class="mini col-12">
                             <!-- Link ảnh sản phẩm chính số 4-->
                             <img src="~/Image/home/main-products/4-xiaomi.jpg" class="img-fluid" alt="">
@@ -83,13 +85,13 @@
                         </div>
                     </a>
                     <!-- Sản phẩm chính số 5-->
-                    <a href="LINK THỂ LOẠI HUAWEI">
+                    <a href="@Url.Action("Index", "UProducts", new { categoryId = 4 })">
                         <div class="mini col-12">
                             <!-- Link ảnh sản phẩm chính số 5-->
                             <img src="~/Image/home/main-products/5-huawei.jpg" class="img-fluid" alt="">
                             <div class="info-main2 position-absolute start-1">
                                 <h6>NEW ARRIVAL</h6>
-                                <h4>Huawei</h4>
+                                <h4>Oppo</h4>
                                 <p>From $599 or $49/mo.<br>for 12 mo. *</p>
                             </div>
                         </div>
@@ -213,61 +215,53 @@
             <div class="col-12">
                 <div class="new owl-carousel owl-theme">
                     <!-- Sản phẩm số 1-->
-                    <a href="LINK SẢN PHẨM SỐ 1">
-                        <div class="item">
-                            <div class="card text-bg-dark">
-                                <!-- Link ảnh sản phẩm mới số 1-->
-                                <img src="~/Image/home/subbanner-01.webp" class="card-img" alt="...">
-                                <div class="info-new-product card-img-overlay" style="color:white">
-                                    <div class="type">BIG SCREEN</div>
-                                    <div class="name">Smart Watch Series 7</div>
-                                    <div class="price">From 399$</div>
-                                </div>
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 1-->
+                            <img src="~/Image/home/subbanner-01.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay" style="color:white">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 399$</div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                     <!-- Sản phẩm số 2-->
-                    <a href="LINK SẢN PHẨM SỐ 1">
-                        <div class="item">
-                            <div class="card text-bg-dark">
-                                <!-- Link ảnh sản phẩm mới số 2-->
-                                <img src="~/Image/home/subbanner-02.webp" class="card-img" alt="...">
-                                <div class="info-new-product card-img-overlay">
-                                    <div class="type">BIG SCREEN</div>
-                                    <div class="name">Smart Watch Series 7</div>
-                                    <div class="price">From 399$</div>
-                                </div>
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 2-->
+                            <img src="~/Image/home/subbanner-02.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 399$</div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                     <!-- Sản phẩm số 3-->
-                    <a href="LINK SẢN PHẨM SỐ 1">
-                        <div class="item">
-                            <div class="card text-bg-dark">
-                                <!-- Link ảnh sản phẩm mới số 3-->
-                                <img src="~/Image/home/subbanner-03.webp" class="card-img" alt="...">
-                                <div class="info-new-product card-img-overlay">
-                                    <div class="type">BIG SCREEN</div>
-                                    <div class="name">Smart Watch Series 7</div>
-                                    <div class="price">From 399$</div>
-                                </div>
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 3-->
+                            <img src="~/Image/home/subbanner-03.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 399$</div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                     <!-- Sản phẩm số 4-->
-                    <a href="LINK SẢN PHẨM SỐ 1">
-                        <div class="item">
-                            <div class="card text-bg-dark">
-                                <!-- Link ảnh sản phẩm mới số 4-->
-                                <img src="~/Image/home/subbanner-04.webp" class="card-img" alt="...">
-                                <div class="info-new-product card-img-overlay">
-                                    <div class="type">BIG SCREEN</div>
-                                    <div class="name">Smart Watch Series 7</div>
-                                    <div class="price">From 39$</div>
-                                </div>
+                    <div class="item">
+                        <div class="card text-bg-dark">
+                            <!-- Link ảnh sản phẩm mới số 4-->
+                            <img src="~/Image/home/subbanner-04.webp" class="card-img" alt="...">
+                            <div class="info-new-product card-img-overlay">
+                                <div class="type">BIG SCREEN</div>
+                                <div class="name">Smart Watch Series 7</div>
+                                <div class="price">From 39$</div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -324,7 +318,7 @@
                                             <!-- Giá tiền-->
                                             <div class="price">@modelList[i].Price</div>
                                             <!-- Button Thêm vào giỏ hàng-->
-                                            @if(session != null)
+                                            @if (session != null)
                                             {
                                                 <a href="@Url.Action("AddtoCart", "UHome", new { usid = customer.UserID, proid = @modelList[i].ProductID})">
                                                     <button class="btn">
