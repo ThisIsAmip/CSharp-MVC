@@ -13,7 +13,7 @@
         <div class="panel login-panel">
             <h2>Login</h2>
             <div class="login-notify">Login to NienHoep to continue</div>
-
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <form class="form-control" asp-controller="USignin" asp-action="Index" method="post">
                 <!-- Tài khoản -->  
                 <input type="text" placeholder="Enter Username" asp-for="Account" required>
