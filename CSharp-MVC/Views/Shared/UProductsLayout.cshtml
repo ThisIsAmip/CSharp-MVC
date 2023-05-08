@@ -105,23 +105,26 @@
                             <div class="header-action">
                                 <!-- Account Start -->
                                 <div class="block-userlink">
-                                    <a class="icon-link icon-link-2" asp-area="" asp-controller="USignin" asp-action="Index">
-                                        <i class="flaticon-user"></i>
-                                        @if (session != null)
-                                        {
+
+                                    @if (session != null)
+                                    {
+                                        <a class="icon-link icon-link-2">
+                                            <i class="flaticon-user"></i>
                                             <span class="text">
                                                 <span class="sub">Welcome </span>
                                                 @customer.Account
                                             </span>
-                                        }
-                                        else
-                                        {
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="icon-link icon-link-2" asp-area="" asp-controller="USignin" asp-action="Index">
                                             <span class="text">
                                                 <span class="sub">Login </span>
                                                 My Account
                                             </span>
-                                        }
-                                    </a>
+                                        </a>
+                                    }
                                 </div>
                                 <!-- Account End -->
                                 <div class="block-wishlist action">
@@ -137,25 +140,25 @@
                                     <!-- Sản phẩm yêu thích End -->
                                 </div>
                                 <div class="block-cart action">
-                                    @if(session != null)
+                                    @if (session != null)
                                     {
                                         <!-- Giỏ hàng Start -->
                                         float subtotal = 0;
                                         int count = 0;
-                                        @foreach(var c in Model.Cart)
+                                        @foreach (var c in Model.Cart)
                                         {
-                                            if(c.UserID == customer.UserID)
+                                            if (c.UserID == customer.UserID)
                                             {
                                                 count += 1;
-                                                foreach(var p in Model.ProductsforCart)
+                                                foreach (var p in Model.ProductsforCart)
                                                 {
-                                                    if(p.ProductID == c.ProductID)
+                                                    if (p.ProductID == c.ProductID)
                                                     {
                                                         subtotal += p.Price;
                                                     }
                                                 }
                                             }
-                                            
+
                                         }
                                         <a class="icon-link icon-link-2" asp-area="" asp-controller="UCart" asp-action="Index">
                                             <i class="flaticon-shopping-bag"></i>
@@ -174,16 +177,16 @@
                                                             <span>(@count Item in Cart)</span>
                                                         </div>
                                                     </li>
-                                                
-                                                    @foreach(var c in Model.Cart)
+
+                                                    @foreach (var c in Model.Cart)
                                                     {
-                                                        if(c.UserID == customer.UserID)
+                                                        if (c.UserID == customer.UserID)
                                                         {
                                                             <li>
                                                                 <div class="cart__item d-flex justify-content-between align-items-center">
                                                                     @foreach (var p in Model.ProductsforCart)
                                                                     {
-                                                                        if(p.ProductID == c.ProductID)
+                                                                        if (p.ProductID == c.ProductID)
                                                                         {
                                                                             <div class="cart__inner d-flex">
                                                                                 <div class="cart__thumb">
@@ -200,13 +203,13 @@
                                                                             </div>
                                                                         }
                                                                     }
-                                                                    <div class="cart__del"> 
+                                                                    <div class="cart__del">
                                                                         <a href="@Url.Action("Delete", "UHome", new { cartId = @c.CartID })"><i class="fal fa-times"></i></a>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                         }
-                                                        
+
                                                     }
                                                     <li>
                                                         <div class="cart__sub d-flex justify-content-between align-items-center">
