@@ -105,10 +105,20 @@
                                 <div class="block-userlink">
                                     <a class="icon-link icon-link-2" asp-area="" asp-controller="USignin" asp-action="Index">
                                         <i class="flaticon-user"></i>
-                                        <span class="text">
+                                        @if (session != null)
+                                        {
+                                            <span class="text">
+                                            <span class="sub">Welcome </span>
+                                            @customer.Account
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text">
                                             <span class="sub">Login </span>
                                             My Account
-                                        </span>
+                                            </span>
+                                        }
                                     </a>
                                 </div>
                                 <!-- Account End -->
