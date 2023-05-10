@@ -167,8 +167,10 @@
                     </div>
                     <div class="author-logout" style="position: relative;">
                         <i class="bi bi-person"></i>
-                        <div class="log-out" >Log Out
+                        <div class="log-out" ><a id="btnDangXuat">
+                            Log Out
                             <span></span>
+                                 </a>
                         </div>
                     </div>
                 </div>
@@ -231,5 +233,21 @@
     <div class="form-add align-content-center justify-content-center "  style="display: none;">
         @RenderBody();
     </div>
+    <script>
+        $("#btnDangXuat").click(function (e) {
+            $.ajax({
+                url: "@Url.Action("Signout","USignin")",
+                type: "POST",
+                contentType: "application/json",
+                data: {
+
+                },
+                success: function () {
+                    console.log("Đăng xuất thành công !");
+                    window.location = "@Url.Action("Index","UHome")"
+                }
+            })
+        })
+    </script>
     <script src="~/js/main.js"></script>
 </body>

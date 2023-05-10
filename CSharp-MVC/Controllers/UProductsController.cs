@@ -97,6 +97,26 @@ namespace CSharp_MVC.Controllers
 
             var hasNextPage = (pageNumber < totalPages);
 
+            var cart = _cartService.GetAll().Select(entity => new CartVm
+            {
+                CartID = entity.CartID,
+                Quantity = entity.Quantity,
+                UserID = entity.UserID,
+                ProductID = entity.ProductID
+            }).ToList();
+
+            var productsforcart = _productService.GetAll().Select(entity => new ProductVm
+            {
+                ProductID = entity.ProductID,
+                ProductName = entity.ProductName,
+                Description = entity.Description,
+                Picture = entity.Picture,
+                Price = entity.Price,
+                Quantity = entity.Quantity,
+                ProdCateID = entity.ProdCateID,
+                ProdCateName = "null"
+            }).ToList();
+
             var paginationViewModel = new StoreVm
             {
                 Products = products.Result,
@@ -110,8 +130,12 @@ namespace CSharp_MVC.Controllers
                     HasNextPage = hasNextPage
                 },
                 ProductCategory = productcategory.Result,
-                ProductSale = productsale.Result
+                ProductSale = productsale.Result,
+                Cart = cart,
+                ProductsforCart = productsforcart
             };
+
+
             return View(paginationViewModel);
         }
 

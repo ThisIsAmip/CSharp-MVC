@@ -62,7 +62,7 @@ namespace CSharp_MVC.Controllers
                 }
             ).ToList();
 
-            var cart = _cartService.GetAll().Select(entity => new CartVm
+            var cart =  _cartService.GetAll().Select(entity => new CartVm
             {
                 CartID = entity.CartID,
                 Quantity = entity.Quantity,
